@@ -1,0 +1,18 @@
+.DS_Store
+node_modules/
+temporary screenshots/
+
+# Raw source media (kept locally; the optimized web versions live in site/assets)
+Videos/
+IMG_5798.MOV
+Locationimages/
+Monroe1.png
+FR1.png
+
+# Reference material and third-party tooling used while building
+Reference images/
+Brand Assets/
+Agent-Skills-for-Context-Engineering-main/
+marketingskills-main/
+stop-slop-main/
+ui-ux-pro-max-skill-main/

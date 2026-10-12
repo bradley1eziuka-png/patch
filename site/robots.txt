@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://SET-siteUrl-IN-src-data.mjs/sitemap.xml
