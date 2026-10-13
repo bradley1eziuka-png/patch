@@ -58,6 +58,9 @@ export function icon(name, cls = '') {
 const MEDIA_DIR = path.join(OUT, 'assets', 'img', 'media');
 const EXTS = ['webp', 'jpg', 'jpeg', 'png'];
 const WIDTHS = [480, 800, 1200, 1600];
+// Content hash appended to CSS/JS URLs so browsers never serve a stale copy after a rebuild.
+import crypto from 'node:crypto';
+const ASSET_V = crypto.createHash('md5').update(['css/style.css', 'js/site.js'].map((f) => fs.readFileSync(path.join(OUT, 'assets', f))).join('')).digest('hex').slice(0, 8);
 const LOCIMG = JSON.parse(fs.readFileSync(path.join(ROOT, 'src', 'loc-images.json'), 'utf8'));
 const SIZES = JSON.parse(fs.readFileSync(path.join(ROOT, 'src', 'media-sizes.json'), 'utf8'));
 export const mediaReport = { placeholders: [], real: [] };
@@ -174,7 +177,7 @@ ${noindex ? '<meta name="robots" content="noindex">' : ''}
 <link rel="icon" type="image/png" href="/assets/img/favicon.png">
 <link rel="preload" href="/assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css?v=${ASSET_V}">
 ${extraHead}
 ${schema.join('\n')}
 </head>
@@ -247,7 +250,7 @@ export function footer() {
   </div>
   <div class="footer__legal"><div class="wrap"><p>&copy; ${new Date().getFullYear()} The Original Patch Master. Fully insured. Serving Dearborn Heights and Metro Detroit.</p></div></div>
 </footer>
-<script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/site.js?v=${ASSET_V}" defer></script>
 </body>
 </html>
 `;

@@ -51,6 +51,12 @@
   window.addEventListener('resize', function () {
     if (window.innerWidth >= 1200) setMenu(false);
   });
+  /* An open mobile menu closes on scroll, so its Call / Free Estimate buttons do not follow the page. */
+  var menuY = 0;
+  if (toggle) toggle.addEventListener('click', function () { menuY = window.scrollY; });
+  window.addEventListener('scroll', function () {
+    if (nav && nav.classList.contains('is-open') && Math.abs(window.scrollY - menuY) > 30) setMenu(false);
+  }, { passive: true });
 
   /* ---------- Background videos ---------- */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
