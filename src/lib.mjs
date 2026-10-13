@@ -247,10 +247,6 @@ export function footer() {
   </div>
   <div class="footer__legal"><div class="wrap"><p>&copy; ${new Date().getFullYear()} The Original Patch Master. Fully insured. Serving Dearborn Heights and Metro Detroit.</p></div></div>
 </footer>
-<div class="mobile-bar" role="region" aria-label="Quick contact">
-  <a class="mobile-bar__call" href="${site.phoneHref}">${icon('phone')}Call</a>
-  <a class="mobile-bar__est" href="/contact/">Free Estimate</a>
-</div>
 <script src="/assets/js/site.js" defer></script>
 </body>
 </html>

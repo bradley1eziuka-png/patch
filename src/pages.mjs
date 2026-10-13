@@ -106,7 +106,7 @@ ${heroSection()}
       <h2>Experience You Can See in the Finish.</h2>
       <p>The Original Patch Master is a family-owned drywall and plaster business owned and operated by Jeremy Girard. With 30 years of union experience behind the work, the business takes on everything from everyday repairs to complete drywall installations.</p>
       <p>Jeremy's son Jonas and Lillian work in the business with him. For the family, doing good work also means being straightforward with customers, respecting their homes, and standing behind the work they do.</p>
-      <div class="person"><span class="person__avatar" aria-hidden="true">${icon('user')}</span><div><strong>Jeremy Girard</strong><span>Owner, The Original Patch Master</span></div></div>
+      <div class="person"><div><strong>Jeremy Girard</strong><span>Owner, The Original Patch Master</span></div></div>
       <a class="btn btn--navy" href="/about/">More About Us</a>
     </div>
   </div>
