@@ -277,13 +277,14 @@ export function locationPhoto(slug) {
   };
 }
 
-export function pageHero({ crumbs, h1, lead, ctas = true, photo = null }) {
-  return `<section class="page-hero${photo ? ' page-hero--photo' : ''}">
+export function pageHero({ crumbs, h1, lead, ctas = true, photo = null, extra = '', cls = '' }) {
+  return `<section class="page-hero${photo ? ' page-hero--photo' : ''}${cls ? ' ' + cls : ''}">
   <div class="page-hero__bg" aria-hidden="true">${photo ? photo.html : ''}</div>
   <div class="wrap page-hero__inner">
     ${breadcrumb(crumbs)}
     <h1>${esc(h1)}</h1>
     ${lead ? `<p class="lead">${esc(lead)}</p>` : ''}
+    ${extra}
     ${ctas ? `<div class="btn-row"><a class="btn" href="/contact/">Get a Free Estimate</a><a class="btn btn--ghost" href="${site.phoneHref}">Call ${site.phone}</a></div>` : ''}
   </div>
 </section>`;

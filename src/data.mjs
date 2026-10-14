@@ -28,6 +28,10 @@ export const site = {
   // Form endpoint (Formspree, Basin, Netlify Forms URL, etc.).
   // Leave empty and the form tells visitors to call or email instead of faking a send.
   formEndpoint: '',
+
+  // Separate endpoint for job applications from /careers/. Do NOT reuse the estimate endpoint:
+  // applications must not land in the customer-estimate inbox. Leave empty and the form says it is not switched on.
+  careersEndpoint: '',
 };
 
 // ---------------------------------------------------------------------------
@@ -479,6 +483,7 @@ export const nav = [
   { label: 'Our Work', href: '/our-work/' },
   { label: 'About', href: '/about/' },
   { label: 'Service Areas', href: '/service-areas/', sub: 'locations' },
+  { label: 'Careers', href: '/careers/' },
   { label: 'Contact', href: '/contact/' },
 ];
 
@@ -575,17 +580,18 @@ export const featureVideos = {
 };
 
 // /our-work/ gallery. Each entry is one real clip. `slot` is the poster still above.
+// Each tile autoplays a small muted 4:5 preview (prev-<preview>.mp4 + poster) and opens the full clip on click.
 // The plaster-repair clip (Hero.mov) is left out: it has a burned-in Instagram watermark and music credit.
 // Labels only describe what is visible in the footage. Add more clips by encoding
 // them (MEDIA.md), then adding a row here.
 export const gallery = [
-  { slot: 'work-2', category: 'finishing', label: 'Taping & Finishing', video: '/assets/video/hero.mp4' },
-  { slot: 'work-3', category: 'finishing', label: 'Finishing Work', video: '/assets/video/work-finishing-1.mp4' },
-  { slot: 'work-4', category: 'sanding', label: 'Wall Sanding', video: '/assets/video/work-sanding-1.mp4' },
-  { slot: 'work-5', category: 'overhead', label: 'Ceiling Work', video: '/assets/video/work-ceiling.mp4' },
-  { slot: 'work-6', category: 'overhead', label: 'High Wall Work', video: '/assets/video/work-high-wall.mp4' },
-  { slot: 'work-7', category: 'sanding', label: 'Hand Sanding', video: '/assets/video/work-sanding-2.mp4' },
-  { slot: 'work-8', category: 'finishing', label: 'Finishing Work', video: '/assets/video/work-finishing-2.mp4' },
+  { category: 'finishing', label: 'Taping & Finishing', video: '/assets/video/hero.mp4', preview: 'taping' },
+  { category: 'finishing', label: 'Finishing Work', video: '/assets/video/work-finishing-1.mp4', preview: 'finishing-1' },
+  { category: 'sanding', label: 'Wall Sanding', video: '/assets/video/work-sanding-1.mp4', preview: 'sanding-1' },
+  { category: 'overhead', label: 'Ceiling Work', video: '/assets/video/work-ceiling.mp4', preview: 'ceiling' },
+  { category: 'overhead', label: 'High Wall Work', video: '/assets/video/work-high-wall.mp4', preview: 'high-wall' },
+  { category: 'sanding', label: 'Hand Sanding', video: '/assets/video/work-sanding-2.mp4', preview: 'sanding-2' },
+  { category: 'finishing', label: 'Finishing Work', video: '/assets/video/work-finishing-2.mp4', preview: 'finishing-2' },
 ];
 
 export const galleryFilters = [
@@ -618,3 +624,23 @@ export const slotVideo = {
 
 // About page: Lillian and Jonas helping out on a jobsite (IMG_5798, audio removed).
 export const familyVideo = { src: '/assets/video/family-cleanup.mp4', poster: '/assets/img/media/family-cleanup-poster.webp' };
+
+// Small autoplaying previews (400x500, no audio) used for project tiles. Poster = first frame.
+export const preview = (id) => ({ src: `/assets/video/prev-${id}.mp4`, poster: `/assets/img/media/prev-${id}-poster.webp` });
+
+// More slots that now play video instead of showing a still.
+Object.assign(slotVideo, {
+  'work-teaser-1': preview('taping'),
+  'work-teaser-2': preview('high-wall'),
+  'work-teaser-3': preview('ceiling'),
+  'work-teaser-4': preview('sanding-2'),
+  'area-dearborn-heights-1': preview('taping'),
+  'area-dearborn-heights-2': preview('high-wall'),
+  'area-dearborn-heights-3': preview('finishing-2'),
+  'area-metro-detroit-1': preview('taping'),
+  'area-metro-detroit-2': preview('high-wall'),
+  'area-metro-detroit-3': preview('finishing-2'),
+  'services-finishing': { src: '/assets/video/svc-finishing-knife.mp4', poster: '/assets/img/media/svc-finishing-knife-poster.webp' },
+  'about-page-jobsite': { src: '/assets/video/svc-taping.mp4', poster: '/assets/img/media/svc-taping-poster.webp' },
+  'careers-crew': { src: '/assets/video/feat-large-space.mp4', poster: '/assets/img/media/feat-large-space-poster.webp' },
+});

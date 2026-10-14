@@ -18,7 +18,7 @@
 <link rel="icon" type="image/png" href="/assets/img/favicon.png">
 <link rel="preload" href="/assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/style.css?v=c862c9ec">
+<link rel="stylesheet" href="/assets/css/style.css?v=b4fe4737">
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"/"},{"@type":"ListItem","position":2,"name":"Our Work","item":"/our-work/"}]}</script>
 </head>
@@ -42,6 +42,7 @@
         <button type="button" class="sub-toggle" aria-expanded="false" aria-label="Service Areas menu"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button>
         <ul class="sub"><li><a href="/service-areas/dearborn-heights/">Dearborn Heights</a></li><li><a href="/service-areas/dearborn/">Dearborn</a></li><li><a href="/service-areas/monroe/">Monroe</a></li><li><a href="/service-areas/carleton/">Carleton</a></li><li><a href="/service-areas/downriver/">Downriver</a></li><li><a href="/service-areas/metro-detroit/">Metro Detroit</a></li></ul>
       </li>
+<li><a href="/careers/">Careers</a></li>
 <li><a href="/contact/">Contact</a></li></ul>
       <div class="hdr-actions">
         <a class="hdr-phone" href="tel:+17344892284"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v3a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg><span>734-489-2284</span></a>
@@ -59,6 +60,7 @@
     <h1>Our Work</h1>
     <p class="lead">Real footage from Patch Master jobs: taping and finishing, sanding, ceiling and high-wall work. Tap any clip to watch.</p>
     
+    
   </div>
 </section>
 <section class="section">
@@ -70,31 +72,45 @@
          Add clips in src/data.mjs (gallery array) after encoding them (see MEDIA.md). -->
     <ul class="gallery" id="gallery">
       <li data-cat="finishing">
-        <figure class="media media--tile" style="--ratio:4/5"><img src="/assets/img/media/finish-reach.webp" srcset="/assets/img/media/finish-reach-480.webp 480w, /assets/img/media/finish-reach-800.webp 800w, /assets/img/media/finish-reach.webp 1080w" sizes="(min-width: 1024px) 270px, 50vw" alt="Worker finishing a drywall wall with a handheld taping tool" loading="lazy" decoding="async" style="object-position:50% 40%"></figure>
+        <figure class="media media--video media--tile" style="--ratio:4/5">
+        <video class="lazyvid" muted loop playsinline preload="none" width="640" height="800" poster="/assets/img/media/prev-taping-poster.webp" data-src="/assets/video/prev-taping.mp4" aria-hidden="true" tabindex="-1"></video>
+      </figure>
         <button type="button" class="tile-btn" data-video="/assets/video/hero.mp4" data-title="Taping &amp; Finishing" aria-label="Play video: Taping &amp; Finishing"><span class="tile-btn__play" aria-hidden="true"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12-7.5Z"/></svg></span><span class="tile-btn__label">Taping &amp; Finishing</span></button>
       </li>
       <li data-cat="finishing">
-        <figure class="media media--tile" style="--ratio:4/5"><img src="/assets/img/media/finish-trowel.webp" srcset="/assets/img/media/finish-trowel-480.webp 480w, /assets/img/media/finish-trowel-800.webp 800w, /assets/img/media/finish-trowel.webp 1080w" sizes="(min-width: 1024px) 270px, 50vw" alt="Worker applying joint compound to drywall seams with a finishing knife" loading="lazy" decoding="async" style="object-position:60% 45%"></figure>
+        <figure class="media media--video media--tile" style="--ratio:4/5">
+        <video class="lazyvid" muted loop playsinline preload="none" width="640" height="800" poster="/assets/img/media/prev-finishing-1-poster.webp" data-src="/assets/video/prev-finishing-1.mp4" aria-hidden="true" tabindex="-1"></video>
+      </figure>
         <button type="button" class="tile-btn" data-video="/assets/video/work-finishing-1.mp4" data-title="Finishing Work" aria-label="Play video: Finishing Work"><span class="tile-btn__play" aria-hidden="true"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12-7.5Z"/></svg></span><span class="tile-btn__label">Finishing Work</span></button>
       </li>
       <li data-cat="sanding">
-        <figure class="media media--tile" style="--ratio:4/5"><img src="/assets/img/media/pole-sanding.webp" srcset="/assets/img/media/pole-sanding-480.webp 480w, /assets/img/media/pole-sanding-800.webp 800w, /assets/img/media/pole-sanding.webp 1080w" sizes="(min-width: 1024px) 270px, 50vw" alt="Worker sanding a drywall wall with a pole sander" loading="lazy" decoding="async" style="object-position:50% 45%"></figure>
+        <figure class="media media--video media--tile" style="--ratio:4/5">
+        <video class="lazyvid" muted loop playsinline preload="none" width="640" height="800" poster="/assets/img/media/prev-sanding-1-poster.webp" data-src="/assets/video/prev-sanding-1.mp4" aria-hidden="true" tabindex="-1"></video>
+      </figure>
         <button type="button" class="tile-btn" data-video="/assets/video/work-sanding-1.mp4" data-title="Wall Sanding" aria-label="Play video: Wall Sanding"><span class="tile-btn__play" aria-hidden="true"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12-7.5Z"/></svg></span><span class="tile-btn__label">Wall Sanding</span></button>
       </li>
       <li data-cat="overhead">
-        <figure class="media media--tile" style="--ratio:4/5"><img src="/assets/img/media/ceiling-stilts.webp" srcset="/assets/img/media/ceiling-stilts-480.webp 480w, /assets/img/media/ceiling-stilts-800.webp 800w, /assets/img/media/ceiling-stilts.webp 1080w" sizes="(min-width: 1024px) 270px, 50vw" alt="Two workers on stilts finishing a drywall ceiling" loading="lazy" decoding="async" style="object-position:50% 50%"></figure>
+        <figure class="media media--video media--tile" style="--ratio:4/5">
+        <video class="lazyvid" muted loop playsinline preload="none" width="640" height="800" poster="/assets/img/media/prev-ceiling-poster.webp" data-src="/assets/video/prev-ceiling.mp4" aria-hidden="true" tabindex="-1"></video>
+      </figure>
         <button type="button" class="tile-btn" data-video="/assets/video/work-ceiling.mp4" data-title="Ceiling Work" aria-label="Play video: Ceiling Work"><span class="tile-btn__play" aria-hidden="true"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12-7.5Z"/></svg></span><span class="tile-btn__label">Ceiling Work</span></button>
       </li>
       <li data-cat="overhead">
-        <figure class="media media--tile" style="--ratio:4/5"><img src="/assets/img/media/high-wall.webp" srcset="/assets/img/media/high-wall-480.webp 480w, /assets/img/media/high-wall-800.webp 800w, /assets/img/media/high-wall.webp 1080w" sizes="(min-width: 1024px) 270px, 50vw" alt="Worker on a scissor lift finishing a tall drywall wall" loading="lazy" decoding="async" style="object-position:55% 40%"></figure>
+        <figure class="media media--video media--tile" style="--ratio:4/5">
+        <video class="lazyvid" muted loop playsinline preload="none" width="640" height="800" poster="/assets/img/media/prev-high-wall-poster.webp" data-src="/assets/video/prev-high-wall.mp4" aria-hidden="true" tabindex="-1"></video>
+      </figure>
         <button type="button" class="tile-btn" data-video="/assets/video/work-high-wall.mp4" data-title="High Wall Work" aria-label="Play video: High Wall Work"><span class="tile-btn__play" aria-hidden="true"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12-7.5Z"/></svg></span><span class="tile-btn__label">High Wall Work</span></button>
       </li>
       <li data-cat="sanding">
-        <figure class="media media--tile" style="--ratio:4/5"><img src="/assets/img/media/hand-sanding.webp" srcset="/assets/img/media/hand-sanding-480.webp 480w, /assets/img/media/hand-sanding-800.webp 800w, /assets/img/media/hand-sanding.webp 1080w" sizes="(min-width: 1024px) 270px, 50vw" alt="Hand sanding a drywall corner with a sanding block" loading="lazy" decoding="async" style="object-position:60% 40%"></figure>
+        <figure class="media media--video media--tile" style="--ratio:4/5">
+        <video class="lazyvid" muted loop playsinline preload="none" width="640" height="800" poster="/assets/img/media/prev-sanding-2-poster.webp" data-src="/assets/video/prev-sanding-2.mp4" aria-hidden="true" tabindex="-1"></video>
+      </figure>
         <button type="button" class="tile-btn" data-video="/assets/video/work-sanding-2.mp4" data-title="Hand Sanding" aria-label="Play video: Hand Sanding"><span class="tile-btn__play" aria-hidden="true"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12-7.5Z"/></svg></span><span class="tile-btn__label">Hand Sanding</span></button>
       </li>
       <li data-cat="finishing">
-        <figure class="media media--tile" style="--ratio:4/5"><img src="/assets/img/media/room-ceiling-line.webp" srcset="/assets/img/media/room-ceiling-line-480.webp 480w, /assets/img/media/room-ceiling-line-800.webp 800w, /assets/img/media/room-ceiling-line.webp 1080w" sizes="(min-width: 1024px) 270px, 50vw" alt="Worker on stilts finishing the wall-to-ceiling line in a painted room" loading="lazy" decoding="async" style="object-position:50% 40%"></figure>
+        <figure class="media media--video media--tile" style="--ratio:4/5">
+        <video class="lazyvid" muted loop playsinline preload="none" width="640" height="800" poster="/assets/img/media/prev-finishing-2-poster.webp" data-src="/assets/video/prev-finishing-2.mp4" aria-hidden="true" tabindex="-1"></video>
+      </figure>
         <button type="button" class="tile-btn" data-video="/assets/video/work-finishing-2.mp4" data-title="Finishing Work" aria-label="Play video: Finishing Work"><span class="tile-btn__play" aria-hidden="true"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12-7.5Z"/></svg></span><span class="tile-btn__label">Finishing Work</span></button>
       </li>
     </ul>
@@ -146,7 +162,7 @@
     </div>
     <nav aria-label="Footer">
       <h2>Navigate</h2>
-      <ul><li><a href="/">Home</a></li><li><a href="/services/">Services</a></li><li><a href="/our-work/">Our Work</a></li><li><a href="/about/">About</a></li><li><a href="/service-areas/">Service Areas</a></li><li><a href="/contact/">Contact</a></li></ul>
+      <ul><li><a href="/">Home</a></li><li><a href="/services/">Services</a></li><li><a href="/our-work/">Our Work</a></li><li><a href="/about/">About</a></li><li><a href="/service-areas/">Service Areas</a></li><li><a href="/careers/">Careers</a></li><li><a href="/contact/">Contact</a></li></ul>
     </nav>
     <nav aria-label="Services">
       <h2>Services</h2>
@@ -159,6 +175,6 @@
   </div>
   <div class="footer__legal"><div class="wrap"><p>&copy; 2026 The Original Patch Master. Fully insured. Serving Dearborn Heights and Metro Detroit.</p></div></div>
 </footer>
-<script src="/assets/js/site.js?v=c862c9ec" defer></script>
+<script src="/assets/js/site.js?v=b4fe4737" defer></script>
 </body>
 </html>

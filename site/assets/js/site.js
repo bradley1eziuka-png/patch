@@ -49,7 +49,7 @@
     if (!e.target.closest('.has-sub')) closeSubs();
   });
   window.addEventListener('resize', function () {
-    if (window.innerWidth >= 1200) setMenu(false);
+    if (window.innerWidth >= 1260) setMenu(false);
   });
   /* An open mobile menu closes on scroll, so its Call / Free Estimate buttons do not follow the page. */
   var menuY = 0;
@@ -172,11 +172,11 @@
     });
   });
 
-  /* ---------- Estimate form ---------- */
-  var form = document.getElementById('estimate-form');
-  if (form) {
-    var status = document.getElementById('form-status');
-    var endpoint = form.getAttribute('data-endpoint');
+  /* ---------- Forms (estimate request and job application) ----------
+     Each form has its own endpoint (data-endpoint). Nothing is "sent" unless the endpoint accepts it. */
+  document.querySelectorAll('form[data-endpoint]').forEach(function (form) {
+    var status = form.querySelector('.form-note');
+    var required = (form.getAttribute('data-required') || 'name,phone,message').split(',');
     var say = function (msg, kind) {
       status.textContent = msg;
       status.className = 'form-note' + (kind ? ' is-' + kind : '');
@@ -187,20 +187,21 @@
       if (form.elements._gotcha && form.elements._gotcha.value) return;
 
       var missing = [];
-      ['name', 'phone', 'message'].forEach(function (n) {
+      required.forEach(function (n) {
         var el = form.elements[n];
-        var bad = !el.value.trim();
+        var bad = !el.value.trim() || (el.type === 'email' && !el.checkValidity());
         el.setAttribute('aria-invalid', String(bad));
         if (bad) missing.push(el);
       });
       if (missing.length) {
-        say('Please fill in your name, phone number and a short description of the job.', 'error');
+        say(form.getAttribute('data-missing') || 'Please fill in your name, phone number and a short description of the job.', 'error');
         missing[0].focus();
         return;
       }
 
+      var endpoint = form.getAttribute('data-endpoint');
       if (!endpoint) {
-        say('Online requests are not switched on yet, so nothing was sent. Please call 734-489-2284 or email raegirlg@icloud.com.', 'error');
+        say(form.getAttribute('data-noendpoint') || 'Online requests are not switched on yet, so nothing was sent. Please call 734-489-2284 or email raegirlg@icloud.com.', 'error');
         return;
       }
 
@@ -209,11 +210,11 @@
         .then(function (r) {
           if (!r.ok) throw new Error('bad response');
           form.reset();
-          say('Thank you. Your request was sent. We will get back to you during business hours.', 'ok');
+          say(form.getAttribute('data-ok') || 'Thank you. Your request was sent. We will get back to you during business hours.', 'ok');
         })
         .catch(function () {
-          say('Your request did not go through. Please call 734-489-2284 or email raegirlg@icloud.com.', 'error');
+          say('Your submission did not go through. Please call 734-489-2284 or email raegirlg@icloud.com.', 'error');
         });
     });
-  }
+  });
 })();

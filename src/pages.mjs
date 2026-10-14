@@ -1,4 +1,4 @@
-import { site, services, locations, gallery, galleryFilters, hero, featureVideos, useFeatureVideos, slotVideo, familyVideo } from './data.mjs';
+import { site, services, locations, gallery, galleryFilters, hero, featureVideos, useFeatureVideos, slotVideo, familyVideo, preview } from './data.mjs';
 import {
   esc, svc, loc, svcUrl, locUrl, icon, media, head, header, footer, breadcrumb, pageHero, ctaBand,
   serviceCard, faqBlock, businessSchema, breadcrumbSchema, faqSchema, jsonLd, abs, locationPhoto,
@@ -13,10 +13,12 @@ const eyebrow = (t, cls = '') => `<p class="eyebrow ${cls}">${esc(t)}</p>`;
 const homeCrumb = { name: 'Home', href: '/' };
 
 
-const vidFigure = (v, ratio = '4/5') => `<figure class="media media--video" style="--ratio:${ratio}">
-        <video class="lazyvid" muted loop playsinline preload="none" width="640" height="800" poster="${v.poster}" data-src="${v.src}" aria-hidden="true" tabindex="-1"></video>
-        <button type="button" class="vid-pause" aria-label="Pause video" aria-pressed="false"><span class="vp-on">${icon('pause')}</span><span class="vp-off">${icon('play')}</span></button>
+const vidFigure = (v, ratio = '4/5', { pause = true, cls = '' } = {}) => `<figure class="media media--video ${cls}" style="--ratio:${ratio}">
+        <video class="lazyvid" muted loop playsinline preload="none" width="640" height="800" poster="${v.poster}" data-src="${v.src}" aria-hidden="true" tabindex="-1"></video>${pause ? `
+        <button type="button" class="vid-pause" aria-label="Pause video" aria-pressed="false"><span class="vp-on">${icon('pause')}</span><span class="vp-off">${icon('play')}</span></button>` : ''}
       </figure>`;
+// Any media slot: a looping video if one is mapped in src/data.mjs (slotVideo), otherwise the still / placeholder.
+const slotMedia = (slot, o = {}) => (slotVideo[slot] ? vidFigure(slotVideo[slot], o.ratio || '4/5', { pause: o.pause !== false, cls: o.cls || '' }) : media(slot, o));
 
 // Hero: all footage is portrait. 'full' crops a wide band for desktop and uses the portrait clip on phones.
 // 'framed' is the earlier portrait-panel design (set hero.layout in src/data.mjs).
@@ -157,7 +159,7 @@ ${heroSection()}
       <p>Drywall repairs, installations, plaster work and larger finishing projects.</p>
     </div>
     <div class="work__grid">
-      ${[1, 2, 3, 4].map((n) => media(`work-teaser-${n}`, { ratio: '1/1', note: 'Real completed or in-progress job. Square crop, 1:1.', sizes: '(min-width: 1140px) 270px, 50vw' })).join('')}
+      ${[1, 2, 3, 4].map((n) => slotMedia(`work-teaser-${n}`, { ratio: '1/1', pause: false, sizes: '(min-width: 1140px) 270px, 50vw' })).join('')}
     </div>
     <div class="center btn-row btn-row--center"><a class="btn" href="/our-work/">View Our Work</a></div>
   </div>
@@ -204,7 +206,7 @@ ${pageHero({ crumbs, h1: 'Drywall, Plaster and Finishing Services', lead: 'The O
 <section class="section features">
   <div class="wrap">
     <div class="feature">
-      <div class="feature__media">${media('services-finishing', { ratio: '4/5', sizes: '(min-width: 860px) 534px, 100vw', note: 'Basement, garage or whole-house drywall job. 4:3.', alt: 'Basement finishing by The Original Patch Master' })}</div>
+      <div class="feature__media">${slotMedia('services-finishing', { ratio: '4/5' })}</div>
       <div class="feature__copy">
         ${eyebrow('Priority Work')}
         <h2>Basements, Garages and Whole Houses</h2>
@@ -243,12 +245,12 @@ export function servicePage(s) {
   const areaLinks = ['dearborn-heights', 'dearborn', 'monroe', 'carleton', 'downriver'].map((l) => `<a href="${locUrl(l)}">${esc(loc(l).name)}</a>`);
   const areaSentence = `${areaLinks.slice(0, -1).join(', ')} and ${areaLinks.at(-1)}`;
   const mopt = { ratio: '4/5', optional: true, sizes: '(min-width: 860px) 534px, 100vw' };
-  const slotMedia = (n) => {
+  const svcMedia = (n) => {
     const slot = `service-${s.slug}-${n}`;
     return slotVideo[slot] ? vidFigure(slotVideo[slot]) : media(slot, { ...mopt, alt: `${s.name} by The Original Patch Master` });
   };
-  const m1 = slotMedia(1);
-  const m2 = slotMedia(2);
+  const m1 = svcMedia(1);
+  const m2 = svcMedia(2);
   const gal = [3, 4, 5].map((n) => media(`service-${s.slug}-${n}`, { ratio: '4/3', optional: true })).filter(Boolean);
 
   const body = `
@@ -372,7 +374,7 @@ export function locationPage(l) {
     .join('\n');
   const near = l.near.map(loc);
   const heroPhoto = locationPhoto(l.slug);
-  const lgal = [1, 2, 3].map((n) => media(`area-${l.slug}-${n}`, { ratio: '4/3', optional: true })).filter(Boolean);
+  const lgal = [1, 2, 3].map((n) => slotMedia(`area-${l.slug}-${n}`, { ratio: '4/5', pause: false, optional: true })).filter(Boolean);
   const body = `
 ${pageHero({ crumbs, h1: l.h1, lead: l.lead, photo: heroPhoto })}
 <section class="section">
@@ -473,7 +475,7 @@ ${pageHero({ crumbs, h1: 'A Family-Run Drywall and Plaster Business', lead: 'Jer
       <a class="btn" href="/services/">See Our Services</a>
     </div>
     <div class="split__media split__media--portrait">
-      ${media('about-page-jobsite', { ratio: '4/5', sizes: '(min-width: 860px) 440px, 100vw' })}
+      ${slotMedia('about-page-jobsite', { ratio: '4/5', sizes: '(min-width: 860px) 440px, 100vw' })}
     </div>
   </div>
 </section>
@@ -514,7 +516,7 @@ ${pageHero({ crumbs, h1: 'Our Work', lead: 'Real footage from Patch Master jobs:
          Add clips in src/data.mjs (gallery array) after encoding them (see MEDIA.md). -->
     <ul class="gallery" id="gallery">
       ${gallery.map((g) => `<li data-cat="${g.category}">
-        ${media(g.slot, { ratio: '4/5', sizes: '(min-width: 1024px) 270px, 50vw', cls: 'media--tile' })}
+        ${vidFigure(preview(g.preview), '4/5', { pause: false, cls: 'media--tile' })}
         <button type="button" class="tile-btn" data-video="${g.video}" data-title="${esc(g.label)}" aria-label="Play video: ${esc(g.label)}"><span class="tile-btn__play" aria-hidden="true">${icon('play')}</span><span class="tile-btn__label">${esc(g.label)}</span></button>
       </li>`).join('\n      ')}
     </ul>
@@ -608,6 +610,90 @@ ${pageHero({ crumbs, h1: 'Get a Free Estimate', lead: 'Call, email or send the d
       desc: 'Call 734-489-2284 or send the details for a free drywall, plaster or finishing estimate from The Original Patch Master in Dearborn Heights, MI.',
       path: '/contact/',
       schema: [businessSchema(), breadcrumbSchema(crumbs)],
+    },
+    body,
+  );
+}
+
+
+// ===========================================================================
+// CAREERS
+// ===========================================================================
+export function careers() {
+  const crumbs = [homeCrumb, { name: 'Careers', href: '/careers/' }];
+  const values = [
+    ['Reliability', 'Show up when you say you will and do what you said you would do.'],
+    ['Hard work', 'Drywall and plaster are physical trades. We expect steady effort from everyone on the job.'],
+    ['Attention to detail', 'Seams, corners and sanding all show in the finished wall.'],
+    ['Respect for customers', 'People let us into their homes. We expect everyone to treat those homes with care.'],
+  ];
+  const experience = ['Drywall installation', 'Taping and finishing', 'Plaster repair', 'Sanding', 'Insulation', 'Window glazing and caulking'];
+  const body = `
+${pageHero({ crumbs, h1: 'Come Work With Patch Master.', lead: 'The Original Patch Master is a family-owned drywall and plaster business serving Metro Detroit. If you know the trade and want to work for a family business, we would like to hear from you.', ctas: false, cls: 'page-hero--wide-h1', extra: '<div class="btn-row"><a class="btn" href="#apply">Apply Now</a></div>' })}
+<section class="section">
+  <div class="wrap split">
+    <div class="split__copy">
+      ${eyebrow('Careers')}
+      <h2>Who We Look For</h2>
+      <p>We value people who are reliable, work hard, pay attention to the details and treat customers with respect.</p>
+      <ul class="checks">${values.map(([t, d]) => `<li>${icon('check')}<span><strong>${esc(t)}.</strong> ${esc(d)}</span></li>`).join('')}</ul>
+    </div>
+    <div class="split__media">${slotMedia('careers-crew', { ratio: '4/5' })}</div>
+  </div>
+</section>
+<section class="section section--alt" aria-labelledby="exp-h">
+  <div class="wrap wrap--narrow">
+    <div class="sec-head">${eyebrow('Experience')}<h2 id="exp-h">Work We Do</h2></div>
+    <p class="center">We are interested in people with experience in:</p>
+    <ul class="chips chips--center">${experience.map((x) => `<li><span class="chip">${esc(x)}</span></li>`).join('')}</ul>
+    <p class="center">Experience in related trades is welcome too. We do not have specific openings posted. If you want to be considered, send us your information below.</p>
+  </div>
+</section>
+<section class="section" id="apply" aria-labelledby="apply-h">
+  <div class="wrap wrap--narrow">
+    <div class="sec-head">${eyebrow('Apply')}<h2 id="apply-h">Apply Now</h2></div>
+    <div class="contact__form">
+      <!-- APPLICATION ENDPOINT: set \`careersEndpoint\` in src/data.mjs (a form service that emails or stores these separately from
+           customer estimate requests) and rebuild. While it is empty the form does not submit; it tells the applicant to call or email. -->
+      <form id="careers-form" method="post" action="${site.careersEndpoint || ''}" data-endpoint="${site.careersEndpoint || ''}" data-required="name,phone,email"
+            data-missing="Please fill in your name, phone number and email address."
+            data-noendpoint="Online applications are not switched on yet, so nothing was sent. Please call ${PH} or email ${site.email}."
+            data-ok="Thank you. Your application was sent. If we think you could be a fit, we will contact you." novalidate>
+        <input type="hidden" name="form_type" value="Job application">
+        <input type="hidden" name="_subject" value="Job application: The Original Patch Master">
+        <div class="field-row">
+          <div class="field"><label for="a-name">Full name <span class="req">(required)</span></label><input id="a-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="a-phone">Phone number <span class="req">(required)</span></label><input id="a-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="a-email">Email address <span class="req">(required)</span></label><input id="a-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="a-city">City / location</label><input id="a-city" name="city" type="text" autocomplete="address-level2"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="a-years">Years of experience</label>
+            <select id="a-years" name="years"><option value="">Choose one</option><option>Less than 1 year</option><option>1 to 2 years</option><option>3 to 5 years</option><option>6 to 10 years</option><option>More than 10 years</option></select>
+          </div>
+          <div class="field"><label for="a-start">Availability / earliest start date</label><input id="a-start" name="start_date" type="text" placeholder="For example: immediately, or November 1"></div>
+        </div>
+        <fieldset class="field field--radios">
+          <legend>Type of work you have experience in</legend>
+          ${['Drywall installation', 'Taping and finishing', 'Plaster repair', 'Sanding', 'Insulation', 'Window glazing and caulking', 'Other'].map((w) => `<label><input type="checkbox" name="work" value="${w}"> ${w}</label>`).join('')}
+        </fieldset>
+        <div class="field"><label for="a-exp">Brief description of your experience</label><textarea id="a-exp" name="experience" rows="5"></textarea></div>
+        <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+        <button class="btn btn--block-sm" type="submit">Submit Application</button>
+        <p class="form-note" id="form-status" role="status" aria-live="polite"></p>
+        <p class="form-fine">Sending an application does not guarantee a job. Prefer to talk? Call <a href="${site.phoneHref}">${PH}</a>, ${site.hours.days}, 7 AM to 5 PM.</p>
+      </form>
+    </div>
+  </div>
+</section>`;
+  return page(
+    {
+      title: 'Careers | The Original Patch Master',
+      desc: 'Apply to work with The Original Patch Master, a family-owned drywall and plaster business serving Metro Detroit. Experience in drywall, finishing or plaster welcome.',
+      path: '/careers/',
+      schema: [breadcrumbSchema(crumbs)],
     },
     body,
   );
