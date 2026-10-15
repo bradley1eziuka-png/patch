@@ -94,8 +94,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* ---------- Header ---------- */
 .site-header { position: sticky; top: 0; z-index: 50; background: var(--navy); border-top: 3px solid var(--orange); }
 .hdr { width: min(1240px, 100% - 40px); margin-inline: auto; min-height: var(--header-h); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.brand { display: flex; background: #fff; padding: 5px 12px; border-radius: 2px; margin-block: 8px; flex: none; }
-.brand img { height: 60px; width: auto; }
+.brand { display: flex; background: #fff; padding: 0; border-radius: 2px; margin-block: 6px; flex: none; }
+.brand img { height: 76px; width: auto; aspect-ratio: 4 / 3; }
 .primary-nav { display: flex; align-items: center; flex: 1; justify-content: flex-end; gap: 28px; }
 .primary-nav > ul { display: flex; gap: 2px; }
 .primary-nav a { text-decoration: none; }
@@ -130,7 +130,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 @media (max-width: 1259px) {
   :root { --header-h: 72px; }
-  .brand img { height: 46px; }
+  .brand img { height: 60px; }
   .nav-toggle { display: grid; }
   .primary-nav {
     display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--navy); flex-direction: column; align-items: stretch; gap: 8px;
@@ -572,30 +572,6 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px
 @media (max-width: 639px) {
   .page-hero--photo { min-height: 0; padding-block: 44px 52px; }
 }
-
-/* ==========================================================================
-   BLURRED BRAND BACKGROUND: Jeremylogo.JPG (blurred ~14px by scripts/make-background.py)
-   One fixed, viewport-sized layer sits behind the whole page, with a white overlay on top (--bg-wash).
-   Normal light sections are transparent so the artwork shows; "alt" sections add a little extra white so the
-   alternating rhythm survives. Header, footer, dark bands, cards, forms and the homepage video hero stay solid.
-   Tune: --bg-wash (overlay strength) and the background-position values below. Delete this block to remove it.
-   ========================================================================== */
-:root { --bg-wash: .76; --bg-pos: 62% 42%; }
-html { background: #fff; }
-body { background: transparent; }
-body::before {
-  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  background: linear-gradient(rgba(255, 255, 255, var(--bg-wash)), rgba(255, 255, 255, var(--bg-wash))), url("/assets/img/bg/jeremylogo-blur.webp") var(--bg-pos) / cover no-repeat;
-}
-.section--alt { background: rgba(255, 255, 255, .42); }
-.card-link, .social-box, .aside-card--plain { background: #fff; }
-.faq, .facts { background: transparent; }
-/* keep text legible where it crosses the dark lettering: slightly darker text plus a soft white halo */
-main :is(p, li, h2, h3, .eyebrow, .also, dd, dt, summary) { text-shadow: 0 0 10px rgba(255, 255, 255, .9), 0 0 3px rgba(255, 255, 255, .8); }
-main { --gray: #43434f; --orange-ink: #8A3F00; color: var(--gray); }
-.cta-band, .infostrip, .band, .page-hero, .hero, .aside-card:not(.aside-card--plain), .vdlg { text-shadow: none; }
-.cta-band *, .infostrip *, .band *, .page-hero *, .hero *, .aside-card:not(.aside-card--plain) *, .vdlg *, .btn, .card-link *, .contact__form *, .plain-card *, .social-box * { text-shadow: none !important; }
-@media (max-width: 639px) { :root { --bg-pos: 66% 40%; --bg-wash: .72; } }
 
 /* ---------- Careers ---------- */
 .chips--center { justify-content: center; margin-block: 8px 28px; }
