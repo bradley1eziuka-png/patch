@@ -397,6 +397,9 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px
 .social--dark { margin-top: 24px; }
 .footer__legal { border-top: 1px solid rgba(255, 255, 255, .12); padding-block: 22px; text-align: center; font-size: .875rem; }
 .footer__legal p { margin: 0 auto; max-width: none; }
+.footer__credit { margin-top: 8px !important; }
+.footer__credit a { display: inline-block; padding: 6px 4px; color: #c9cedb; text-underline-offset: 3px; }
+.footer__credit a:hover { color: var(--orange); }
 
 
 /* ---------- Responsive ---------- */
