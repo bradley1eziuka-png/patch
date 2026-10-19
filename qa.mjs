@@ -4,7 +4,7 @@ const require = createRequire(process.env.PUPPETEER_DIR + '/');
 const puppeteer = require('puppeteer-core');
 const base = 'http://localhost:3417';
 const sitemap = await (await fetch(base + '/sitemap.xml')).text();
-const paths = [...sitemap.matchAll(/SET-siteUrl-IN-src-data\.mjs(\/[^<]*)/g)].map((m) => m[1]);
+const paths = [...sitemap.matchAll(/<loc>https?:\/\/[^\/<]+(\/[^<]*)<\/loc>/g)].map((m) => m[1]);
 const browser = await puppeteer.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: 'new' });
 const issues = []; const titles = new Map(); const descs = new Map(); const links = new Set();
 for (const w of [390, 430, 768, 1024, 1440]) {
