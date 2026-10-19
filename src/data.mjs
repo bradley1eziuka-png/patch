@@ -20,10 +20,8 @@ export const site = {
   },
 
   // ---- LAUNCH SETTINGS --------------------------------------------------
-  // Production domain, with no trailing slash, e.g. "https://www.clientdomain.com".
-  // Leave empty until the domain is known. Canonical and og:url tags fall back
-  // to root-relative paths, and sitemap.xml/robots.txt use a loud placeholder.
-  siteUrl: '',
+  // Production domain, no trailing slash. Drives canonicals, og:url, structured data, sitemap.xml and robots.txt.
+  siteUrl: 'https://originalpatchmaster.com',
 
   // Form endpoint (Formspree, Basin, Netlify Forms URL, etc.).
   // Leave empty and the form tells visitors to call or email instead of faking a send.

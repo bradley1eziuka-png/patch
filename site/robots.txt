@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://SET-siteUrl-IN-src-data.mjs/sitemap.xml
+Sitemap: https://originalpatchmaster.com/sitemap.xml
