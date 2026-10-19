@@ -27,7 +27,7 @@ export const site = {
 
   // Form endpoint (Formspree, Basin, Netlify Forms URL, etc.).
   // Leave empty and the form tells visitors to call or email instead of faking a send.
-  formEndpoint: '',
+  formEndpoint: 'https://formspree.io/f/xzedqkpn',   // Formspree: PATCH MASTER > Inquiries (customer estimate requests only)
 
   // Separate endpoint for job applications from /careers/. Do NOT reuse the estimate endpoint:
   // applications must not land in the customer-estimate inbox. Leave empty and the form says it is not switched on.

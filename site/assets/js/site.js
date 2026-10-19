@@ -205,15 +205,28 @@
         return;
       }
 
+      // Lead tracking: which page it came from and when (the only extras sent besides what the customer typed).
+      if (form.elements.source_page) form.elements.source_page.value = document.title + ' (' + location.pathname + ')';
+      if (form.elements.submitted_at) form.elements.submitted_at.value = new Date().toISOString();
+
+      var btn = form.querySelector('button[type=submit]');
+      if (form.getAttribute('data-sending') === '1') return;   // ignore repeated clicks while a request is in flight
+      form.setAttribute('data-sending', '1');
+      if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); }
+      var done = function () { form.removeAttribute('data-sending'); if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); } };
       say('Sending...', '');
       fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
-        .then(function (r) {
-          if (!r.ok) throw new Error('bad response');
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, d: d }; }); })
+        .then(function (res) {
+          // Success only when Formspree accepts it (HTTP 2xx and no errors); the fields stay filled otherwise.
+          if (!res.ok || (res.d && res.d.errors)) throw new Error('rejected');
+          done();
           form.reset();
           say(form.getAttribute('data-ok') || 'Thank you. Your request was sent. We will get back to you during business hours.', 'ok');
         })
         .catch(function () {
-          say('Your submission did not go through. Please call 734-489-2284 or email raegirlg@icloud.com.', 'error');
+          done();
+          say('Your submission did not go through. Your information is still here, so you can try again. Or call 734-489-2284 or email raegirlg@icloud.com.', 'error');
         });
     });
   });

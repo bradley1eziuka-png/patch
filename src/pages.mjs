@@ -575,7 +575,10 @@ ${pageHero({ crumbs, h1: 'Get a Free Estimate', lead: 'Call, email or send the d
       <h2>Tell Us About the Job</h2>
       <!-- FORM ENDPOINT: set \`formEndpoint\` in src/data.mjs (Formspree, Basin, Netlify, etc.) and rebuild.
            While it is empty the form does not submit; it tells the visitor to call or email instead. -->
-      <form id="estimate-form" method="post" action="${site.formEndpoint || ''}" data-endpoint="${site.formEndpoint || ''}" novalidate>
+      <form id="estimate-form" method="post" action="${site.formEndpoint || ''}" data-endpoint="${site.formEndpoint || ''}" data-ok="Thank you! Your request has been sent. The Patch Master team will be in touch soon." data-source novalidate>
+        <input type="hidden" name="_subject" value="New estimate request: The Original Patch Master">
+        <input type="hidden" name="source_page" value="Contact (/contact/)">
+        <input type="hidden" name="submitted_at" value="">
         <div class="field-row">
           <div class="field"><label for="f-name">Name <span class="req">(required)</span></label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
           <div class="field"><label for="f-phone">Phone <span class="req">(required)</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
