@@ -681,3 +681,9 @@ export const smsConsent = {
   marketing: 'I agree to receive promotional text messages from The Original Patch Master, such as offers and announcements. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for assistance.',
   note: 'Consent is optional and is not a condition of requesting an estimate or any service.',
 };
+
+// Homepage About section: the two images now play as looping clips (3:4). Remove an entry to go back to the still.
+Object.assign(slotVideo, {
+  'about-family': { src: '/assets/video/about-room.mp4', poster: '/assets/img/media/about-room-poster.webp' },
+  'about-jobsite': { src: '/assets/video/svc-high-wall.mp4', poster: '/assets/img/media/svc-high-wall-poster.webp' },
+});

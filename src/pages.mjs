@@ -99,8 +99,8 @@ ${heroSection()}
   <div class="wrap about__grid">
     <div class="about__media">
       <!-- Completed-work photos (no people). Slots map to stills in src/data.mjs (slotStill). Portrait 3:4. -->
-      ${media('about-family', { ratio: '3/4', note: 'Completed finished walls. Portrait, 3:4.' })}
-      ${media('about-jobsite', { ratio: '3/4', note: 'Commercial or finished project interior. Portrait, 3:4.' })}
+      ${slotMedia('about-family', { ratio: '3/4', note: 'Completed finished walls. Portrait, 3:4.' })}
+      ${slotMedia('about-jobsite', { ratio: '3/4', note: 'Commercial or finished project interior. Portrait, 3:4.' })}
     </div>
     <div class="about__copy">
       ${eyebrow('About The Original Patch Master')}

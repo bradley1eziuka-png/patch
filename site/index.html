@@ -83,8 +83,14 @@
   <div class="wrap about__grid">
     <div class="about__media">
       <!-- Completed-work photos (no people). Slots map to stills in src/data.mjs (slotStill). Portrait 3:4. -->
-      <figure class="media" style="--ratio:3/4"><img src="/assets/img/media/done-room.webp" srcset="/assets/img/media/done-room-480.webp 480w, /assets/img/media/done-room-800.webp 800w, /assets/img/media/done-room.webp 1080w" sizes="(min-width: 1140px) 560px, 100vw" alt="Finished room with smooth white walls, trim and a clean ceiling line" loading="lazy" decoding="async" style="object-position:50% 45%"></figure>
-      <figure class="media" style="--ratio:3/4"><img src="/assets/img/media/commercial-interior.webp" srcset="/assets/img/media/commercial-interior-480.webp 480w, /assets/img/media/commercial-interior-800.webp 800w, /assets/img/media/commercial-interior.webp 1080w" sizes="(min-width: 1140px) 560px, 100vw" alt="Drywall finished along a tall wall inside a large commercial building" loading="lazy" decoding="async" style="object-position:50% 40%"></figure>
+      <figure class="media media--video " style="--ratio:3/4">
+        <video class="lazyvid" muted loop playsinline preload="none" width="640" height="800" poster="/assets/img/media/about-room-poster.webp" data-src="/assets/video/about-room.mp4" aria-hidden="true" tabindex="-1"></video>
+        <button type="button" class="vid-pause" aria-label="Pause video" aria-pressed="false"><span class="vp-on"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5v14M16 5v14"/></svg></span><span class="vp-off"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12-7.5Z"/></svg></span></button>
+      </figure>
+      <figure class="media media--video " style="--ratio:3/4">
+        <video class="lazyvid" muted loop playsinline preload="none" width="640" height="800" poster="/assets/img/media/svc-high-wall-poster.webp" data-src="/assets/video/svc-high-wall.mp4" aria-hidden="true" tabindex="-1"></video>
+        <button type="button" class="vid-pause" aria-label="Pause video" aria-pressed="false"><span class="vp-on"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5v14M16 5v14"/></svg></span><span class="vp-off"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12-7.5Z"/></svg></span></button>
+      </figure>
     </div>
     <div class="about__copy">
       <p class="eyebrow ">About The Original Patch Master</p>
