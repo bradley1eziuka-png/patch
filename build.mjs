@@ -22,6 +22,8 @@ add('/careers/', P.careers());
 add('/contact/', P.contact());
 add('/privacy-policy/', P.privacyPolicy());
 add('/terms-and-conditions/', P.terms());
+// SMS opt-in: noindex and out of the sitemap until its GHL endpoint is configured.
+add('/sms-opt-in/', P.smsOptIn(), !!integrations.smsOptInEndpoint);
 // Utility pages: noindex and kept out of the sitemap until configured (book-estimate joins once the calendar embed exists).
 add('/book-estimate/', P.bookEstimate(), !!integrations.ghlCalendarEmbedUrl);
 add('/feedback/', P.feedback(), false);
@@ -48,3 +50,4 @@ if (!site.careersEndpoint) console.log('WARNING: site.careersEndpoint is empty. 
 if (!integrations.ghlCalendarEmbedUrl) console.log('NOTE: integrations.ghlCalendarEmbedUrl is empty. /book-estimate/ shows a phone fallback and stays noindex.');
 if (!integrations.googleReviewUrl) console.log('NOTE: integrations.googleReviewUrl is empty. The homepage review section is hidden and /feedback/ has no Google button yet.');
 if (!integrations.ghlLeadProxy) console.log('NOTE: integrations.ghlLeadProxy is empty. Leads go to Formspree only.');
+if (!integrations.smsOptInEndpoint) console.log('NOTE: integrations.smsOptInEndpoint is empty. /sms-opt-in/ is shown with its form disabled and stays noindex.');

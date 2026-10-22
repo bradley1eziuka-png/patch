@@ -670,6 +670,10 @@ export const integrations = {
   feedbackEndpoint: '',
 
   // Only turn this on if Patch Master will really send promotional texts and the GHL campaign registration says so.
+  // Dedicated /sms-opt-in/ page. Set to '/api/sms-optin' ONLY after GHL_OPTIN_WEBHOOK_URL is set in Vercel and a test works.
+  // While empty, the page is shown for review but its form is disabled and says sign-up is not active. Nothing is sent.
+  smsOptInEndpoint: '',
+  smsOptInVersion: 'sms-optin-v1',
   smsMarketingEnabled: false,
   // Bump this whenever the consent wording below changes. It is stored with every submission.
   smsConsentVersion: 'sms-consent-v1-2026-10-21',
@@ -687,3 +691,8 @@ Object.assign(slotVideo, {
   'about-family': { src: '/assets/video/about-room.mp4', poster: '/assets/img/media/about-room-poster.webp' },
   'about-jobsite': { src: '/assets/video/svc-high-wall.mp4', poster: '/assets/img/media/svc-high-wall-poster.webp' },
 });
+
+// Exact wording on the dedicated /sms-opt-in/ page. "Privacy Policy" and "Terms & Conditions" are turned into links when rendered.
+// Change smsOptInVersion in `integrations` whenever this wording changes.
+smsConsent.optInService = 'I agree to receive text messages from The Original Patch Master about my inquiries, estimates, appointments, and service updates at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. See our Privacy Policy and Terms & Conditions.';
+smsConsent.optInMarketing = 'I agree to receive promotional text messages from The Original Patch Master, such as offers and announcements, at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. See our Privacy Policy and Terms & Conditions.';

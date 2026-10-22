@@ -627,3 +627,8 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px
 .review-sec { padding-block: 64px; text-align: center; }
 .review-sec h2 { font-size: clamp(1.5rem, 3.2vw, 2rem); }
 .review-sec p { margin-inline: auto; }
+
+/* ---------- SMS opt-in ---------- */
+.optin-fields { border: 0; padding: 0; margin: 0; min-width: 0; }
+.optin-fields:disabled { opacity: .55; }
+.consent__row a, .consent__fine a { color: var(--navy); font-weight: 600; text-underline-offset: 3px; }

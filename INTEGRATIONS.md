@@ -8,6 +8,8 @@ Public settings live in `src/data.mjs` under `integrations`. After changing one,
 | Value | Where it goes | Secret? | What happens until it is set |
 |---|---|---|---|
 | **GHL inbound webhook URL** | Vercel > Project > Settings > Environment Variables: `GHL_WEBHOOK_URL` | **Yes. Never put it in the code or `src/data.mjs`.** | `/api/ghl-lead` answers 503 and the site never calls it. Leads go to Formspree only. |
+| **GHL SMS opt-in webhook URL** (a separate inbound webhook, ideally its own workflow that sets the contact's SMS consent) | Vercel env var `GHL_OPTIN_WEBHOOK_URL` | **Yes** | `/sms-opt-in/` is shown with its form disabled and a "not active yet" notice. Nothing is sent. |
+| Turn the SMS opt-in page on | `integrations.smsOptInEndpoint: '/api/sms-optin'` (only after the env var is set and a test works) | No | Off. The page stays `noindex` and out of the sitemap until on. |
 | Turn the GHL hand-off on | `integrations.ghlLeadProxy: '/api/ghl-lead'` in `src/data.mjs` (only after the env var is set and a test works) | No | Off. |
 | **GHL calendar embed URL** (the iframe `src`) | `integrations.ghlCalendarEmbedUrl` | No | `/book-estimate/` shows a "coming soon" box with a phone button, stays `noindex`, and is left out of the sitemap. |
 | **GHL permanent booking link** | `integrations.ghlBookingLink` | No | Not shown. (Used for an "open in a new tab" link under the calendar.) |
@@ -46,3 +48,12 @@ Fields sent to GHL: `name, phone, email, city, service, message, contact_method,
 5. **Privacy Policy and Terms are plain-language drafts**, not legal advice. Please have the owner (or counsel) read them. Specifically confirm: the provider list (Formspree, GoHighLevel), "we do not sell or share SMS consent or mobile numbers with third parties for marketing", the retention wording (kept as long as needed, no fixed period stated), "no analytics or advertising cookies", and the Michigan governing-law line.
 6. The privacy page says GoHighLevel is used. It should be true by the time A2P reviewers read it.
 7. Business identity: the pages use The Original Patch Master and 25244 Annapolis St, Dearborn Heights, MI. It must match the legal name/address on the A2P brand registration.
+
+## SMS opt-in page (`/sms-opt-in/`)
+- **Flow:** the browser posts the record as JSON to `api/sms-optin.js`, which forwards it to the webhook in `GHL_OPTIN_WEBHOOK_URL`. It never touches Formspree. The customer is told they are signed up **only if GHL accepted the record**; otherwise they are told they are not signed up yet and keep their entries.
+- **Required to submit:** full name, a valid 10-digit US mobile number (stored as `+1XXXXXXXXXX`), and at least one SMS consent box checked. Email is optional. The server enforces the same rules.
+- **Recorded in the webhook payload:** `name, phone, email, form_type ("SMS opt-in"), lead_id, sms_service_consent (Yes/No), sms_service_consent_text, sms_marketing_consent (only if that box exists on the page), sms_marketing_consent_text, sms_consent_version, sms_consent_recorded_at (browser time), source_url, source_page, source, server_received_at`.
+- **Marketing consent** is never inferred. It is sent only as an explicit Yes/No from its own separate checkbox, which exists only when `smsMarketingEnabled` is true. Today it is off, so the page has one (service-messages) checkbox.
+- **In GHL:** build a workflow on this webhook that creates/updates the contact and sets the SMS consent / DND status from `sms_service_consent`, `sms_marketing_consent` and the version/timestamp fields. Do not mark promotional consent unless `sms_marketing_consent` is `Yes`.
+- **Version:** change `integrations.smsOptInVersion` whenever `smsConsent.optInService` / `optInMarketing` wording changes.
+- **Opt-in URL for the A2P registration:** `https://originalpatchmaster.com/sms-opt-in/` (only once the page is active; the page must show a working form when reviewers visit).

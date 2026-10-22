@@ -277,4 +277,68 @@
     };
     send().catch(function () { setTimeout(function () { send().catch(function () { /* Formspree still has the lead */ }); }, 3000); });
   }
+
+  /* ---------- SMS opt-in page ----------
+     Separate from the inquiry forms: no Formspree. The record goes to a server-side GHL webhook (data-optin-endpoint).
+     Success is shown only when the server confirms GHL accepted the record. */
+  var optin = document.getElementById('optin-form');
+  if (optin) {
+    var oStatus = optin.querySelector('.form-note');
+    var oSay = function (msg, kind) { oStatus.textContent = msg; oStatus.className = 'form-note' + (kind ? ' is-' + kind : ''); };
+    var oLead = newId();
+    // 10-digit US mobile number (a leading 1 or +1 is accepted) -> +1XXXXXXXXXX
+    var normPhone = function (raw) {
+      var d = String(raw || '').replace(/\D/g, '');
+      if (d.length === 11 && d.charAt(0) === '1') d = d.slice(1);
+      return /^[2-9]\d{9}$/.test(d) ? '+1' + d : '';
+    };
+    optin.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var endpoint = optin.getAttribute('data-optin-endpoint');
+      if (!endpoint) { oSay('Text sign-up is not active yet, so nothing was sent. Please call 734-489-2284.', 'error'); return; }
+      if (optin.elements._gotcha && optin.elements._gotcha.value) return;
+
+      var name = optin.elements.name, phoneEl = optin.elements.phone, email = optin.elements.email;
+      var phone = normPhone(phoneEl.value);
+      var boxes = optin.querySelectorAll('input[data-consent]');
+      var anyConsent = false;
+      boxes.forEach(function (b) { if (b.checked) anyConsent = true; });
+      var nameBad = !name.value.trim(), phoneBad = !phone, emailBad = !!email.value.trim() && !email.checkValidity();
+      name.setAttribute('aria-invalid', String(nameBad)); phoneEl.setAttribute('aria-invalid', String(phoneBad)); email.setAttribute('aria-invalid', String(emailBad));
+      if (nameBad) { oSay('Please enter your full name.', 'error'); name.focus(); return; }
+      if (phoneBad) { oSay('Please enter a valid 10-digit mobile phone number.', 'error'); phoneEl.focus(); return; }
+      if (emailBad) { oSay('That email address does not look right. You can leave it blank.', 'error'); email.focus(); return; }
+      if (!anyConsent) { oSay('Please check the box to agree to receive text messages. Without it we cannot sign you up.', 'error'); boxes[0].focus(); return; }
+
+      if (optin.getAttribute('data-sending') === '1') return;
+      optin.setAttribute('data-sending', '1');
+      var btn = optin.querySelector('button[type=submit]');
+      if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); }
+      var finish = function () { optin.removeAttribute('data-sending'); if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); } };
+
+      // The record: contact, per-category consent (Yes/No), the exact wording shown, version, time and source URL.
+      var rec = { name: name.value.trim(), phone: phone, email: email.value.trim(), form_type: 'SMS opt-in', lead_id: oLead,
+        sms_consent_version: optin.getAttribute('data-consent-version'), sms_consent_recorded_at: new Date().toISOString(),
+        source_url: location.href, source_page: document.title };
+      boxes.forEach(function (b) {
+        var cat = b.getAttribute('data-consent');
+        var txt = optin.querySelector('[data-consent-text="' + cat + '"]');
+        rec['sms_' + cat + '_consent'] = b.checked ? 'Yes' : 'No';
+        rec['sms_' + cat + '_consent_text'] = txt ? txt.textContent.trim() : '';
+      });
+      oSay('Sending...', '');
+      fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(rec) })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, d: d }; }); })
+        .then(function (res) {
+          if (!res.ok || !res.d || res.d.ok !== true) throw new Error('not recorded');
+          optin.reset(); oLead = newId();
+          setTimeout(finish, 4000);   // keep the button locked briefly so the confirmation stays on screen
+          oSay("Thank you! You're signed up for text updates from The Original Patch Master. Reply STOP at any time to opt out.", 'ok');
+        })
+        .catch(function () {
+          finish();
+          oSay('We could not record your sign-up, so you are not signed up yet. Your information is still here, so you can try again. Or call 734-489-2284.', 'error');
+        });
+    });
+  }
 })();
