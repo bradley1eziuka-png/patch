@@ -591,8 +591,9 @@ ${pageHero({ crumbs, h1: 'Get a Free Estimate', lead: 'Call, email or send the d
         <input type="hidden" name="lead_id" value="">
         <input type="hidden" name="sms_consent_version" value="${integrations.smsConsentVersion}">
         <input type="hidden" name="sms_service_consent" value="No">
+        <input type="hidden" name="sms_consent_service" value="false">
         <input type="hidden" name="sms_service_consent_text" value="">
-        ${integrations.smsMarketingEnabled ? '<input type="hidden" name="sms_marketing_consent" value="No"><input type="hidden" name="sms_marketing_consent_text" value="">' : ''}
+        ${integrations.smsMarketingEnabled ? '<input type="hidden" name="sms_marketing_consent" value="No"><input type="hidden" name="sms_consent_marketing" value="false"><input type="hidden" name="sms_marketing_consent_text" value="">' : ''}
         <input type="hidden" name="sms_consent_recorded_at" value="">
         <div class="field-row">
           <div class="field"><label for="f-name">Name <span class="req">(required)</span></label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
@@ -616,8 +617,14 @@ ${pageHero({ crumbs, h1: 'Get a Free Estimate', lead: 'Call, email or send the d
           <label><input type="radio" name="contact_method" value="Email"> Email</label>
         </fieldset>
         <div class="consent" role="group" aria-label="Text message preferences (optional)">
-          <label class="consent__row"><input type="checkbox" id="sms-service" data-consent="service"><span data-consent-text="service">${esc(smsConsent.service)}</span></label>
-          ${integrations.smsMarketingEnabled ? `<label class="consent__row"><input type="checkbox" id="sms-marketing" data-consent="marketing"><span data-consent-text="marketing">${esc(smsConsent.marketing)}</span></label>` : ''}
+          <div class="consent__block">
+            <input type="checkbox" id="sms-service" data-consent="service">
+            <label for="sms-service" data-consent-text="service">${esc(smsConsent.service)}</label>
+          </div>
+          ${integrations.smsMarketingEnabled ? `<div class="consent__block">
+            <input type="checkbox" id="sms-marketing" data-consent="marketing">
+            <label for="sms-marketing" data-consent-text="marketing">${esc(smsConsent.marketing)}</label>
+          </div>` : ''}
           <p class="consent__fine">${esc(smsConsent.note)} Messages are sent by The Original Patch Master, 25244 Annapolis St, Dearborn Heights, MI. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms-and-conditions/">Terms &amp; Conditions</a>.</p>
         </div>
         <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
@@ -780,8 +787,7 @@ export function privacyPolicy() {
 <h2>Text messages (SMS)</h2>
 <p>We send text messages only if you agree by checking the optional text message box on a form, or by otherwise agreeing to receive them. Agreeing is voluntary and is not a condition of purchase or of requesting an estimate or any service. You can also sign up on our <a href="/sms-opt-in/">SMS opt-in page</a>.</p>
 <ul>
-  <li>Service-related messages cover your inquiries, estimates, appointments and service updates. Message frequency varies.</li>
-  ${integrations.smsMarketingEnabled ? '<li>If you opt in to marketing texts, we may also send occasional promotional messages, such as seasonal offers and review requests. This is a separate choice from service messages, and you can opt in to one without the other. Message frequency varies.</li>' : ''}
+  <li>Service-related messages cover your inquiries, estimates, appointments and service updates. If you separately opt in to marketing texts, you may also receive occasional promotional messages, such as seasonal offers and review requests. Message frequency varies.</li>
   <li>Message and data rates may apply.</li>
   <li>Reply <strong>STOP</strong> at any time to opt out. Reply <strong>HELP</strong> for assistance, or contact us at ${contactLine}.</li>
   <li>${BIZ} does not sell or share text message consent or mobile phone numbers with third parties for their own marketing or promotional purposes.</li>
@@ -833,7 +839,7 @@ export function terms() {
 <h2 id="sms">Text messaging terms</h2>
 <ul>
   <li><strong>Who sends the messages:</strong> ${BIZ}, ${ADDR}.</li>
-  <li><strong>What you may receive:</strong> messages about your inquiries, estimates, appointments and service updates${integrations.smsMarketingEnabled ? '. We may also send occasional promotional messages, such as seasonal offers and review requests, if you opt in to marketing texts' : ''}.</li>
+  <li><strong>What you may receive:</strong> messages about your inquiries, estimates, appointments and service updates. If you separately opt in to marketing texts, you may also receive occasional promotional messages, such as seasonal offers and review requests.</li>
   <li><strong>How you agree:</strong> by checking the optional text message box on a form, by signing up on our <a href="/sms-opt-in/">SMS opt-in page</a>, or by otherwise agreeing to receive texts. Agreeing is voluntary and is not a condition of purchase or of requesting an estimate or any service.</li>
   <li><strong>Message frequency:</strong> varies.</li>
   <li><strong>Costs:</strong> message and data rates may apply.</li>
@@ -930,34 +936,35 @@ ${pageHero({ crumbs, h1: 'How Was Your Experience?', lead: `Thank you for choosi
 // ===========================================================================
 export function smsOptIn() {
   const crumbs = [homeCrumb, { name: 'SMS Opt-In', href: '/sms-opt-in/' }];
-  const active = !!integrations.smsOptInEndpoint;
-  const linkify = (t) => esc(t).replace('Privacy Policy', '<a href="/privacy-policy/">Privacy Policy</a>').replace('Terms &amp; Conditions', '<a href="/terms-and-conditions/">Terms &amp; Conditions</a>');
-  const marketing = integrations.smsMarketingEnabled;
   const body = `
 ${pageHero({ crumbs, h1: 'Stay Connected With The Original Patch Master', lead: 'Sign up to receive text messages about your inquiries, estimates, appointments, and service updates.', ctas: false })}
 <section class="section">
   <div class="wrap wrap--narrow">
     <div class="contact__form">
-      <!-- SMS OPT-IN ENDPOINT: set \`integrations.smsOptInEndpoint\` in src/data.mjs once the server-side GHL webhook is configured (see INTEGRATIONS.md).
-           Until then the form is disabled and says sign-up is not active. It never shows a fake success. -->
-      ${active ? '' : `<p class="form-note is-error" style="margin:0 0 20px"><strong>Text sign-up is not active yet.</strong> To receive updates now, call ${PH} or send us a request on our <a href="/contact/">contact page</a>.</p>`}
+      <!-- SMS OPT-IN ENDPOINT: currently the same Formspree endpoint as /contact (integrations.smsOptInEndpoint in src/data.mjs).
+           TO SWITCH TO THE GHL INBOUND WEBHOOK LATER: set that value to '/api/sms-optin' (a server-side proxy; the real GHL webhook URL
+           goes in the Vercel env var GHL_OPTIN_WEBHOOK_URL, never in this file). See INTEGRATIONS.md. -->
       <form id="optin-form" method="post" data-optin-endpoint="${esc(integrations.smsOptInEndpoint)}" data-consent-version="${esc(integrations.smsOptInVersion)}" novalidate>
-        <fieldset class="optin-fields"${active ? '' : ' disabled'}>
-          <div class="field"><label for="o-name">Full name <span class="req">(required)</span></label><input id="o-name" name="name" type="text" autocomplete="name" required></div>
-          <div class="field-row">
-            <div class="field"><label for="o-phone">Mobile phone number <span class="req">(required)</span></label><input id="o-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(313) 555-0123" required></div>
-            <div class="field"><label for="o-email">Email address <span class="req">(optional)</span></label><input id="o-email" name="email" type="email" autocomplete="email"></div>
+        <div class="field"><label for="o-name">Full name <span class="req">(required)</span></label><input id="o-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field-row">
+          <div class="field"><label for="o-phone">Mobile phone number <span class="req">(required)</span></label><input id="o-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(313) 555-0123" required></div>
+          <div class="field"><label for="o-email">Email address <span class="req">(optional)</span></label><input id="o-email" name="email" type="email" autocomplete="email"></div>
+        </div>
+        <div class="consent" role="group" aria-label="Text message consent (optional)">
+          <div class="consent__block">
+            <input type="checkbox" id="o-sms-service" data-consent="service">
+            <label for="o-sms-service" data-consent-text="service">${esc(smsConsent.optInService)}</label>
           </div>
-          <div class="consent" role="group" aria-label="Text message consent">
-            <label class="consent__row"><input type="checkbox" id="o-sms-service" data-consent="service"><span data-consent-text="service">${linkify(smsConsent.optInService)}</span></label>
-            ${marketing ? `<label class="consent__row"><input type="checkbox" id="o-sms-marketing" data-consent="marketing"><span data-consent-text="marketing">${linkify(smsConsent.optInMarketing)}</span></label>` : ''}
-            <p class="consent__fine">${marketing ? 'Check at least one box to sign up. The two boxes are separate.' : 'Check the box to sign up.'} Messages are sent by The Original Patch Master, ${ADDR}. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms-and-conditions/">Terms &amp; Conditions</a>.</p>
+          <div class="consent__block">
+            <input type="checkbox" id="o-sms-marketing" data-consent="marketing">
+            <label for="o-sms-marketing" data-consent-text="marketing">${esc(smsConsent.optInMarketing)}</label>
           </div>
-          <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
-          <button class="btn btn--block-sm" type="submit">Sign Up for Text Updates</button>
-        </fieldset>
+          <p class="consent__fine">Messages are sent by The Original Patch Master, ${ADDR}. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms-and-conditions/">Terms &amp; Conditions</a>.</p>
+        </div>
+        <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+        <button class="btn btn--block-sm" type="submit">Sign Up for Text Updates</button>
         <p class="form-note" id="form-status" role="status" aria-live="polite"></p>
-        <p class="form-fine">Reply STOP to any message to opt out, or HELP for help. You can also contact us at <a href="${site.phoneHref}">${PH}</a> or <a href="mailto:${site.email}">${site.email}</a>.</p>
+        <p class="form-fine">Check at least one box to sign up. Reply STOP to any message to opt out, or HELP for help. You can also contact us at <a href="${site.phoneHref}">${PH}</a> or <a href="mailto:${site.email}">${site.email}</a>.</p>
       </form>
     </div>
   </div>
@@ -965,7 +972,7 @@ ${pageHero({ crumbs, h1: 'Stay Connected With The Original Patch Master', lead: 
   return page({
     title: 'SMS Opt-In | The Original Patch Master',
     desc: 'Sign up for text messages from The Original Patch Master about your inquiries, estimates, appointments and service updates.',
-    path: '/sms-opt-in/', schema: [breadcrumbSchema(crumbs)], noindex: !active,
+    path: '/sms-opt-in/', schema: [breadcrumbSchema(crumbs)],
   }, body);
 }
 

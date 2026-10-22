@@ -632,3 +632,10 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px
 .optin-fields { border: 0; padding: 0; margin: 0; min-width: 0; }
 .optin-fields:disabled { opacity: .55; }
 .consent__row a, .consent__fine a { color: var(--navy); font-weight: 600; text-underline-offset: 3px; }
+
+/* ---------- Consent blocks: each disclosure is its own labelled, divided block ---------- */
+.consent__block { display: flex; gap: 12px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.consent__block:first-of-type { padding-top: 0; }
+.consent__block input { flex: none; width: 22px; height: 22px; margin-top: 3px; accent-color: var(--navy); }
+.consent__block label { margin: 0; font-size: .9rem; font-weight: 400; line-height: 1.55; color: var(--gray); cursor: pointer; }
+.consent__block + .consent__fine, .consent__block ~ .consent__fine { margin-top: 14px; }

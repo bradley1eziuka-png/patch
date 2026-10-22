@@ -6,7 +6,7 @@
 <title>SMS Opt-In | The Original Patch Master</title>
 <meta name="description" content="Sign up for text messages from The Original Patch Master about your inquiries, estimates, appointments and service updates.">
 <link rel="canonical" href="https://originalpatchmaster.com/sms-opt-in/">
-<meta name="robots" content="noindex">
+
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Original Patch Master">
 <meta property="og:title" content="SMS Opt-In | The Original Patch Master">
@@ -18,7 +18,7 @@
 <link rel="icon" type="image/png" href="/assets/img/favicon.png">
 <link rel="preload" href="/assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/style.css?v=15c2aca4">
+<link rel="stylesheet" href="/assets/css/style.css?v=013f63d8">
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://originalpatchmaster.com/"},{"@type":"ListItem","position":2,"name":"SMS Opt-In","item":"https://originalpatchmaster.com/sms-opt-in/"}]}</script>
 </head>
@@ -66,26 +66,30 @@
 <section class="section">
   <div class="wrap wrap--narrow">
     <div class="contact__form">
-      <!-- SMS OPT-IN ENDPOINT: set `integrations.smsOptInEndpoint` in src/data.mjs once the server-side GHL webhook is configured (see INTEGRATIONS.md).
-           Until then the form is disabled and says sign-up is not active. It never shows a fake success. -->
-      <p class="form-note is-error" style="margin:0 0 20px"><strong>Text sign-up is not active yet.</strong> To receive updates now, call 734-489-2284 or send us a request on our <a href="/contact/">contact page</a>.</p>
-      <form id="optin-form" method="post" data-optin-endpoint="" data-consent-version="sms-optin-v2" novalidate>
-        <fieldset class="optin-fields" disabled>
-          <div class="field"><label for="o-name">Full name <span class="req">(required)</span></label><input id="o-name" name="name" type="text" autocomplete="name" required></div>
-          <div class="field-row">
-            <div class="field"><label for="o-phone">Mobile phone number <span class="req">(required)</span></label><input id="o-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(313) 555-0123" required></div>
-            <div class="field"><label for="o-email">Email address <span class="req">(optional)</span></label><input id="o-email" name="email" type="email" autocomplete="email"></div>
+      <!-- SMS OPT-IN ENDPOINT: currently the same Formspree endpoint as /contact (integrations.smsOptInEndpoint in src/data.mjs).
+           TO SWITCH TO THE GHL INBOUND WEBHOOK LATER: set that value to '/api/sms-optin' (a server-side proxy; the real GHL webhook URL
+           goes in the Vercel env var GHL_OPTIN_WEBHOOK_URL, never in this file). See INTEGRATIONS.md. -->
+      <form id="optin-form" method="post" data-optin-endpoint="https://formspree.io/f/xzedqkpn" data-consent-version="sms-optin-v3" novalidate>
+        <div class="field"><label for="o-name">Full name <span class="req">(required)</span></label><input id="o-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field-row">
+          <div class="field"><label for="o-phone">Mobile phone number <span class="req">(required)</span></label><input id="o-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(313) 555-0123" required></div>
+          <div class="field"><label for="o-email">Email address <span class="req">(optional)</span></label><input id="o-email" name="email" type="email" autocomplete="email"></div>
+        </div>
+        <div class="consent" role="group" aria-label="Text message consent (optional)">
+          <div class="consent__block">
+            <input type="checkbox" id="o-sms-service" data-consent="service">
+            <label for="o-sms-service" data-consent-text="service">I agree to receive text messages from The Original Patch Master about my inquiries, estimates, appointments, and service updates at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase.</label>
           </div>
-          <div class="consent" role="group" aria-label="Text message consent">
-            <label class="consent__row"><input type="checkbox" id="o-sms-service" data-consent="service"><span data-consent-text="service">I agree to receive text messages from The Original Patch Master about my inquiries, estimates, appointments, and service updates at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms-and-conditions/">Terms &amp; Conditions</a>.</span></label>
-            <label class="consent__row"><input type="checkbox" id="o-sms-marketing" data-consent="marketing"><span data-consent-text="marketing">I agree to receive occasional marketing text messages from The Original Patch Master, such as seasonal offers and review requests. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for assistance. Consent is not a condition of purchase.</span></label>
-            <p class="consent__fine">Check at least one box to sign up. The two boxes are separate. Messages are sent by The Original Patch Master, 25244 Annapolis St, Dearborn Heights, MI. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms-and-conditions/">Terms &amp; Conditions</a>.</p>
+          <div class="consent__block">
+            <input type="checkbox" id="o-sms-marketing" data-consent="marketing">
+            <label for="o-sms-marketing" data-consent-text="marketing">I agree to receive occasional marketing text messages from The Original Patch Master, such as seasonal offers and review requests, at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase.</label>
           </div>
-          <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
-          <button class="btn btn--block-sm" type="submit">Sign Up for Text Updates</button>
-        </fieldset>
+          <p class="consent__fine">Messages are sent by The Original Patch Master, 25244 Annapolis St, Dearborn Heights, MI. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms-and-conditions/">Terms &amp; Conditions</a>.</p>
+        </div>
+        <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+        <button class="btn btn--block-sm" type="submit">Sign Up for Text Updates</button>
         <p class="form-note" id="form-status" role="status" aria-live="polite"></p>
-        <p class="form-fine">Reply STOP to any message to opt out, or HELP for help. You can also contact us at <a href="tel:+17344892284">734-489-2284</a> or <a href="mailto:raegirlg@icloud.com">raegirlg@icloud.com</a>.</p>
+        <p class="form-fine">Check at least one box to sign up. Reply STOP to any message to opt out, or HELP for help. You can also contact us at <a href="tel:+17344892284">734-489-2284</a> or <a href="mailto:raegirlg@icloud.com">raegirlg@icloud.com</a>.</p>
       </form>
     </div>
   </div>
@@ -124,6 +128,6 @@
   </div>
   <div class="footer__legal"><div class="wrap"><p class="footer__links"><a href="/privacy-policy/">Privacy Policy</a><span aria-hidden="true">|</span><a href="/terms-and-conditions/">Terms &amp; Conditions</a><span aria-hidden="true">|</span><a href="/sms-opt-in/">SMS Opt-In</a></p><p>&copy; 2026 The Original Patch Master. Fully insured. Serving Dearborn Heights and Metro Detroit.</p><p class="footer__credit"><a href="https://getarclo.com" target="_blank" rel="noopener">Website by Arclo</a></p></div></div>
 </footer>
-<script src="/assets/js/site.js?v=15c2aca4" defer></script>
+<script src="/assets/js/site.js?v=013f63d8" defer></script>
 </body>
 </html>

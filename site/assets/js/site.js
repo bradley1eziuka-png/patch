@@ -230,6 +230,7 @@
         var cat = box.getAttribute('data-consent');
         var txt = form.querySelector('[data-consent-text="' + cat + '"]');
         if (form.elements['sms_' + cat + '_consent']) form.elements['sms_' + cat + '_consent'].value = box.checked ? 'Yes' : 'No';
+        if (form.elements['sms_consent_' + cat]) form.elements['sms_consent_' + cat].value = box.checked ? 'true' : 'false';
         if (form.elements['sms_' + cat + '_consent_text']) form.elements['sms_' + cat + '_consent_text'].value = txt ? txt.textContent.trim() : '';
       });
       if (form.elements.sms_consent_recorded_at) form.elements.sms_consent_recorded_at.value = now;
@@ -295,7 +296,7 @@
     optin.addEventListener('submit', function (e) {
       e.preventDefault();
       var endpoint = optin.getAttribute('data-optin-endpoint');
-      if (!endpoint) { oSay('Text sign-up is not active yet, so nothing was sent. Please call 734-489-2284.', 'error'); return; }
+      if (!endpoint) { oSay('Sign-up could not be sent right now. Please call 734-489-2284.', 'error'); return; }
       if (optin.elements._gotcha && optin.elements._gotcha.value) return;
 
       var name = optin.elements.name, phoneEl = optin.elements.phone, email = optin.elements.email;
@@ -316,24 +317,38 @@
       if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); }
       var finish = function () { optin.removeAttribute('data-sending'); if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); } };
 
-      // The record: contact, per-category consent (Yes/No), the exact wording shown, version, time and source URL.
+      // The record: contact, per-category consent (true/false and Yes/No), the exact wording shown, version, time and source URL.
       var rec = { name: name.value.trim(), phone: phone, email: email.value.trim(), form_type: 'SMS opt-in', lead_id: oLead,
+        _subject: 'SMS opt-in: The Original Patch Master',
         sms_consent_version: optin.getAttribute('data-consent-version'), sms_consent_recorded_at: new Date().toISOString(),
-        source_url: location.href, source_page: document.title };
+        source_url: location.href, source_page: document.title,
+        sms_consent_service: 'false', sms_consent_marketing: 'false' };
       boxes.forEach(function (b) {
         var cat = b.getAttribute('data-consent');
         var txt = optin.querySelector('[data-consent-text="' + cat + '"]');
+        rec['sms_consent_' + cat] = b.checked ? 'true' : 'false';
         rec['sms_' + cat + '_consent'] = b.checked ? 'Yes' : 'No';
         rec['sms_' + cat + '_consent_text'] = txt ? txt.textContent.trim() : '';
       });
       oSay('Sending...', '');
-      fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(rec) })
+      // Formspree-style endpoint: multipart form data. A same-origin /api/ proxy (the later GHL setup): JSON.
+      var viaProxy = endpoint.charAt(0) === '/';
+      var req;
+      if (viaProxy) {
+        req = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(rec) };
+      } else {
+        var fd = new FormData();
+        Object.keys(rec).forEach(function (k) { fd.append(k, rec[k]); });
+        req = { method: 'POST', body: fd, headers: { Accept: 'application/json' } };
+      }
+      fetch(endpoint, req)
         .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, d: d }; }); })
         .then(function (res) {
-          if (!res.ok || !res.d || res.d.ok !== true) throw new Error('not recorded');
+          // Success only when the endpoint confirms: HTTP 2xx, no errors, and (for the proxy) an explicit ok:true.
+          if (!res.ok || (res.d && res.d.errors) || (viaProxy && (!res.d || res.d.ok !== true))) throw new Error('not recorded');
           optin.reset(); oLead = newId();
           setTimeout(finish, 4000);   // keep the button locked briefly so the confirmation stays on screen
-          oSay("Thank you! You're signed up for text updates from The Original Patch Master. Reply STOP at any time to opt out.", 'ok');
+          oSay("Thanks! You're signed up for text messages from The Original Patch Master. Reply STOP anytime to opt out.", 'ok');
         })
         .catch(function () {
           finish();

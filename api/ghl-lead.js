@@ -23,6 +23,7 @@ const ALLOWED = [
 const FIELDS = [
   'name', 'phone', 'email', 'city', 'service', 'message', 'contact_method',
   'source_page', 'submitted_at', 'lead_id',
+  'sms_consent_service', 'sms_consent_marketing',
   'sms_consent_version', 'sms_service_consent', 'sms_service_consent_text',
   'sms_marketing_consent', 'sms_marketing_consent_text', 'sms_consent_recorded_at',
 ];
