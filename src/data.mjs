@@ -6,7 +6,7 @@
 
 export const site = {
   name: 'The Original Patch Master',
-  tagline: 'Family-owned drywall, plaster and finishing contractor',
+  tagline: 'Commercial drywall, plaster and finishing contractor',
   phone: '734-489-2284',
   phoneHref: 'tel:+17344892284',
   email: 'raegirlg@icloud.com',
@@ -81,13 +81,13 @@ export const services = [
     name: 'Drywall Installation',
     icon: 'layers',
     tile: 'Hanging, taping and finishing for new walls and ceilings.',
-    title: 'Drywall Installation | The Original Patch Master',
-    desc: 'New drywall hung, taped and finished for additions, remodels, basements and new construction in Dearborn Heights and Metro Detroit. Free estimates.',
+    title: 'Commercial Drywall Installation | The Original Patch Master',
+    desc: 'Commercial and residential drywall installation: hanging, taping and finishing for remodels, additions, basements and new construction in Metro Detroit. Free estimates.',
     h1: 'Drywall Installation',
-    lead: 'New drywall hung, taped and finished for additions, remodels, basements and whole houses.',
+    lead: 'New drywall hung, taped and finished for commercial spaces, additions, remodels, basements and whole houses.',
     intro: [
       'New drywall is more than hanging sheets. The seams have to be taped, the screws and corners covered, and every surface sanded flat before anyone paints. The Original Patch Master does all of it, so your walls go from bare studs to a finished surface under one contractor.',
-      'We take installation work of any size, from a single room to a full house or new construction.',
+      'We take commercial and residential installation work of any size, from a single room to a larger commercial space, a full house or new construction.',
     ],
     involves: [
       'Hanging drywall on walls and ceilings',
@@ -237,7 +237,7 @@ export const services = [
     icon: 'house',
     tile: 'Full-space drywall and finishing, from the first sheet to the final coat.',
     title: 'Basement & Garage Finishing | The Original Patch Master',
-    desc: 'Basement, garage and whole-house drywall and finishing by The Original Patch Master. 30 years of union experience, fully insured, free estimates in Metro Detroit.',
+    desc: 'Basement, garage and whole-house drywall and finishing by The Original Patch Master. 25 years in the trade, fully insured, free estimates in Metro Detroit.',
     h1: 'Basement, Garage and Whole-House Finishing',
     lead: 'Drywall, insulation and finishing for entire spaces, from open framing to finished walls.',
     intro: [
@@ -365,7 +365,7 @@ export const locations = [
     h1: 'Drywall and Plaster Contractor in Dearborn Heights',
     lead: 'The Original Patch Master is based here. Call for repairs, finishing, or a full basement, garage or house.',
     sections: [
-      { h: 'A Dearborn Heights business', p: ['The Original Patch Master runs out of Dearborn Heights. Jeremy Girard owns the business, and this is our home area. Our business address is 25244 Annapolis St.'] },
+      { h: 'A Dearborn Heights business', p: ['The Original Patch Master runs out of Dearborn Heights. This is our home area. Our business address is 25244 Annapolis St.'] },
       { h: 'Jobs we take', p: ['Homeowners call us about a patched wall, a cracked ceiling, a basement that needs finishing or a garage that is still bare framing. The full list is below.'], services: ['drywall-repair', 'drywall-installation', 'plaster-repair', 'basement-garage-house-finishing', 'level-5-finishing', 'insulation'] },
       { h: 'How to book', p: ['Estimates are free. Call 734-489-2284 Monday to Friday, 7 AM to 5 PM, or use the contact form and tell us what you need.'] },
     ],
@@ -403,7 +403,7 @@ export const locations = [
     h1: 'Drywall Services in Monroe',
     lead: 'The Original Patch Master takes drywall, plaster and finishing jobs in Monroe, from repairs to full basements and houses.',
     sections: [
-      { h: 'Larger finishing projects', p: ['Monroe homeowners can call us about a basement, a garage or an entire house, as well as smaller repairs. Finishing whole spaces is a priority for The Original Patch Master, and 30 years of union experience goes into it.'], services: ['basement-garage-house-finishing', 'drywall-installation', 'insulation'] },
+      { h: 'Larger finishing projects', p: ['Monroe homeowners can call us about a basement, a garage or an entire house, as well as smaller repairs. Finishing whole spaces is a priority for The Original Patch Master, and 25 years in the trade goes into it.'], services: ['basement-garage-house-finishing', 'drywall-installation', 'insulation'] },
       { h: 'Setting up an estimate', p: ['The Original Patch Master is based in Dearborn Heights, so give us your address and a rough idea of the work when you call. We will set up a free estimate and talk through the job.'] },
       { h: 'Repairs too', p: ['You do not need a big project to call. Patched holes, cracked seams and plaster repairs are all on the list.'], services: ['drywall-repair', 'plaster-repair'] },
     ],
@@ -456,9 +456,9 @@ export const locations = [
     name: 'Metro Detroit',
     short: 'The wider area we work in from Dearborn Heights.',
     title: 'Metro Detroit Drywall | The Original Patch Master',
-    desc: 'Family-owned, fully insured drywall and plaster contractor serving Metro Detroit from Dearborn Heights. 30 years of union experience. Free estimates.',
+    desc: 'Commercial drywall and plaster contractor serving Metro Detroit from Dearborn Heights. 25 years in the trade, fully insured. Free estimates.',
     h1: 'Drywall and Plaster Contractor in Metro Detroit',
-    lead: 'Family owned and fully insured, with 30 years of union experience. Based in Dearborn Heights.',
+    lead: 'Commercial and residential drywall and plaster, with 25 years in the trade. Fully insured. Based in Dearborn Heights.',
     sections: [
       { h: 'Where we work', p: ['The Original Patch Master serves Dearborn Heights and the surrounding Metro Detroit area. Pick your area below, or call and ask.'], allAreas: true },
       { h: 'What to expect', p: ['Every job starts with a free estimate. Small repairs and full-house finishing follow the same process: we look at the work, explain what it needs and give you a price.'] },
@@ -505,6 +505,8 @@ export const mediaOverrides = {
 
 // Still images (webp in site/assets/img/media/, with -480 and -800 variants).
 export const stills = {
+  'done-room': { alt: 'Finished room with smooth white walls, trim and a clean ceiling line', focus: '50% 45%' },
+  'commercial-interior': { alt: 'Drywall finished along a tall wall inside a large commercial building', focus: '50% 40%' },
   'jeremy': { alt: 'Jeremy Girard, owner of The Original Patch Master, standing in a room of hung drywall', focus: '50% 35%' },
   'jonas': { alt: 'Jonas, Jeremy\'s son, working in a room with a laser level and a pole sander', focus: '50% 30%' },
   'truck': { alt: 'Patch Master work truck with the phone number 734-489-2284 on the door sign', focus: '50% 55%' },
@@ -522,10 +524,10 @@ export const stills = {
 // Which still fills which media slot. Slots with no entry (and no file) render a
 // placeholder, or nothing at all when the page marks the slot optional.
 export const slotStill = {
-  'about-family': { still: 'jeremy', caption: 'Jeremy Girard, owner' },
-  'about-jobsite': { still: 'jonas', caption: 'Jonas' },
-  'about-page-family': { still: 'jeremy', caption: 'Jeremy Girard, owner' },
-  'about-page-jonas': { still: 'jonas', caption: 'Jonas' },
+  'about-family': 'done-room',
+  'about-jobsite': 'commercial-interior',
+  'about-page-family': 'done-room',
+  'about-page-jonas': 'commercial-interior',
   'about-page-jobsite': 'finish-wide',
   'about-page-truck': 'truck',
   'feature-finishing': 'finish-trowel',

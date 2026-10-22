@@ -202,7 +202,7 @@ export function header(current) {
     .join('\n');
   return `<header class="site-header">
   <div class="hdr">
-    <a class="brand" href="/" aria-label="The Original Patch Master home"><img src="/assets/img/jeremylogo-400.webp" srcset="/assets/img/jeremylogo-400.webp 400w, /assets/img/jeremylogo-800.webp 800w" sizes="101px" alt="The Original Patch Master" width="400" height="300"></a>
+    <a class="brand" href="/" aria-label="The Original Patch Master home"><img src="/assets/img/brand-logo-400.webp" srcset="/assets/img/brand-logo-400.webp 400w, /assets/img/brand-logo-800.webp 800w" sizes="101px" alt="The Original Patch Master" width="400" height="300"></a>
     <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle__open">${icon('menu')}</span><span class="nav-toggle__close">${icon('close')}</span><span class="sr">Menu</span></button>
     <nav id="primary-nav" class="primary-nav" aria-label="Primary">
       <ul>${items}</ul>
@@ -229,7 +229,7 @@ export function footer() {
   <div class="wrap footer__grid">
     <div class="footer__brand">
       <a class="footer__logo" href="/" aria-label="The Original Patch Master home"><img src="/assets/img/patch-master-logo.png" alt="The Original Patch Master" width="661" height="362" loading="lazy"></a>
-      <p>Family-owned drywall, plaster and finishing contractor in Dearborn Heights. Fully insured. Free estimates.</p>
+      <p>Commercial drywall, plaster and finishing contractor in Dearborn Heights. Fully insured. Free estimates.</p>
       <ul class="social">
         <li><a href="${site.social.facebook}" target="_blank" rel="noopener" aria-label="The Original Patch Master on Facebook">${icon('facebook')}</a></li>
         <li><a href="${site.social.instagram}" target="_blank" rel="noopener" aria-label="The Original Patch Master on Instagram">${icon('instagram')}</a></li>

@@ -24,10 +24,10 @@ const slotMedia = (slot, o = {}) => (slotVideo[slot] ? vidFigure(slotVideo[slot]
 // 'framed' is the earlier portrait-panel design (set hero.layout in src/data.mjs).
 function heroSection() {
   const copy = `    <div class="hero__copy">
-      <p class="hero__eyebrow">Family-Owned &bull; Serving Metro Detroit</p>
+      <p class="hero__eyebrow">Commercial Drywall &amp; Plaster &bull; Serving Metro Detroit</p>
       <h1>Drywall Repair, Installation &amp; Finishing.</h1>
-      <p class="hero__proof">30 Years of Union Experience.</p>
-      <p class="hero__body">From repairing damaged walls to finishing entire basements, garages and homes, The Original Patch Master brings decades of hands-on experience to every project.</p>
+      <p class="hero__proof">25 Years in the Trade.</p>
+      <p class="hero__body">Commercial drywall installation, plaster repair and professional finishing, plus residential repairs and finishing for basements, garages and homes, across Metro Detroit.</p>
       <div class="btn-row">${estimateBtn()}${callBtn()}</div>
       <ul class="hero__checks"><li>${icon('check')}Fully insured</li><li>${icon('check')}Free estimates</li><li>${icon('check')}Dearborn Heights</li></ul>
     </div>`;
@@ -62,21 +62,21 @@ ${copy}
 export function home() {
   const strip = [
     { icon: 'patch', t: 'Drywall Repair', p: 'Holes, cracks and damaged walls repaired and finished to blend with the surrounding surface.', href: svcUrl('drywall-repair'), a: 'Repair details' },
-    { icon: 'layers', t: 'Drywall Installation & Finishing', p: 'Drywall hanging, taping and finishing for remodels, additions and new construction.', href: svcUrl('drywall-installation'), a: 'Installation details' },
+    { icon: 'layers', t: 'Drywall Installation & Finishing', p: 'Commercial and residential drywall hanging, taping and finishing for remodels, additions and new construction.', href: svcUrl('drywall-installation'), a: 'Installation details' },
     { icon: 'house', t: 'Basements, Garages & Houses', p: 'Drywall installation and finishing for larger projects, from unfinished basements to entire homes.', href: svcUrl('basement-garage-house-finishing'), a: 'Full-space finishing' },
   ];
   const six = ['drywall-repair', 'drywall-installation', 'plaster-repair', 'level-5-finishing', 'dustless-sanding', 'basement-garage-house-finishing'].map(svc);
   const homeTiles = {
     'drywall-repair': 'Holes, cracks and damaged walls repaired and finished to blend with the surrounding surface.',
-    'drywall-installation': 'Drywall hanging, taping and finishing for remodels, additions and new construction.',
+    'drywall-installation': 'Commercial and residential drywall hanging, taping and finishing for remodels, additions and new construction.',
     'plaster-repair': 'Repair cracked or damaged plaster without replacing more of the wall than necessary.',
     'level-5-finishing': 'A smooth, uniform finish for walls and ceilings where surface imperfections are more noticeable.',
     'dustless-sanding': 'Specialized sanding equipment helps keep airborne dust and cleanup to a minimum.',
     'basement-garage-house-finishing': 'Drywall installation and finishing for larger projects, from unfinished basements to entire homes.',
   };
   const facts = [
-    { icon: 'badge', big: '30 Years', small: 'Union experience' },
-    { icon: 'users', big: 'Family-Owned', small: 'Locally operated' },
+    { icon: 'badge', big: '25 Years', small: 'In the trade' },
+    { icon: 'users', big: 'Commercial', small: 'And residential work' },
     { icon: 'shield', big: 'Fully Insured', small: 'For your peace of mind' },
     { icon: 'clipboard', big: 'Free Estimates', small: 'Know the scope before committing' },
   ];
@@ -98,18 +98,16 @@ ${heroSection()}
 <section class="section section--alt about">
   <div class="wrap about__grid">
     <div class="about__media">
-      <!-- ABOUT MEDIA 1: Jeremy/family or crew. Portrait 3:4 or 4:5. -->
-      ${media('about-family', { ratio: '3/4', note: 'Jeremy/family or crew. Portrait, 3:4 or 4:5.', alt: 'Jeremy Girard of The Original Patch Master', label: 'Family photo' })}
-      <!-- ABOUT MEDIA 2: Real jobsite image. Portrait 3:4 or 4:5. -->
-      ${media('about-jobsite', { ratio: '3/4', note: 'Real jobsite image: finished wall, work in progress. Portrait, 3:4 or 4:5.', alt: 'Finished drywall by The Original Patch Master', label: 'Jobsite photo' })}
+      <!-- Completed-work photos (no people). Slots map to stills in src/data.mjs (slotStill). Portrait 3:4. -->
+      ${media('about-family', { ratio: '3/4', note: 'Completed finished walls. Portrait, 3:4.' })}
+      ${media('about-jobsite', { ratio: '3/4', note: 'Commercial or finished project interior. Portrait, 3:4.' })}
     </div>
     <div class="about__copy">
       ${eyebrow('About The Original Patch Master')}
-      <h2>Experience You Can See in the Finish.</h2>
-      <p>The Original Patch Master is a family-owned drywall and plaster business owned and operated by Jeremy Girard. With 30 years of union experience behind the work, the business takes on everything from everyday repairs to complete drywall installations.</p>
-      <p>Jeremy's son Jonas and Lillian work in the business with him. For the family, doing good work also means being straightforward with customers, respecting their homes, and standing behind the work they do.</p>
-      <div class="person"><div><strong>Jeremy Girard</strong><span>Owner, The Original Patch Master</span></div></div>
-      <a class="btn btn--navy" href="/about/">More About Us</a>
+      <h2>Craftsmanship That Speaks for Itself.</h2>
+      <p>The Original Patch Master delivers professional drywall, plaster repair, and finishing services throughout Metro Detroit. Our team of highly qualified craftsmen brings experience, attention to detail, and pride in workmanship to every project.</p>
+      <p>From commercial drywall installations to detailed repairs and smooth finishing work, we focus on delivering dependable service and results our customers can trust.</p>
+      <a class="btn btn--navy" href="/our-work/">Explore Our Work</a>
     </div>
   </div>
 </section>
@@ -128,8 +126,8 @@ ${heroSection()}
 <section class="band" aria-labelledby="band-h">
   <div class="wrap band__grid">
     <div>
-      <h2 id="band-h">Know Who You're Hiring.</h2>
-      <p class="band__text">When you hire The Original Patch Master, you're working with a family-run business that puts its name behind the job.</p>
+      <h2 id="band-h">Skilled Craftsmen. Quality Finishes.</h2>
+      <p class="band__text">Our team of highly qualified craftsmen takes pride in professional drywall, plaster repair and finishing work, from commercial projects to detailed repairs.</p>
     </div>
     <ul class="band__tiles">
       ${facts.map((f) => `<li>${icon(f.icon)}<strong>${f.big}</strong><span>${f.small}</span></li>`).join('')}
@@ -183,8 +181,8 @@ ${ctaBand({ h: 'Have a Drywall Project in Mind?', p: "Tell us what needs to be r
 
   return page(
     {
-      title: 'The Original Patch Master | Drywall in Dearborn Heights, MI',
-      desc: 'Family-owned drywall, plaster and finishing contractor in Dearborn Heights, MI. 30 years of union experience, fully insured. Free estimates across Metro Detroit.',
+      title: 'The Original Patch Master | Commercial Drywall & Plaster',
+      desc: 'Commercial drywall installation, plaster repair and finishing across Metro Detroit, plus residential work. 25 years in the trade. Fully insured. Free estimates.',
       path: '/',
       schema: [businessSchema()],
       extraHead: hero.layout === 'framed' ? `<link rel="preload" as="image" href="${hero.poster}" fetchpriority="high">` : `<link rel="preload" as="image" href="${hero.poster}" media="(max-width: 899px)" fetchpriority="high">
@@ -202,7 +200,7 @@ export function servicesIndex() {
   const finish = svc('basement-garage-house-finishing');
   const others = services.filter((s) => s !== finish);
   const body = `
-${pageHero({ crumbs, h1: 'Drywall, Plaster and Finishing Services', lead: 'The Original Patch Master handles the repair behind your door and the drywall for your whole basement. Pick a service to see what is involved.' })}
+${pageHero({ crumbs, h1: 'Drywall, Plaster and Finishing Services', lead: 'Commercial drywall installation, repair and finishing, plus residential repairs and basement, garage and whole-house work. Pick a service to see what is involved.' })}
 <section class="section features">
   <div class="wrap">
     <div class="feature">
@@ -226,7 +224,7 @@ ${ctaBand({ h: 'Not Sure What the Job Needs?', p: 'Describe it and we will tell 
   return page(
     {
       title: 'Drywall & Plaster Services | The Original Patch Master',
-      desc: 'Drywall repair and installation, plaster repair, Level 5 finishing, dustless sanding, insulation and window glazing from The Original Patch Master in Dearborn Heights.',
+      desc: 'Commercial drywall installation, repair and finishing, plaster repair, Level 5 finishing, dustless sanding, insulation and window glazing from The Original Patch Master.',
       path: '/services/',
       schema: [breadcrumbSchema(crumbs.map((c, i) => ({ ...c })))],
     },
@@ -423,16 +421,17 @@ export function about() {
     { icon: 'users', t: 'Plain talk', p: 'We explain what needs to be done and answer your questions before the job starts.' },
   ];
   const facts = [
-    ['Experience', '30 years of union experience'],
+    ['Experience', '25 years in the trade'],
+    ['Work', 'Commercial and residential'],
     ['Ownership', 'Family owned and operated'],
     ['Insurance', 'Fully insured'],
     ['Estimates', 'Free'],
     ['Equipment', 'Specialized equipment for dustless sanding'],
-    ['Job size', 'Small repairs to full houses'],
+    ['Job size', 'Small repairs to larger projects'],
     ['Based in', 'Dearborn Heights, Michigan'],
   ];
   const body = `
-${pageHero({ crumbs, h1: 'A Family-Run Drywall and Plaster Business', lead: 'Jeremy Girard owns and runs The Original Patch Master in Dearborn Heights, with his son Jonas and Lillian.', ctas: false })}
+${pageHero({ crumbs, h1: 'Commercial Drywall & Plaster Specialists', lead: 'Skilled craftsmen delivering professional drywall, plaster repair and finishing across Metro Detroit.', ctas: false })}
 <section class="section">
   <div class="wrap split">
     <div class="split__media">
@@ -443,21 +442,23 @@ ${pageHero({ crumbs, h1: 'A Family-Run Drywall and Plaster Business', lead: 'Jer
     </div>
     <div class="split__copy">
       ${eyebrow('Who We Are')}
-      <h2>Meet the Family Behind The Original Patch Master.</h2>
-      <p>The Original Patch Master is owned by Jeremy Girard, who brings 30 years of union experience in drywall and plaster work. His son Jonas and Lillian work alongside him, keeping the business family&#8209;run.</p>
-      <p>From patching damaged walls to finishing entire basements and homes, the Girard family takes pride in the work they put their name on.</p>
-      <p>When you contact The Original Patch Master, you're dealing directly with the people behind the business. They'll take a look at your project, explain what needs to be done, and provide a free estimate.</p>
+      <h2>Skilled Craftsmen. Quality Finishes.</h2>
+      <p>At The Original Patch Master, our team of highly qualified craftsmen takes pride in delivering professional drywall, plaster repair, and finishing work. From commercial projects to detailed repairs, we focus on quality workmanship, reliability, and results that speak for themselves.</p>
+      <p>With 25 years in the trade, we handle commercial drywall installation, plaster repair and finishing, as well as residential repairs and larger projects like basements and garages.</p>
+      <p>The Original Patch Master is a family-owned company based in Dearborn Heights. Every job starts with a free estimate and a straight explanation of what the work involves.</p>
     </div>
   </div>
 </section>
 <section class="section section--alt">
   <div class="wrap split">
     <div class="split__copy">
-      ${eyebrow('The Family at Work')}
-      <h2>Lillian and Jonas Pitch In</h2>
-      <p>Lillian and Jonas work alongside Jeremy. Here they are clearing debris on a jobsite.</p>
+      ${eyebrow('Commercial Work')}
+      <h2>Commercial Drywall &amp; Plaster</h2>
+      <p>Commercial drywall installation, repair and finishing is a priority for The Original Patch Master. We hang, tape, finish and sand, and we repair plaster, in commercial properties across Metro Detroit.</p>
+      <p>Tell us about the property and the work involved, and we will provide a free estimate.</p>
+      <div class="btn-row">${estimateBtn()}${callBtn('btn--outline')}</div>
     </div>
-    <div class="split__media">${vidFigure(familyVideo)}</div>
+    <div class="split__media">${vidFigure(slotVideo['service-drywall-installation-1'])}</div>
   </div>
 </section>
 <section class="section" aria-labelledby="val-h">
@@ -471,7 +472,7 @@ ${pageHero({ crumbs, h1: 'A Family-Run Drywall and Plaster Business', lead: 'Jer
     <div class="split__copy">
       ${eyebrow('Small and Large Jobs')}
       <h2>From a Patch to a Whole House</h2>
-      <p>We repair drywall and plaster, hang and finish new drywall, sand with dustless equipment and handle insulation, window glazing and caulking. Finishing basements, garages and entire houses is a priority.</p>
+      <p>We repair drywall and plaster, hang and finish new drywall in commercial and residential spaces, sand with dustless equipment and handle insulation, window glazing and caulking. Finishing basements, garages and entire houses is a priority.</p>
       <a class="btn" href="/services/">See Our Services</a>
     </div>
     <div class="split__media split__media--portrait">
@@ -491,8 +492,8 @@ ${pageHero({ crumbs, h1: 'A Family-Run Drywall and Plaster Business', lead: 'Jer
 ${ctaBand({ h: 'Have a Job in Mind?', p: 'Call or send us the details. Estimates are free.' })}`;
   return page(
     {
-      title: 'About | The Original Patch Master, Family-Owned Drywall',
-      desc: 'The Original Patch Master is a family-owned drywall and plaster business owned by Jeremy Girard in Dearborn Heights, with 30 years of union experience.',
+      title: 'About The Original Patch Master | Commercial Drywall & Plaster',
+      desc: 'The Original Patch Master is a commercial drywall and plaster company in Dearborn Heights. Skilled craftsmen, 25 years in the trade, serving Metro Detroit.',
       path: '/about/',
       schema: [breadcrumbSchema(crumbs)],
     },
@@ -554,7 +555,7 @@ export function contact() {
   const crumbs = [homeCrumb, { name: 'Contact', href: '/contact/' }];
   const a = site.address;
   const body = `
-${pageHero({ crumbs, h1: 'Get a Free Estimate', lead: 'Call, email or send the details below. Tell us what you are working on and we will take a look.', ctas: false })}
+${pageHero({ crumbs, h1: 'Get a Free Estimate', lead: 'Call, email or send the details below. Tell us what you are working on, commercial or residential, and we will take a look.', ctas: false })}
 <section class="section">
   <div class="wrap contact">
     <div class="contact__info">
@@ -610,7 +611,7 @@ ${pageHero({ crumbs, h1: 'Get a Free Estimate', lead: 'Call, email or send the d
   return page(
     {
       title: 'Free Drywall Estimate | Contact The Original Patch Master',
-      desc: 'Call 734-489-2284 or send the details for a free drywall, plaster or finishing estimate from The Original Patch Master in Dearborn Heights, MI.',
+      desc: 'Call 734-489-2284 or send the details for a free commercial or residential drywall, plaster or finishing estimate from The Original Patch Master.',
       path: '/contact/',
       schema: [businessSchema(), breadcrumbSchema(crumbs)],
     },
