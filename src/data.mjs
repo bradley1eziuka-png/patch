@@ -644,3 +644,40 @@ Object.assign(slotVideo, {
   'about-page-jobsite': { src: '/assets/video/svc-taping.mp4', poster: '/assets/img/media/svc-taping-poster.webp' },
   'careers-crew': { src: '/assets/video/feat-large-space.mp4', poster: '/assets/img/media/feat-large-space-poster.webp' },
 });
+
+// ============================================================================
+// INTEGRATIONS (GoHighLevel, booking, reviews, SMS consent)
+// Everything here is empty on purpose until the real value exists. Nothing is invented.
+// See INTEGRATIONS.md for exactly what to paste where and what each value does.
+// None of these values are secrets: they are safe in public HTML. The GHL webhook URL is NOT here.
+// It lives in a server-side environment variable (GHL_WEBHOOK_URL) read by api/ghl-lead.js.
+// ============================================================================
+export const integrations = {
+  // Same-origin path of the serverless proxy that forwards leads to GHL. Set to '/api/ghl-lead' ONLY after
+  // GHL_WEBHOOK_URL is set in Vercel. While empty, the website never calls the proxy and Formspree works as today.
+  ghlLeadProxy: '',
+
+  // GHL calendar embed URL (the iframe "src" from GHL > Calendars > Embed). Empty => /book-estimate/ shows a phone fallback, no iframe.
+  ghlCalendarEmbedUrl: '',
+  // GHL permanent booking link (shareable calendar URL). Optional; shown as an "open in a new tab" link.
+  ghlBookingLink: '',
+  // After the calendar works, set true to send customers to /book-estimate/ after a successful estimate request.
+  bookAfterEstimate: false,
+
+  // Google Business Profile "write a review" URL. Empty => the homepage review section is hidden and /feedback/ says the link is not ready.
+  googleReviewUrl: '',
+  // Where the private feedback form posts (a second form service endpoint, or a GHL webhook proxy). Empty => the form says it is not switched on.
+  feedbackEndpoint: '',
+
+  // Only turn this on if Patch Master will really send promotional texts and the GHL campaign registration says so.
+  smsMarketingEnabled: false,
+  // Bump this whenever the consent wording below changes. It is stored with every submission.
+  smsConsentVersion: 'sms-consent-v1-2026-10-21',
+};
+
+// Consent wording. The exact text shown to the customer is also sent with the submission as a record.
+export const smsConsent = {
+  service: 'I agree to receive text messages from The Original Patch Master regarding my inquiries, estimates, appointments, and service updates. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for assistance.',
+  marketing: 'I agree to receive promotional text messages from The Original Patch Master, such as offers and announcements. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for assistance.',
+  note: 'Consent is optional and is not a condition of requesting an estimate or any service.',
+};

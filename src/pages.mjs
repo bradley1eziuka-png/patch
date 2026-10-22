@@ -1,4 +1,4 @@
-import { site, services, locations, gallery, galleryFilters, hero, featureVideos, useFeatureVideos, slotVideo, familyVideo, preview } from './data.mjs';
+import { site, services, locations, gallery, galleryFilters, hero, featureVideos, useFeatureVideos, slotVideo, familyVideo, preview, integrations, smsConsent } from './data.mjs';
 import {
   esc, svc, loc, svcUrl, locUrl, icon, media, head, header, footer, breadcrumb, pageHero, ctaBand,
   serviceCard, faqBlock, businessSchema, breadcrumbSchema, faqSchema, jsonLd, abs, locationPhoto,
@@ -162,6 +162,14 @@ ${heroSection()}
     <div class="center btn-row btn-row--center"><a class="btn" href="/our-work/">View Our Work</a></div>
   </div>
 </section>
+
+${integrations.googleReviewUrl ? `<section class="review-sec" aria-labelledby="rev-h">
+  <div class="wrap wrap--narrow">
+    <h2 id="rev-h">Worked With Patch Master? Share Your Experience.</h2>
+    <p>Tell us how your project went.</p>
+    <div class="btn-row btn-row--center"><a class="btn" href="/feedback/">Leave a Review</a></div>
+  </div>
+</section>` : ''}
 
 <section class="section section--alt areas" aria-labelledby="areas-h">
   <div class="wrap areas__grid">
@@ -576,10 +584,16 @@ ${pageHero({ crumbs, h1: 'Get a Free Estimate', lead: 'Call, email or send the d
       <h2>Tell Us About the Job</h2>
       <!-- FORM ENDPOINT: set \`formEndpoint\` in src/data.mjs (Formspree, Basin, Netlify, etc.) and rebuild.
            While it is empty the form does not submit; it tells the visitor to call or email instead. -->
-      <form id="estimate-form" method="post" action="${site.formEndpoint || ''}" data-endpoint="${site.formEndpoint || ''}" data-ok="Thank you! Your request has been sent. The Patch Master team will be in touch soon." data-source novalidate>
+      <form id="estimate-form" method="post" action="${site.formEndpoint || ''}" data-endpoint="${site.formEndpoint || ''}" data-ok="Thank you! Your request has been sent. The Patch Master team will be in touch soon." data-required="name,phone,message" data-source data-ghl-proxy="${integrations.ghlLeadProxy}" data-book-url="${integrations.bookAfterEstimate && integrations.ghlCalendarEmbedUrl ? '/book-estimate/' : ''}" novalidate>
         <input type="hidden" name="_subject" value="New estimate request: The Original Patch Master">
         <input type="hidden" name="source_page" value="Contact (/contact/)">
         <input type="hidden" name="submitted_at" value="">
+        <input type="hidden" name="lead_id" value="">
+        <input type="hidden" name="sms_consent_version" value="${integrations.smsConsentVersion}">
+        <input type="hidden" name="sms_service_consent" value="No">
+        <input type="hidden" name="sms_service_consent_text" value="">
+        ${integrations.smsMarketingEnabled ? '<input type="hidden" name="sms_marketing_consent" value="No"><input type="hidden" name="sms_marketing_consent_text" value="">' : ''}
+        <input type="hidden" name="sms_consent_recorded_at" value="">
         <div class="field-row">
           <div class="field"><label for="f-name">Name <span class="req">(required)</span></label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
           <div class="field"><label for="f-phone">Phone <span class="req">(required)</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
@@ -601,6 +615,11 @@ ${pageHero({ crumbs, h1: 'Get a Free Estimate', lead: 'Call, email or send the d
           <label><input type="radio" name="contact_method" value="Phone" checked> Phone</label>
           <label><input type="radio" name="contact_method" value="Email"> Email</label>
         </fieldset>
+        <div class="consent" role="group" aria-label="Text message preferences (optional)">
+          <label class="consent__row"><input type="checkbox" id="sms-service" data-consent="service"><span data-consent-text="service">${esc(smsConsent.service)}</span></label>
+          ${integrations.smsMarketingEnabled ? `<label class="consent__row"><input type="checkbox" id="sms-marketing" data-consent="marketing"><span data-consent-text="marketing">${esc(smsConsent.marketing)}</span></label>` : ''}
+          <p class="consent__fine">${esc(smsConsent.note)} Messages are sent by The Original Patch Master, 25244 Annapolis St, Dearborn Heights, MI. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms-and-conditions/">Terms &amp; Conditions</a>.</p>
+        </div>
         <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
         <button class="btn btn--block-sm" type="submit">Send Estimate Request</button>
         <p class="form-note" id="form-status" role="status" aria-live="polite"></p>
@@ -701,6 +720,207 @@ ${pageHero({ crumbs, h1: 'Come Work With Patch Master.', lead: 'The Original Pat
     },
     body,
   );
+}
+
+// ===========================================================================
+// LEGAL
+// ===========================================================================
+const LEGAL_UPDATED = 'October 21, 2026';
+const legalPage = ({ path: p, title, desc, h1, lead, body }) => {
+  const crumbs = [homeCrumb, { name: h1, href: p }];
+  return page(
+    { title, desc, path: p, schema: [breadcrumbSchema(crumbs)] },
+    `${pageHero({ crumbs, h1, lead, ctas: false })}
+<section class="section"><div class="wrap"><div class="prose">
+  <p class="updated">Last updated: ${LEGAL_UPDATED}</p>
+${body}
+</div></div></section>`,
+  );
+};
+const BIZ = 'The Original Patch Master';
+const ADDR = `${site.address.street}, ${site.address.city}, ${site.address.region}`;
+const contactLine = `<a href="${site.phoneHref}">${PH}</a> or <a href="mailto:${site.email}">${site.email}</a>`;
+
+export function privacyPolicy() {
+  return legalPage({
+    path: '/privacy-policy/',
+    title: 'Privacy Policy | The Original Patch Master',
+    desc: 'How The Original Patch Master collects and uses information from website forms, including text message (SMS) communications.',
+    h1: 'Privacy Policy',
+    lead: `How ${BIZ} handles information you send through this website.`,
+    // OWNER REVIEW before relying on this page for A2P / legal purposes:
+    //  - Confirm the list of service providers (Formspree, GoHighLevel) matches what is actually switched on.
+    //  - Confirm the data-retention approach and who handles privacy requests.
+    //  - Have the owner (or counsel) read it. It is plain-language, not legal advice.
+    body: `
+<h2>Who we are</h2>
+<p>${BIZ} is a drywall and plaster company based at ${ADDR}. This policy covers this website, originalpatchmaster.com.</p>
+
+<h2>Information we collect</h2>
+<p>We collect only what you choose to send us through our forms:</p>
+<ul>
+  <li><strong>Estimate and contact requests:</strong> your name, phone number, email address, city, the service you need, your message, and your preferred contact method.</li>
+  <li><strong>Job applications:</strong> your name, phone, email, location, work experience, availability and any description you write.</li>
+  <li><strong>Feedback:</strong> a star rating and any comments, name or contact details you choose to add.</li>
+  <li><strong>Text message choices:</strong> whether you agreed to receive text messages, the wording you saw, when you agreed, and which page you used.</li>
+  <li><strong>Form details:</strong> the page a form was sent from and the time it was sent.</li>
+</ul>
+<p>This website does not currently add analytics or advertising cookies.</p>
+
+<h2>How we use it</h2>
+<ul>
+  <li>To reply to you, prepare estimates and schedule appointments.</li>
+  <li>To send service-related communication about your inquiry, estimate, appointment or job.</li>
+  <li>To consider job applications.</li>
+  <li>To keep a record of your requests and your text message choices.</li>
+</ul>
+<p>We do not sell your personal information.</p>
+
+<h2>Text messages (SMS)</h2>
+<p>We send text messages only if you agree by checking the optional text message box on a form, or by otherwise agreeing to receive them. Agreeing is not required to request an estimate or any service.</p>
+<ul>
+  <li>Service-related messages cover your inquiries, estimates, appointments and service updates. Message frequency varies.</li>
+  <li>Message and data rates may apply.</li>
+  <li>Reply <strong>STOP</strong> at any time to opt out. Reply <strong>HELP</strong> for assistance, or contact us at ${contactLine}.</li>
+  <li>${BIZ} does not sell or share text message consent or mobile phone numbers with third parties for their own marketing or promotional purposes.</li>
+</ul>
+<p>See our <a href="/terms-and-conditions/">Terms &amp; Conditions</a> for the full text message terms.</p>
+
+<h2>Who handles your information</h2>
+<p>We use service providers to run our business operations: Formspree receives and delivers the forms you submit on this website, and GoHighLevel manages customer records, appointments and messaging. These providers process your information for us. We may also share information when the law requires it.</p>
+
+<h2>How long we keep it, and security</h2>
+<p>We keep information for as long as we need it to respond to you, provide estimates and services, keep business records, or meet legal requirements. We rely on our service providers' security measures. No method of sending or storing information is completely secure, so we cannot guarantee absolute security.</p>
+
+<h2>Your choices</h2>
+<p>You can opt out of text messages at any time by replying STOP. To ask about, correct or delete the information you sent us, contact us at ${contactLine}.</p>
+
+<h2>Changes to this policy</h2>
+<p>We may update this policy. The date at the top shows when it last changed.</p>
+
+<h2>Contact us</h2>
+<p>${BIZ}<br>${ADDR}<br>${contactLine}</p>`,
+  });
+}
+
+export function terms() {
+  return legalPage({
+    path: '/terms-and-conditions/',
+    title: 'Terms & Conditions | The Original Patch Master',
+    desc: 'Website terms and text message (SMS) terms for The Original Patch Master, a commercial drywall and plaster company in Dearborn Heights, MI.',
+    h1: 'Terms & Conditions',
+    lead: `Terms for using this website and for text messages from ${BIZ}.`,
+    // OWNER REVIEW: the governing-law line and liability wording below are standard plain-language text,
+    // not legal advice. Confirm with the owner or counsel. Confirm the SMS section matches the GHL campaign registration.
+    body: `
+<h2>Using this website</h2>
+<p>This website is operated by ${BIZ}, ${ADDR}. By using it you agree to these terms. If you do not agree, please do not use the site.</p>
+
+<h2>Information and estimates</h2>
+<p>The website describes our services in general terms. Estimates are free. A request for an estimate is not a contract, and any work is agreed separately with us. We try to keep the information here accurate but it may change without notice.</p>
+
+<h2>Acceptable use</h2>
+<p>Please send us accurate information and do not misuse the site or its forms, including sending spam or attempting to disrupt it.</p>
+
+<h2>Liability</h2>
+<p>The website is provided as is. To the extent the law allows, ${BIZ} is not liable for losses from using the website or relying on its general information. This does not limit rights you have under the law.</p>
+
+<h2>Governing law</h2>
+<p>These terms are governed by the laws of the State of Michigan.</p>
+
+<h2 id="sms">Text messaging terms</h2>
+<ul>
+  <li><strong>Who sends the messages:</strong> ${BIZ}, ${ADDR}.</li>
+  <li><strong>What you may receive:</strong> messages about your inquiries, estimates, appointments and service updates${integrations.smsMarketingEnabled ? '. If you separately agree, you may also receive promotional messages such as offers and announcements' : ''}.</li>
+  <li><strong>How you agree:</strong> by checking the optional text message box on a form, or by otherwise agreeing to receive texts. Agreeing is not a condition of requesting an estimate or any service.</li>
+  <li><strong>Message frequency:</strong> varies.</li>
+  <li><strong>Costs:</strong> message and data rates may apply.</li>
+  <li><strong>Opt out:</strong> reply <strong>STOP</strong> at any time. You may get one message confirming you have opted out.</li>
+  <li><strong>Help:</strong> reply <strong>HELP</strong>, or contact us at ${contactLine}.</li>
+  <li><strong>Carriers:</strong> mobile carriers are not liable for delayed or undelivered messages.</li>
+  <li><strong>Your information:</strong> see our <a href="/privacy-policy/">Privacy Policy</a>. We do not sell or share text message consent or mobile numbers with third parties for their own marketing.</li>
+</ul>
+
+<h2>Changes</h2>
+<p>We may update these terms. The date at the top shows when they last changed.</p>
+
+<h2>Contact us</h2>
+<p>${BIZ}<br>${ADDR}<br>${contactLine}</p>`,
+  });
+}
+
+// ===========================================================================
+// BOOK ESTIMATE (GHL calendar embed)
+// ===========================================================================
+export function bookEstimate() {
+  const crumbs = [homeCrumb, { name: 'Schedule Your Free Estimate', href: '/book-estimate/' }];
+  const embed = integrations.ghlCalendarEmbedUrl;
+  const ready = /^https:\/\//.test(embed || '');
+  const body = `
+${pageHero({ crumbs, h1: 'Schedule Your Free Estimate', lead: 'Pick a time that works for you and tell us about the job.', ctas: false })}
+<section class="section">
+  <div class="wrap wrap--narrow">
+    <div class="prose">
+      <h2>What to expect</h2>
+      <ul>
+        <li>Choose a day and time that works for you.</li>
+        <li>We look at the job and give you a free estimate.</li>
+        <li>We explain what the work involves.</li>
+      </ul>
+    </div>
+    <!-- GHL CALENDAR: set \`integrations.ghlCalendarEmbedUrl\` in src/data.mjs to the iframe src from GHL and rebuild. See INTEGRATIONS.md. -->
+    <div class="cal">${ready
+      ? `<iframe src="${esc(embed)}" title="Schedule your free estimate" loading="lazy" scrolling="yes"></iframe>`
+      : `<div class="cal-fallback"><h3>Online scheduling is coming soon</h3><p>To set up your free estimate now, call us or send the details through our contact form.</p><div class="btn-row btn-row--center"><a class="btn" href="${site.phoneHref}">Call ${PH}</a><a class="btn btn--outline" href="/contact/">Request an Estimate</a></div></div>`}</div>
+    ${ready && integrations.ghlBookingLink ? `<p class="center" style="margin-top:18px">Calendar not loading? <a href="${esc(integrations.ghlBookingLink)}" target="_blank" rel="noopener">Open the booking calendar in a new tab</a>.</p>` : ''}
+    <p class="center" style="margin-top:24px">Prefer to talk? Call <a href="${site.phoneHref}">${PH}</a>, ${site.hours.days}, 7 AM to 5 PM.</p>
+  </div>
+</section>`;
+  return page({ title: 'Schedule Your Free Estimate | The Original Patch Master', desc: 'Schedule a free drywall or plaster estimate with The Original Patch Master in Dearborn Heights and Metro Detroit.', path: '/book-estimate/', schema: [breadcrumbSchema(crumbs)], noindex: !ready }, body);
+}
+
+// ===========================================================================
+// FEEDBACK (no review gating: the Google button is shown to every rating)
+// ===========================================================================
+export function feedback() {
+  const crumbs = [homeCrumb, { name: 'Feedback', href: '/feedback/' }];
+  const g = integrations.googleReviewUrl;
+  const body = `
+${pageHero({ crumbs, h1: 'How Was Your Experience?', lead: `Thank you for choosing ${BIZ}. Your feedback helps us.`, ctas: false })}
+<section class="section">
+  <div class="wrap wrap--narrow">
+    <div class="contact__form">
+      <!-- FEEDBACK ENDPOINT: set \`integrations.feedbackEndpoint\` in src/data.mjs and rebuild. Empty => the form says it is not switched on. -->
+      <form id="feedback-form" method="post" action="${integrations.feedbackEndpoint}" data-endpoint="${integrations.feedbackEndpoint}" data-required="" data-require-any="rating,message,name,contact"
+            data-missing="Choose a rating or write a comment first, or use the Google review button below."
+            data-noendpoint="Private feedback is not switched on yet, so nothing was sent. You can still leave a Google review below, or call ${PH}."
+            data-ok="Thank you for your feedback." novalidate>
+        <input type="hidden" name="form_type" value="Customer feedback">
+        <input type="hidden" name="_subject" value="Customer feedback: The Original Patch Master">
+        <input type="hidden" name="submitted_at" value="">
+        <fieldset class="stars">
+          <legend>Your rating (optional)</legend>
+          ${[5, 4, 3, 2, 1].map((n) => `<input type="radio" id="star-${n}" name="rating" value="${n}"><label for="star-${n}"><span class="sr">${n} star${n > 1 ? 's' : ''}</span>${icon('star')}</label>`).join('')}
+        </fieldset>
+        <h2 style="font-size:1.25rem">Private feedback (optional)</h2>
+        <div class="field"><label for="fb-msg">Tell us about your experience</label><textarea id="fb-msg" name="message" rows="5"></textarea></div>
+        <div class="field-row">
+          <div class="field"><label for="fb-name">Name (optional)</label><input id="fb-name" name="name" type="text" autocomplete="name"></div>
+          <div class="field"><label for="fb-contact">Phone or email (optional)</label><input id="fb-contact" name="contact" type="text" autocomplete="off"></div>
+        </div>
+        <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+        <button class="btn btn--block-sm" type="submit">Send Private Feedback</button>
+        <p class="form-note" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+      <div class="review-cta">
+        <h2 style="font-size:1.25rem">Share it publicly on Google</h2>
+        <p>Whatever your rating, you are welcome to leave a Google review.</p>
+        ${g ? `<div class="btn-row btn-row--center"><a class="btn" href="${esc(g)}" target="_blank" rel="noopener">Leave a Google Review</a></div>` : `<p><strong>Our Google review link is not ready yet.</strong> Please check back soon.</p>`}
+      </div>
+    </div>
+  </div>
+</section>`;
+  return page({ title: 'How Was Your Experience? | The Original Patch Master', desc: 'Share your feedback about your experience with The Original Patch Master.', path: '/feedback/', schema: [breadcrumbSchema(crumbs)], noindex: true }, body);
 }
 
 // ===========================================================================

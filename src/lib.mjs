@@ -42,6 +42,7 @@ const ICONS = {
   instagram: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/>',
   pause: '<path d="M8 5v14M16 5v14"/>',
   play: '<path d="M7 4.5v15l12-7.5Z"/>',
+  star: '<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.2 6.4 20.2l1.1-6.2L3 9.6l6.2-.9Z"/>',
   camera: '<path d="M4 8h3l1.5-2h7L17 8h3v11H4Z"/><circle cx="12" cy="13" r="3.5"/>',
   user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>',
 };
@@ -248,7 +249,7 @@ export function footer() {
       <ul>${locations.map((l) => `<li><a href="${locUrl(l.slug)}">${esc(l.name)}</a></li>`).join('')}</ul>
     </nav>
   </div>
-  <div class="footer__legal"><div class="wrap"><p>&copy; ${new Date().getFullYear()} The Original Patch Master. Fully insured. Serving Dearborn Heights and Metro Detroit.</p><p class="footer__credit"><a href="https://getarclo.com" target="_blank" rel="noopener">Website by Arclo</a></p></div></div>
+  <div class="footer__legal"><div class="wrap"><p class="footer__links"><a href="/privacy-policy/">Privacy Policy</a><span aria-hidden="true">|</span><a href="/terms-and-conditions/">Terms &amp; Conditions</a></p><p>&copy; ${new Date().getFullYear()} The Original Patch Master. Fully insured. Serving Dearborn Heights and Metro Detroit.</p><p class="footer__credit"><a href="https://getarclo.com" target="_blank" rel="noopener">Website by Arclo</a></p></div></div>
 </footer>
 <script src="/assets/js/site.js?v=${ASSET_V}" defer></script>
 </body>

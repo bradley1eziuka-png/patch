@@ -3,14 +3,14 @@
 //   cd site && python3 -m http.server 3001
 import fs from 'node:fs';
 import path from 'node:path';
-import { site, services, locations } from './src/data.mjs';
+import { site, services, locations, integrations } from './src/data.mjs';
 import { OUT, write, mediaReport } from './src/lib.mjs';
 import * as P from './src/pages.mjs';
 
 const urls = [];
-const add = (p, html) => {
+const add = (p, html, inSitemap = true) => {
   write(p === '/' ? '' : p, html);
-  urls.push(p);
+  if (inSitemap) urls.push(p);
 };
 
 add('/', P.home());
@@ -20,6 +20,11 @@ add('/our-work/', P.ourWork());
 add('/service-areas/', P.areasIndex());
 add('/careers/', P.careers());
 add('/contact/', P.contact());
+add('/privacy-policy/', P.privacyPolicy());
+add('/terms-and-conditions/', P.terms());
+// Utility pages: noindex and kept out of the sitemap until configured (book-estimate joins once the calendar embed exists).
+add('/book-estimate/', P.bookEstimate(), !!integrations.ghlCalendarEmbedUrl);
+add('/feedback/', P.feedback(), false);
 services.forEach((s) => add(`/services/${s.slug}/`, P.servicePage(s)));
 locations.forEach((l) => add(`/service-areas/${l.slug}/`, P.locationPage(l)));
 fs.writeFileSync(path.join(OUT, '404.html'), P.notFound());
@@ -39,3 +44,7 @@ console.log(`Media slots: ${mediaReport.placeholders.length} placeholders, ${med
 if (!site.siteUrl) console.log('WARNING: site.siteUrl is empty. Set it in src/data.mjs before launch (canonicals, sitemap, robots).');
 if (!site.formEndpoint) console.log('WARNING: site.formEndpoint is empty. The contact form will not submit until it is set.');
 if (!site.careersEndpoint) console.log('WARNING: site.careersEndpoint is empty. The careers application form will not submit until it is set.');
+
+if (!integrations.ghlCalendarEmbedUrl) console.log('NOTE: integrations.ghlCalendarEmbedUrl is empty. /book-estimate/ shows a phone fallback and stays noindex.');
+if (!integrations.googleReviewUrl) console.log('NOTE: integrations.googleReviewUrl is empty. The homepage review section is hidden and /feedback/ has no Google button yet.');
+if (!integrations.ghlLeadProxy) console.log('NOTE: integrations.ghlLeadProxy is empty. Leads go to Formspree only.');

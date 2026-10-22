@@ -172,15 +172,24 @@
     });
   });
 
-  /* ---------- Forms (estimate request and job application) ----------
-     Each form has its own endpoint (data-endpoint). Nothing is "sent" unless the endpoint accepts it. */
+  /* ---------- Forms (estimate request, job application, feedback) ----------
+     Each form has its own endpoint (data-endpoint). Nothing is "sent" unless the endpoint accepts it.
+     Customer estimate form only: after Formspree accepts a lead, the same lead (same lead_id) is forwarded once to the
+     same-origin GHL proxy (data-ghl-proxy), if one is configured. A GHL failure never changes what the customer sees. */
+  var newId = function () {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return 'lead-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+  };
+
   document.querySelectorAll('form[data-endpoint]').forEach(function (form) {
     var status = form.querySelector('.form-note');
-    var required = (form.getAttribute('data-required') || 'name,phone,message').split(',');
+    var required = (form.getAttribute('data-required') || '').split(',').filter(Boolean);
+    var requireAny = (form.getAttribute('data-require-any') || '').split(',').filter(Boolean);
     var say = function (msg, kind) {
       status.textContent = msg;
       status.className = 'form-note' + (kind ? ' is-' + kind : '');
     };
+    var leadId = newId();   // stays the same across retries of the same request, so a lead is never counted twice
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -198,6 +207,10 @@
         missing[0].focus();
         return;
       }
+      if (requireAny.length && !requireAny.some(function (n) { var el = form.elements[n]; return el && el.value && el.value.trim(); })) {
+        say(form.getAttribute('data-missing') || 'Please fill in the form first.', 'error');
+        return;
+      }
 
       var endpoint = form.getAttribute('data-endpoint');
       if (!endpoint) {
@@ -206,8 +219,20 @@
       }
 
       // Lead tracking: which page it came from and when (the only extras sent besides what the customer typed).
+      var now = new Date().toISOString();
       if (form.elements.source_page) form.elements.source_page.value = document.title + ' (' + location.pathname + ')';
-      if (form.elements.submitted_at) form.elements.submitted_at.value = new Date().toISOString();
+      if (form.elements.submitted_at) form.elements.submitted_at.value = now;
+      if (form.elements.lead_id) form.elements.lead_id.value = leadId;
+
+      // SMS consent record: per category, the checkbox result (Yes/No), the exact wording shown, and when.
+      var consentBoxes = form.querySelectorAll('input[data-consent]');
+      consentBoxes.forEach(function (box) {
+        var cat = box.getAttribute('data-consent');
+        var txt = form.querySelector('[data-consent-text="' + cat + '"]');
+        if (form.elements['sms_' + cat + '_consent']) form.elements['sms_' + cat + '_consent'].value = box.checked ? 'Yes' : 'No';
+        if (form.elements['sms_' + cat + '_consent_text']) form.elements['sms_' + cat + '_consent_text'].value = txt ? txt.textContent.trim() : '';
+      });
+      if (form.elements.sms_consent_recorded_at) form.elements.sms_consent_recorded_at.value = now;
 
       var btn = form.querySelector('button[type=submit]');
       if (form.getAttribute('data-sending') === '1') return;   // ignore repeated clicks while a request is in flight
@@ -215,14 +240,27 @@
       if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); }
       var done = function () { form.removeAttribute('data-sending'); if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); } };
       say('Sending...', '');
-      fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+
+      var data = new FormData(form);
+      var proxy = form.getAttribute('data-ghl-proxy');
+      var bookUrl = form.getAttribute('data-book-url');
+      var payload = null;
+      if (proxy) {
+        payload = {};
+        data.forEach(function (v, k) { if (k.charAt(0) !== '_') payload[k] = v; });
+      }
+
+      fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
         .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, d: d }; }); })
         .then(function (res) {
-          // Success only when Formspree accepts it (HTTP 2xx and no errors); the fields stay filled otherwise.
+          // Success only when the endpoint accepts it (HTTP 2xx and no errors); the fields stay filled otherwise.
           if (!res.ok || (res.d && res.d.errors)) throw new Error('rejected');
           done();
           form.reset();
+          leadId = newId();
           say(form.getAttribute('data-ok') || 'Thank you. Your request was sent. We will get back to you during business hours.', 'ok');
+          if (payload) forwardToGhl(proxy, payload);
+          if (bookUrl) setTimeout(function () { location.href = bookUrl; }, 1800);
         })
         .catch(function () {
           done();
@@ -230,4 +268,13 @@
         });
     });
   });
+
+  // Forward an already-accepted lead to the server-side GHL proxy. Fire-and-forget with one retry; never shown to the customer.
+  function forwardToGhl(url, payload) {
+    var send = function () {
+      return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), keepalive: true })
+        .then(function (r) { if (!r.ok) throw new Error('ghl ' + r.status); });
+    };
+    send().catch(function () { setTimeout(function () { send().catch(function () { /* Formspree still has the lead */ }); }, 3000); });
+  }
 })();
