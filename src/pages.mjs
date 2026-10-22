@@ -781,6 +781,7 @@ export function privacyPolicy() {
 <p>We send text messages only if you agree by checking the optional text message box on a form, or by otherwise agreeing to receive them. Agreeing is voluntary and is not a condition of purchase or of requesting an estimate or any service. You can also sign up on our <a href="/sms-opt-in/">SMS opt-in page</a>.</p>
 <ul>
   <li>Service-related messages cover your inquiries, estimates, appointments and service updates. Message frequency varies.</li>
+  ${integrations.smsMarketingEnabled ? '<li>If you opt in to marketing texts, we may also send occasional promotional messages, such as seasonal offers and review requests. This is a separate choice from service messages, and you can opt in to one without the other. Message frequency varies.</li>' : ''}
   <li>Message and data rates may apply.</li>
   <li>Reply <strong>STOP</strong> at any time to opt out. Reply <strong>HELP</strong> for assistance, or contact us at ${contactLine}.</li>
   <li>${BIZ} does not sell or share text message consent or mobile phone numbers with third parties for their own marketing or promotional purposes.</li>
@@ -832,7 +833,7 @@ export function terms() {
 <h2 id="sms">Text messaging terms</h2>
 <ul>
   <li><strong>Who sends the messages:</strong> ${BIZ}, ${ADDR}.</li>
-  <li><strong>What you may receive:</strong> messages about your inquiries, estimates, appointments and service updates${integrations.smsMarketingEnabled ? '. If you separately agree, you may also receive promotional messages such as offers and announcements' : ''}.</li>
+  <li><strong>What you may receive:</strong> messages about your inquiries, estimates, appointments and service updates${integrations.smsMarketingEnabled ? '. We may also send occasional promotional messages, such as seasonal offers and review requests, if you opt in to marketing texts' : ''}.</li>
   <li><strong>How you agree:</strong> by checking the optional text message box on a form, by signing up on our <a href="/sms-opt-in/">SMS opt-in page</a>, or by otherwise agreeing to receive texts. Agreeing is voluntary and is not a condition of purchase or of requesting an estimate or any service.</li>
   <li><strong>Message frequency:</strong> varies.</li>
   <li><strong>Costs:</strong> message and data rates may apply.</li>
@@ -950,7 +951,7 @@ ${pageHero({ crumbs, h1: 'Stay Connected With The Original Patch Master', lead: 
           <div class="consent" role="group" aria-label="Text message consent">
             <label class="consent__row"><input type="checkbox" id="o-sms-service" data-consent="service"><span data-consent-text="service">${linkify(smsConsent.optInService)}</span></label>
             ${marketing ? `<label class="consent__row"><input type="checkbox" id="o-sms-marketing" data-consent="marketing"><span data-consent-text="marketing">${linkify(smsConsent.optInMarketing)}</span></label>` : ''}
-            <p class="consent__fine">${marketing ? 'Check at least one box to sign up. The two boxes are separate.' : 'Check the box to sign up.'} Messages are sent by The Original Patch Master, ${ADDR}.</p>
+            <p class="consent__fine">${marketing ? 'Check at least one box to sign up. The two boxes are separate.' : 'Check the box to sign up.'} Messages are sent by The Original Patch Master, ${ADDR}. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms-and-conditions/">Terms &amp; Conditions</a>.</p>
           </div>
           <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
           <button class="btn btn--block-sm" type="submit">Sign Up for Text Updates</button>

@@ -89,10 +89,10 @@
         <input type="hidden" name="source_page" value="Contact (/contact/)">
         <input type="hidden" name="submitted_at" value="">
         <input type="hidden" name="lead_id" value="">
-        <input type="hidden" name="sms_consent_version" value="sms-consent-v1-2026-10-21">
+        <input type="hidden" name="sms_consent_version" value="sms-consent-v2">
         <input type="hidden" name="sms_service_consent" value="No">
         <input type="hidden" name="sms_service_consent_text" value="">
-        
+        <input type="hidden" name="sms_marketing_consent" value="No"><input type="hidden" name="sms_marketing_consent_text" value="">
         <input type="hidden" name="sms_consent_recorded_at" value="">
         <div class="field-row">
           <div class="field"><label for="f-name">Name <span class="req">(required)</span></label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
@@ -117,7 +117,7 @@
         </fieldset>
         <div class="consent" role="group" aria-label="Text message preferences (optional)">
           <label class="consent__row"><input type="checkbox" id="sms-service" data-consent="service"><span data-consent-text="service">I agree to receive text messages from The Original Patch Master regarding my inquiries, estimates, appointments, and service updates. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for assistance.</span></label>
-          
+          <label class="consent__row"><input type="checkbox" id="sms-marketing" data-consent="marketing"><span data-consent-text="marketing">I agree to receive occasional marketing text messages from The Original Patch Master, such as seasonal offers and review requests. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for assistance. Consent is not a condition of purchase.</span></label>
           <p class="consent__fine">Consent is optional and is not a condition of requesting an estimate or any service. Messages are sent by The Original Patch Master, 25244 Annapolis St, Dearborn Heights, MI. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms-and-conditions/">Terms &amp; Conditions</a>.</p>
         </div>
         <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>

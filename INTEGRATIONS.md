@@ -16,7 +16,7 @@ Public settings live in `src/data.mjs` under `integrations`. After changing one,
 | **Google Business Profile review URL** | `integrations.googleReviewUrl` | No | The homepage review section is hidden and `/feedback/` says the Google link is not ready. |
 | Private feedback endpoint | `integrations.feedbackEndpoint` (a second form-service endpoint, or a GHL webhook proxy) | No (Formspree URLs are public) | The feedback form says it is not switched on. |
 | Send customers to the calendar after an estimate | `integrations.bookAfterEstimate: true` (only after the calendar works) | No | Off. Existing submissions are never redirected to an unfinished page. |
-| Promotional texts | `integrations.smsMarketingEnabled: true` | No | The marketing checkbox is not shown at all. |
+| Promotional texts | `integrations.smsMarketingEnabled` (now `true`) | No | When false, the marketing checkbox is not shown at all. |
 
 Optional: `ALLOWED_ORIGINS` env var (comma separated) to allow a Vercel preview URL to call the proxy.
 
@@ -53,7 +53,7 @@ Fields sent to GHL: `name, phone, email, city, service, message, contact_method,
 - **Flow:** the browser posts the record as JSON to `api/sms-optin.js`, which forwards it to the webhook in `GHL_OPTIN_WEBHOOK_URL`. It never touches Formspree. The customer is told they are signed up **only if GHL accepted the record**; otherwise they are told they are not signed up yet and keep their entries.
 - **Required to submit:** full name, a valid 10-digit US mobile number (stored as `+1XXXXXXXXXX`), and at least one SMS consent box checked. Email is optional. The server enforces the same rules.
 - **Recorded in the webhook payload:** `name, phone, email, form_type ("SMS opt-in"), lead_id, sms_service_consent (Yes/No), sms_service_consent_text, sms_marketing_consent (only if that box exists on the page), sms_marketing_consent_text, sms_consent_version, sms_consent_recorded_at (browser time), source_url, source_page, source, server_received_at`.
-- **Marketing consent** is never inferred. It is sent only as an explicit Yes/No from its own separate checkbox, which exists only when `smsMarketingEnabled` is true. Today it is off, so the page has one (service-messages) checkbox.
+- **Marketing consent** is never inferred. It is sent only as an explicit Yes/No from its own separate checkbox, which exists only when `smsMarketingEnabled` is true. It is now on, so both /contact/ and /sms-opt-in/ show a second, separate, unchecked marketing box ("occasional marketing text messages ... such as seasonal offers and review requests"). Make sure the A2P campaign registration covers marketing messages.
 - **In GHL:** build a workflow on this webhook that creates/updates the contact and sets the SMS consent / DND status from `sms_service_consent`, `sms_marketing_consent` and the version/timestamp fields. Do not mark promotional consent unless `sms_marketing_consent` is `Yes`.
 - **Version:** change `integrations.smsOptInVersion` whenever `smsConsent.optInService` / `optInMarketing` wording changes.
 - **Opt-in URL for the A2P registration:** `https://originalpatchmaster.com/sms-opt-in/` (only once the page is active; the page must show a working form when reviewers visit).
