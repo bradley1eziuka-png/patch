@@ -673,16 +673,16 @@ export const integrations = {
   // Dedicated /sms-opt-in/ page. It currently posts to the same Formspree endpoint as /contact (tagged form_type "SMS opt-in").
   // TO SWITCH TO GHL LATER: set this to '/api/sms-optin' after GHL_OPTIN_WEBHOOK_URL is set in Vercel (see INTEGRATIONS.md).
   smsOptInEndpoint: 'https://formspree.io/f/xzedqkpn',   // same Formspree endpoint as /contact, so the page works today
-  smsOptInVersion: 'sms-optin-v3',
+  smsOptInVersion: 'sms-optin-v4',
   smsMarketingEnabled: true,
   // Bump this whenever the consent wording below changes. It is stored with every submission.
-  smsConsentVersion: 'sms-consent-v3',
+  smsConsentVersion: 'sms-consent-v4',
 };
 
 // Consent wording. The exact text shown to the customer is also sent with the submission as a record.
 export const smsConsent = {
-  service: 'I agree to receive text messages from The Original Patch Master regarding my inquiries, estimates, appointments, and service updates. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for assistance.',
-  marketing: 'I agree to receive occasional marketing text messages from The Original Patch Master, such as seasonal offers and review requests, at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase.',
+  service: 'I agree to receive text messages from The Original Patch Master regarding my inquiries, estimates, appointments, and service updates. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for assistance. You must be 18 or older to sign up.',
+  marketing: 'I agree to receive occasional marketing text messages from The Original Patch Master, such as seasonal offers and review requests, at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. You must be 18 or older to sign up.',
   note: 'Consent is optional and is not a condition of requesting an estimate or any service.',
 };
 
@@ -694,5 +694,5 @@ Object.assign(slotVideo, {
 
 // Exact wording on the dedicated /sms-opt-in/ page. "Privacy Policy" and "Terms & Conditions" are turned into links when rendered.
 // Change smsOptInVersion in `integrations` whenever this wording changes.
-smsConsent.optInService = 'I agree to receive text messages from The Original Patch Master about my inquiries, estimates, appointments, and service updates at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase.';
-smsConsent.optInMarketing = 'I agree to receive occasional marketing text messages from The Original Patch Master, such as seasonal offers and review requests, at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase.';
+smsConsent.optInService = 'I agree to receive text messages from The Original Patch Master about my inquiries, estimates, appointments, and service updates at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. You must be 18 or older to sign up.';
+smsConsent.optInMarketing = 'I agree to receive occasional marketing text messages from The Original Patch Master, such as seasonal offers and review requests, at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. You must be 18 or older to sign up.';

@@ -785,7 +785,7 @@ export function privacyPolicy() {
 <p>We do not sell your personal information.</p>
 
 <h2>Text messages (SMS)</h2>
-<p>We send text messages only if you agree by checking the optional text message box on a form, or by otherwise agreeing to receive them. Agreeing is voluntary and is not a condition of purchase or of requesting an estimate or any service. You can also sign up on our <a href="/sms-opt-in/">SMS opt-in page</a>.</p>
+<p>We send text messages only if you agree by checking the optional text message box on a form, or by otherwise agreeing to receive them. Agreeing is voluntary and is not a condition of purchase or of requesting an estimate or any service. You must be 18 or older to sign up for text messages from The Original Patch Master. You can also sign up on our <a href="/sms-opt-in/">SMS opt-in page</a>.</p>
 <ul>
   <li>Service-related messages cover your inquiries, estimates, appointments and service updates. If you separately opt in to marketing texts, you may also receive occasional promotional messages, such as seasonal offers and review requests. Message frequency varies.</li>
   <li>Message and data rates may apply.</li>
@@ -838,6 +838,7 @@ export function terms() {
 
 <h2 id="sms">Text messaging terms</h2>
 <ul>
+  <li><strong>Eligibility:</strong> You must be 18 or older to sign up for text messages from The Original Patch Master.</li>
   <li><strong>Who sends the messages:</strong> ${BIZ}, ${ADDR}.</li>
   <li><strong>What you may receive:</strong> messages about your inquiries, estimates, appointments and service updates. If you separately opt in to marketing texts, you may also receive occasional promotional messages, such as seasonal offers and review requests.</li>
   <li><strong>How you agree:</strong> by checking the optional text message box on a form, by signing up on our <a href="/sms-opt-in/">SMS opt-in page</a>, or by otherwise agreeing to receive texts. Agreeing is voluntary and is not a condition of purchase or of requesting an estimate or any service.</li>
