@@ -172,6 +172,49 @@
     });
   });
 
+  /* ---------- Feedback: star rating -> Next -> both options, for every rating (no review gating) ---------- */
+  var rateCard = document.getElementById('rate-card');
+  if (rateCard) {
+    var rStars = rateCard.querySelectorAll('.rate-stars input');
+    var rLabels = rateCard.querySelectorAll('.rate-stars label');
+    var rNext = document.getElementById('rate-next');
+    var rLive = document.getElementById('rate-live');
+    var rOpts = document.getElementById('rate-options');
+    var rWords = ['Poor', 'Fair', 'Good', 'Very good', 'Excellent'];
+    var rCur = 0;
+    var paint = function (n) { rLabels.forEach(function (l, i) { l.classList.toggle('is-on', i < n); }); };
+    rStars.forEach(function (r) {
+      r.addEventListener('change', function () {
+        rCur = +r.value;
+        paint(rCur);
+        rNext.disabled = false;
+        rLive.textContent = rCur + ' of 5 stars selected: ' + rWords[rCur - 1] + '.';
+        document.getElementById('fb-rating').value = String(rCur);
+        document.getElementById('fb-subject').value = 'Customer feedback (' + rCur + ' star' + (rCur > 1 ? 's' : '') + '): The Original Patch Master';
+      });
+    });
+    rLabels.forEach(function (l, i) {
+      l.addEventListener('mouseenter', function () { paint(i + 1); });
+    });
+    rateCard.querySelector('.rate-stars').addEventListener('mouseleave', function () { paint(rCur); });
+    rNext.addEventListener('click', function () {
+      if (!rCur) return;
+      rOpts.hidden = false;
+      rNext.hidden = true;
+      var h = document.getElementById('rate-options-h');
+      h.focus();
+      h.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    });
+    var fbOpen = document.getElementById('fb-open');
+    var fbPanel = document.getElementById('fb-panel');
+    fbOpen.addEventListener('click', function () {
+      var open = fbPanel.hidden;
+      fbPanel.hidden = !open;
+      fbOpen.setAttribute('aria-expanded', String(open));
+      if (open) { document.getElementById('fb-name').focus(); }
+    });
+  }
+
   /* ---------- Forms (estimate request, job application, feedback) ----------
      Each form has its own endpoint (data-endpoint). Nothing is "sent" unless the endpoint accepts it.
      Customer estimate form only: after Formspree accepts a lead, the same lead (same lead_id) is forwarded once to the
@@ -205,6 +248,12 @@
       if (missing.length) {
         say(form.getAttribute('data-missing') || 'Please fill in your name, phone number and a short description of the job.', 'error');
         missing[0].focus();
+        return;
+      }
+      if (form.hasAttribute('data-check-email') && form.elements.email && form.elements.email.value.trim() && !form.elements.email.checkValidity()) {
+        form.elements.email.setAttribute('aria-invalid', 'true');
+        say('That email address does not look right. You can leave it blank.', 'error');
+        form.elements.email.focus();
         return;
       }
       if (requireAny.length && !requireAny.some(function (n) { var el = form.elements[n]; return el && el.value && el.value.trim(); })) {

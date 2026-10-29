@@ -664,10 +664,14 @@ export const integrations = {
   // After the calendar works, set true to send customers to /book-estimate/ after a successful estimate request.
   bookAfterEstimate: false,
 
-  // Google Business Profile "write a review" URL. Empty => the homepage review section is hidden and /feedback/ says the link is not ready.
+  // ==== GOOGLE REVIEW LINK: the ONE place to set it. ====
+  // Paste the Google Business Profile "write a review" URL (from the profile's "Ask for reviews" / share-review-link option)
+  // between the quotes, rebuild (`node build.mjs`), commit and push. Until it is set, /feedback/ shows "coming soon" instead of a
+  // button, the homepage review section stays hidden, and the page stays noindex. Do not paste any other kind of link here.
   googleReviewUrl: '',
-  // Where the private feedback form posts (a second form service endpoint, or a GHL webhook proxy). Empty => the form says it is not switched on.
-  feedbackEndpoint: '',
+  // Private feedback form on /feedback/. Posts to the same Formspree endpoint as the contact form, tagged form_type "Customer feedback"
+  // with the star rating. To send it elsewhere later, change this value.
+  feedbackEndpoint: 'https://formspree.io/f/xzedqkpn',
 
   // Only turn this on if Patch Master will really send promotional texts and the GHL campaign registration says so.
   // Dedicated /sms-opt-in/ page. It currently posts to the same Formspree endpoint as /contact (tagged form_type "SMS opt-in").

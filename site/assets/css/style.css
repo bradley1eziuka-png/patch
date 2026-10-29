@@ -615,15 +615,6 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px
 .cal-fallback p { margin-inline: auto; }
 
 /* ---------- Feedback ---------- */
-.stars { display: flex; flex-direction: row-reverse; justify-content: center; gap: 4px; border: 0; padding: 0; margin: 0 0 28px; }
-.stars legend { float: none; width: 100%; text-align: center; color: var(--ink); font-weight: 600; margin-bottom: 10px; padding: 0; }
-.stars input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-.stars label { cursor: pointer; padding: 4px; line-height: 0; color: #b9bdc9; }
-.stars label svg { width: 2.6rem; height: 2.6rem; fill: currentColor; stroke: currentColor; stroke-width: 1; }
-.stars label:hover, .stars label:hover ~ label, .stars input:checked ~ label { color: var(--orange); }
-.stars input:focus-visible + label { outline: 3px solid var(--navy); outline-offset: 2px; border-radius: 3px; }
-.review-cta { margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--line); text-align: center; }
-.review-cta p { margin-inline: auto; }
 .review-sec { padding-block: 64px; text-align: center; }
 .review-sec h2 { font-size: clamp(1.5rem, 3.2vw, 2rem); }
 .review-sec p { margin-inline: auto; }
@@ -639,3 +630,52 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px
 .consent__block input { flex: none; width: 22px; height: 22px; margin-top: 3px; accent-color: var(--navy); }
 .consent__block label { margin: 0; font-size: .9rem; font-weight: 400; line-height: 1.55; color: var(--gray); cursor: pointer; }
 .consent__block + .consent__fine, .consent__block ~ .consent__fine { margin-top: 14px; }
+
+/* ---------- Feedback: rating card ---------- */
+.rate-sec { padding-block: 56px 72px; }
+.rate-card { background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--orange); border-radius: 4px; box-shadow: var(--shadow-2); padding: 40px 32px 36px; text-align: center; }
+.rate-card__logo { width: 150px; height: auto; margin: 0 auto 22px; border-radius: 2px; }
+.rate-card h1 { font-size: clamp(1.8rem, 5vw, 2.4rem); margin-bottom: 10px; }
+.rate-card__sub { margin: 0 auto 22px; }
+.rate-stars { display: flex; justify-content: center; gap: 6px; border: 0; padding: 0; margin: 0 0 12px; min-width: 0; }
+.rate-stars input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.rate-stars label { cursor: pointer; padding: 6px; line-height: 0; color: #c3c7d2; }
+.rate-stars label svg { width: 3rem; height: 3rem; fill: currentColor; stroke: currentColor; stroke-width: 1; transition: transform .15s var(--ease); }
+.rate-stars label:hover svg { transform: scale(1.1); }
+.rate-stars label.is-on { color: var(--orange); }
+.rate-stars input:focus-visible + label { outline: 3px solid var(--navy); outline-offset: 2px; border-radius: 4px; }
+.rate-card__live { margin: 0 auto 22px; min-height: 1.7em; font-size: .95rem; }
+.rate-card__next { min-width: 180px; }
+.btn:disabled { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
+.btn:disabled:hover { background: var(--orange); border-color: var(--orange); transform: none; }
+.rate-options { margin-top: 8px; text-align: left; }
+.rate-options h2 { font-size: 1.25rem; text-align: center; margin-bottom: 20px; outline: none; }
+.rate-options__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.rate-opt { display: flex; flex-direction: column; gap: 6px; padding: 22px 20px; border: 2px solid var(--navy); border-radius: 4px; background: #fff; color: var(--navy); text-align: left; text-decoration: none; font-family: var(--font); cursor: pointer; transition: transform .2s var(--ease); }
+.rate-opt__title { font-size: 1.05rem; font-weight: 700; line-height: 1.3; color: var(--ink); }
+.rate-opt__sub { font-size: .9rem; line-height: 1.5; color: var(--gray); }
+.rate-opt--google { background: var(--orange); border-color: var(--orange); }
+.rate-opt--google .rate-opt__title, .rate-opt--google .rate-opt__sub { color: var(--navy-deep); }
+.rate-opt--google:hover { background: var(--orange-hover); border-color: var(--orange-hover); transform: translateY(-2px); }
+.rate-opt--private:hover { background: var(--bg); transform: translateY(-2px); }
+.rate-opt--private[aria-expanded="true"] { background: var(--navy); }
+.rate-opt--private[aria-expanded="true"] .rate-opt__title, .rate-opt--private[aria-expanded="true"] .rate-opt__sub { color: #fff; }
+.rate-opt--off { cursor: default; border-style: dashed; border-color: var(--line); background: var(--bg); }
+.rate-opt:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; }
+.rate-panel { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line); }
+.rate-panel .field label { text-align: left; }
+@media (max-width: 639px) {
+  .rate-card { padding: 30px 18px 28px; }
+  .rate-stars label svg { width: 2.5rem; height: 2.5rem; }
+  .rate-options__grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- Review Us on Google (dark band) ---------- */
+.gsec { background: var(--navy-deep); color: #fff; padding-block: 72px; }
+.gsec h2 { color: #fff; font-size: clamp(2rem, 5.5vw, 3.2rem); letter-spacing: -.03em; margin-bottom: 18px; }
+.gsec__stars { display: flex; justify-content: center; gap: 6px; margin-bottom: 30px; color: #F5B301; }
+.gsec__stars .icon { width: 2.6rem; height: 2.6rem; fill: currentColor; stroke: currentColor; stroke-width: 1; }
+.gsec__btn { min-height: 56px; padding-inline: 40px; font-size: 1rem; }
+.gsec__off { color: #d5d9e4; margin: 0 auto; }
+.gsec :focus-visible { outline-color: #fff; }
+@media (prefers-reduced-motion: reduce) { .rate-stars label:hover svg, .rate-opt:hover { transform: none; } }

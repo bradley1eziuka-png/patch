@@ -894,42 +894,66 @@ ${pageHero({ crumbs, h1: 'Schedule Your Free Estimate', lead: 'Pick a time that 
 export function feedback() {
   const crumbs = [homeCrumb, { name: 'Feedback', href: '/feedback/' }];
   const g = integrations.googleReviewUrl;
+  const labels = ['Poor', 'Fair', 'Good', 'Very good', 'Excellent'];
+  const goldStars = [1, 2, 3, 4, 5].map(() => icon('star')).join('');
   const body = `
-${pageHero({ crumbs, h1: 'How Was Your Experience?', lead: `Thank you for choosing ${BIZ}. Your feedback helps us.`, ctas: false })}
-<section class="section">
+<section class="section rate-sec">
   <div class="wrap wrap--narrow">
-    <div class="contact__form">
-      <!-- FEEDBACK ENDPOINT: set \`integrations.feedbackEndpoint\` in src/data.mjs and rebuild. Empty => the form says it is not switched on. -->
-      <form id="feedback-form" method="post" action="${integrations.feedbackEndpoint}" data-endpoint="${integrations.feedbackEndpoint}" data-required="" data-require-any="rating,message,name,contact"
-            data-missing="Choose a rating or write a comment first, or use the Google review button below."
-            data-noendpoint="Private feedback is not switched on yet, so nothing was sent. You can still leave a Google review below, or call ${PH}."
-            data-ok="Thank you for your feedback." novalidate>
-        <input type="hidden" name="form_type" value="Customer feedback">
-        <input type="hidden" name="_subject" value="Customer feedback: The Original Patch Master">
-        <input type="hidden" name="submitted_at" value="">
-        <fieldset class="stars">
-          <legend>Your rating (optional)</legend>
-          ${[5, 4, 3, 2, 1].map((n) => `<input type="radio" id="star-${n}" name="rating" value="${n}"><label for="star-${n}"><span class="sr">${n} star${n > 1 ? 's' : ''}</span>${icon('star')}</label>`).join('')}
-        </fieldset>
-        <h2 style="font-size:1.25rem">Private feedback (optional)</h2>
-        <div class="field"><label for="fb-msg">Tell us about your experience</label><textarea id="fb-msg" name="message" rows="5"></textarea></div>
-        <div class="field-row">
-          <div class="field"><label for="fb-name">Name (optional)</label><input id="fb-name" name="name" type="text" autocomplete="name"></div>
-          <div class="field"><label for="fb-contact">Phone or email (optional)</label><input id="fb-contact" name="contact" type="text" autocomplete="off"></div>
+    <div class="rate-card" id="rate-card">
+      <img class="rate-card__logo" src="/assets/img/brand-logo-400.webp" alt="The Original Patch Master" width="400" height="300">
+      <h1>How would you rate us?</h1>
+      <p class="rate-card__sub">Thank you for choosing ${BIZ}. Tap a star to rate your experience.</p>
+      <fieldset class="rate-stars" id="rate-stars">
+        <legend class="sr">Your rating, from 1 to 5 stars</legend>
+        ${[1, 2, 3, 4, 5].map((n) => `<input type="radio" id="star-${n}" name="rating" value="${n}"><label for="star-${n}" title="${n} star${n > 1 ? 's' : ''}: ${labels[n - 1]}"><span class="sr">${n} star${n > 1 ? 's' : ''}, ${labels[n - 1]}</span>${icon('star')}</label>`).join('')}
+      </fieldset>
+      <p class="rate-card__live" id="rate-live" role="status" aria-live="polite">Select a rating to continue.</p>
+      <button type="button" class="btn rate-card__next" id="rate-next" disabled>Next</button>
+
+      <!-- Shown after Next, for EVERY rating. Both choices are always offered: there is no review gating. -->
+      <div class="rate-options" id="rate-options" hidden>
+        <h2 id="rate-options-h" tabindex="-1">Thank you. How would you like to share your feedback?</h2>
+        <div class="rate-options__grid">
+          ${g
+            ? `<a class="rate-opt rate-opt--google" href="${esc(g)}" target="_blank" rel="noopener"><span class="rate-opt__title">Leave a Google Review</span><span class="rate-opt__sub">Share your experience publicly on Google</span></a>`
+            : `<div class="rate-opt rate-opt--off" role="note"><span class="rate-opt__title">Leave a Google Review</span><span class="rate-opt__sub">Our Google review link is coming soon. Please check back shortly.</span></div>`}
+          <button type="button" class="rate-opt rate-opt--private" id="fb-open" aria-expanded="false" aria-controls="fb-panel"><span class="rate-opt__title">Send Private Feedback</span><span class="rate-opt__sub">Tell the team directly</span></button>
         </div>
-        <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
-        <button class="btn btn--block-sm" type="submit">Send Private Feedback</button>
-        <p class="form-note" id="form-status" role="status" aria-live="polite"></p>
-      </form>
-      <div class="review-cta">
-        <h2 style="font-size:1.25rem">Share it publicly on Google</h2>
-        <p>Whatever your rating, you are welcome to leave a Google review.</p>
-        ${g ? `<div class="btn-row btn-row--center"><a class="btn" href="${esc(g)}" target="_blank" rel="noopener">Leave a Google Review</a></div>` : `<p><strong>Our Google review link is not ready yet.</strong> Please check back soon.</p>`}
+
+        <div class="rate-panel" id="fb-panel" hidden>
+          <!-- FEEDBACK ENDPOINT: integrations.feedbackEndpoint in src/data.mjs (currently the same Formspree endpoint as /contact). -->
+          <form id="feedback-form" method="post" action="${esc(integrations.feedbackEndpoint)}" data-endpoint="${esc(integrations.feedbackEndpoint)}" data-required="message" data-check-email
+                data-missing="Please tell us about your experience before sending."
+                data-noendpoint="Private feedback is not switched on yet, so nothing was sent. Please call ${PH}."
+                data-ok="Thank you! Your feedback has been sent to The Original Patch Master." novalidate>
+            <input type="hidden" name="form_type" value="Customer feedback">
+            <input type="hidden" name="_subject" id="fb-subject" value="Customer feedback: The Original Patch Master">
+            <input type="hidden" name="rating" id="fb-rating" value="">
+            <input type="hidden" name="source_page" value="Feedback (/feedback/)">
+            <input type="hidden" name="submitted_at" value="">
+            <div class="field"><label for="fb-name">Name <span class="req">(optional)</span></label><input id="fb-name" name="name" type="text" autocomplete="name"></div>
+            <div class="field"><label for="fb-email">Email <span class="req">(optional)</span></label><input id="fb-email" name="email" type="email" autocomplete="email"></div>
+            <div class="field"><label for="fb-msg">Your Feedback <span class="req">(required)</span></label><textarea id="fb-msg" name="message" rows="5" required></textarea></div>
+            <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+            <button class="btn btn--block-sm" type="submit">Submit Feedback</button>
+            <p class="form-note" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </div>
     </div>
   </div>
+</section>
+
+<section class="gsec" aria-labelledby="gsec-h">
+  <div class="wrap wrap--narrow center">
+    <h2 id="gsec-h">Review Us on Google</h2>
+    <div class="gsec__stars" role="img" aria-label="Five stars">${goldStars}</div>
+    ${g
+      ? `<a class="btn gsec__btn" href="${esc(g)}" target="_blank" rel="noopener">Leave Us a Review</a>`
+      : `<p class="gsec__off">Our Google review link is coming soon. Thank you for your patience.</p>`}
+  </div>
 </section>`;
-  return page({ title: 'How Was Your Experience? | The Original Patch Master', desc: 'Share your feedback about your experience with The Original Patch Master.', path: '/feedback/', schema: [breadcrumbSchema(crumbs)], noindex: true }, body);
+  return page({ title: 'How Would You Rate Us? | The Original Patch Master', desc: 'Rate your experience with The Original Patch Master and share feedback, or leave a Google review.', path: '/feedback/', schema: [breadcrumbSchema(crumbs)], noindex: !g }, body);
 }
 
 // ===========================================================================
