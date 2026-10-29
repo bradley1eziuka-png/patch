@@ -679,3 +679,10 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px
 .gsec__off { color: #d5d9e4; margin: 0 auto; }
 .gsec :focus-visible { outline-color: #fff; }
 @media (prefers-reduced-motion: reduce) { .rate-stars label:hover svg, .rate-opt:hover { transform: none; } }
+.rate-options__grid--one { grid-template-columns: 1fr; max-width: 420px; margin-inline: auto; }
+.rate-options__alt { margin: 18px auto 0; text-align: center; font-size: .95rem; }
+.rate-options__alt a { color: var(--navy); font-weight: 600; text-underline-offset: 3px; }
+.rate-card--form { text-align: left; }
+.rate-card--form h1, .rate-card--form .rate-card__sub, .rate-card--form .rate-card__logo { text-align: center; margin-inline: auto; }
+.rate-card__rating { text-align: center; font-weight: 600; color: var(--ink); margin: 0 auto 6px; }
+.rate-panel--first { margin-top: 20px; }

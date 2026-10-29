@@ -26,7 +26,8 @@ add('/terms-and-conditions/', P.terms());
 add('/sms-opt-in/', P.smsOptIn(), !!integrations.smsOptInEndpoint);
 // Utility pages: noindex and kept out of the sitemap until configured (book-estimate joins once the calendar embed exists).
 add('/book-estimate/', P.bookEstimate(), !!integrations.ghlCalendarEmbedUrl);
-add('/feedback/', P.feedback(), !!integrations.googleReviewUrl);   // indexable only once the Google review link exists
+add('/feedback/', P.feedback(), !!integrations.googleReviewUrl);
+add('/feedback/private/', P.feedbackPrivate(), false);   // never indexed   // indexable only once the Google review link exists
 services.forEach((s) => add(`/services/${s.slug}/`, P.servicePage(s)));
 locations.forEach((l) => add(`/service-areas/${l.slug}/`, P.locationPage(l)));
 fs.writeFileSync(path.join(OUT, '404.html'), P.notFound());

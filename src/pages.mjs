@@ -891,6 +891,28 @@ ${pageHero({ crumbs, h1: 'Schedule Your Free Estimate', lead: 'Pick a time that 
 // ===========================================================================
 // FEEDBACK (no review gating: the Google button is shown to every rating)
 // ===========================================================================
+// ===========================================================================
+// FEEDBACK. Owner's decision: 4-5 stars are offered the Google review; 1-3 stars go to a separate private-feedback page
+// (/feedback/private/) that has no Google link. (This is "review gating": see the notes delivered with this change.)
+// ===========================================================================
+const feedbackForm = () => `<!-- FEEDBACK ENDPOINT: integrations.feedbackEndpoint in src/data.mjs (currently the same Formspree endpoint as /contact). -->
+          <form id="feedback-form" method="post" action="${esc(integrations.feedbackEndpoint)}" data-endpoint="${esc(integrations.feedbackEndpoint)}" data-required="message" data-check-email
+                data-missing="Please tell us about your experience before sending."
+                data-noendpoint="Private feedback is not switched on yet, so nothing was sent. Please call ${PH}."
+                data-ok="Thank you! Your feedback has been sent to The Original Patch Master." novalidate>
+            <input type="hidden" name="form_type" value="Customer feedback">
+            <input type="hidden" name="_subject" id="fb-subject" value="Customer feedback: The Original Patch Master">
+            <input type="hidden" name="rating" id="fb-rating" value="">
+            <input type="hidden" name="source_page" value="Private feedback (/feedback/private/)">
+            <input type="hidden" name="submitted_at" value="">
+            <div class="field"><label for="fb-name">Name <span class="req">(optional)</span></label><input id="fb-name" name="name" type="text" autocomplete="name"></div>
+            <div class="field"><label for="fb-email">Email <span class="req">(optional)</span></label><input id="fb-email" name="email" type="email" autocomplete="email"></div>
+            <div class="field"><label for="fb-msg">Your Feedback <span class="req">(required)</span></label><textarea id="fb-msg" name="message" rows="5" required></textarea></div>
+            <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+            <button class="btn btn--block-sm" type="submit">Submit Feedback</button>
+            <p class="form-note" id="form-status" role="status" aria-live="polite"></p>
+          </form>`;
+
 export function feedback() {
   const crumbs = [homeCrumb, { name: 'Feedback', href: '/feedback/' }];
   const g = integrations.googleReviewUrl;
@@ -908,43 +930,24 @@ export function feedback() {
         ${[1, 2, 3, 4, 5].map((n) => `<input type="radio" id="star-${n}" name="rating" value="${n}"><label for="star-${n}" title="${n} star${n > 1 ? 's' : ''}: ${labels[n - 1]}"><span class="sr">${n} star${n > 1 ? 's' : ''}, ${labels[n - 1]}</span>${icon('star')}</label>`).join('')}
       </fieldset>
       <p class="rate-card__live" id="rate-live" role="status" aria-live="polite">Select a rating to continue.</p>
+      <!-- Next: 1-3 stars go to /feedback/private/ (no Google link). 4-5 stars reveal the Google review option below. -->
       <button type="button" class="btn rate-card__next" id="rate-next" disabled>Next</button>
 
-      <!-- Shown after Next, for EVERY rating. Both choices are always offered: there is no review gating. -->
       <div class="rate-options" id="rate-options" hidden>
-        <h2 id="rate-options-h" tabindex="-1">Thank you. How would you like to share your feedback?</h2>
-        <div class="rate-options__grid">
+        <h2 id="rate-options-h" tabindex="-1">Thank you! Would you share your experience on Google?</h2>
+        <div class="rate-options__grid rate-options__grid--one">
           ${g
             ? `<a class="rate-opt rate-opt--google" href="${esc(g)}" target="_blank" rel="noopener"><span class="rate-opt__title">Leave a Google Review</span><span class="rate-opt__sub">Share your experience publicly on Google</span></a>`
             : `<div class="rate-opt rate-opt--off" role="note"><span class="rate-opt__title">Leave a Google Review</span><span class="rate-opt__sub">Our Google review link is coming soon. Please check back shortly.</span></div>`}
-          <button type="button" class="rate-opt rate-opt--private" id="fb-open" aria-expanded="false" aria-controls="fb-panel"><span class="rate-opt__title">Send Private Feedback</span><span class="rate-opt__sub">Tell the team directly</span></button>
         </div>
-
-        <div class="rate-panel" id="fb-panel" hidden>
-          <!-- FEEDBACK ENDPOINT: integrations.feedbackEndpoint in src/data.mjs (currently the same Formspree endpoint as /contact). -->
-          <form id="feedback-form" method="post" action="${esc(integrations.feedbackEndpoint)}" data-endpoint="${esc(integrations.feedbackEndpoint)}" data-required="message" data-check-email
-                data-missing="Please tell us about your experience before sending."
-                data-noendpoint="Private feedback is not switched on yet, so nothing was sent. Please call ${PH}."
-                data-ok="Thank you! Your feedback has been sent to The Original Patch Master." novalidate>
-            <input type="hidden" name="form_type" value="Customer feedback">
-            <input type="hidden" name="_subject" id="fb-subject" value="Customer feedback: The Original Patch Master">
-            <input type="hidden" name="rating" id="fb-rating" value="">
-            <input type="hidden" name="source_page" value="Feedback (/feedback/)">
-            <input type="hidden" name="submitted_at" value="">
-            <div class="field"><label for="fb-name">Name <span class="req">(optional)</span></label><input id="fb-name" name="name" type="text" autocomplete="name"></div>
-            <div class="field"><label for="fb-email">Email <span class="req">(optional)</span></label><input id="fb-email" name="email" type="email" autocomplete="email"></div>
-            <div class="field"><label for="fb-msg">Your Feedback <span class="req">(required)</span></label><textarea id="fb-msg" name="message" rows="5" required></textarea></div>
-            <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
-            <button class="btn btn--block-sm" type="submit">Submit Feedback</button>
-            <p class="form-note" id="form-status" role="status" aria-live="polite"></p>
-          </form>
-        </div>
+        <p class="rate-options__alt">Prefer to send private feedback? <a id="rate-private-link" href="/feedback/private/">Send private feedback</a></p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="gsec" aria-labelledby="gsec-h">
+<!-- Revealed only for 4-5 star ratings (after Next). Not visible to 1-3 star raters. -->
+<section class="gsec" id="gsec" aria-labelledby="gsec-h" hidden>
   <div class="wrap wrap--narrow center">
     <h2 id="gsec-h">Review Us on Google</h2>
     <div class="gsec__stars" role="img" aria-label="Five stars">${goldStars}</div>
@@ -954,6 +957,26 @@ export function feedback() {
   </div>
 </section>`;
   return page({ title: 'How Would You Rate Us? | The Original Patch Master', desc: 'Rate your experience with The Original Patch Master and share feedback, or leave a Google review.', path: '/feedback/', schema: [breadcrumbSchema(crumbs)], noindex: !g }, body);
+}
+
+// Private feedback page for 1-3 star ratings. No Google review link anywhere on this page.
+export function feedbackPrivate() {
+  const crumbs = [homeCrumb, { name: 'Feedback', href: '/feedback/' }, { name: 'Private Feedback', href: '/feedback/private/' }];
+  const body = `
+<section class="section rate-sec">
+  <div class="wrap wrap--narrow">
+    <div class="rate-card rate-card--form">
+      <img class="rate-card__logo" src="/assets/img/brand-logo-400.webp" alt="The Original Patch Master" width="400" height="300">
+      <h1>Tell Us How We Can Do Better</h1>
+      <p class="rate-card__sub">Thank you for being honest. Your message goes straight to The Original Patch Master.</p>
+      <p class="rate-card__rating" id="fb-rating-note" hidden></p>
+      <div class="rate-panel rate-panel--first">
+        ${feedbackForm()}
+      </div>
+    </div>
+  </div>
+</section>`;
+  return page({ title: 'Private Feedback | The Original Patch Master', desc: 'Send private feedback to The Original Patch Master.', path: '/feedback/private/', schema: [breadcrumbSchema(crumbs)], noindex: true }, body);
 }
 
 // ===========================================================================
