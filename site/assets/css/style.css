@@ -686,3 +686,5 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px
 .rate-card--form h1, .rate-card--form .rate-card__sub, .rate-card--form .rate-card__logo { text-align: center; margin-inline: auto; }
 .rate-card__rating { text-align: center; font-weight: 600; color: var(--ink); margin: 0 auto 6px; }
 .rate-panel--first { margin-top: 20px; }
+
+@media (max-width: 639px) { .footer__links { gap: 4px 22px; } .footer__links span { display: none; } }

@@ -249,7 +249,7 @@ export function footer() {
       <ul>${locations.map((l) => `<li><a href="${locUrl(l.slug)}">${esc(l.name)}</a></li>`).join('')}</ul>
     </nav>
   </div>
-  <div class="footer__legal"><div class="wrap"><p class="footer__links"><a href="/privacy-policy/">Privacy Policy</a><span aria-hidden="true">|</span><a href="/terms-and-conditions/">Terms &amp; Conditions</a><span aria-hidden="true">|</span><a href="/sms-opt-in/">SMS Opt-In</a></p><p>&copy; ${new Date().getFullYear()} The Original Patch Master. Fully insured. Serving Dearborn Heights and Metro Detroit.</p><p class="footer__credit"><a href="https://getarclo.com" target="_blank" rel="noopener">Website by Arclo</a></p></div></div>
+  <div class="footer__legal"><div class="wrap"><p class="footer__links"><a href="/privacy-policy/">Privacy Policy</a><span aria-hidden="true">|</span><a href="/terms-and-conditions/">Terms &amp; Conditions</a><span aria-hidden="true">|</span><a href="/sms-opt-in/">SMS Opt-In</a><span aria-hidden="true">|</span><a href="/feedback/">Leave Feedback</a></p><p>&copy; ${new Date().getFullYear()} The Original Patch Master. Fully insured. Serving Dearborn Heights and Metro Detroit.</p><p class="footer__credit"><a href="https://getarclo.com" target="_blank" rel="noopener">Website by Arclo</a></p></div></div>
 </footer>
 <script src="/assets/js/site.js?v=${ASSET_V}" defer></script>
 </body>
