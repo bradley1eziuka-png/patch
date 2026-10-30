@@ -666,9 +666,9 @@ export const integrations = {
 
   // ==== GOOGLE REVIEW LINK: the ONE place to set it. ====
   // Paste the Google Business Profile "write a review" URL (from the profile's "Ask for reviews" / share-review-link option)
-  // between the quotes, rebuild (`node build.mjs`), commit and push. Until it is set, /feedback/ shows "coming soon" instead of a
-  // button, the homepage review section stays hidden, and the page stays noindex. Do not paste any other kind of link here.
-  googleReviewUrl: '',
+  // between the quotes, rebuild (`node build.mjs`), commit and push. Used by the "Leave a Google Review" option and the "Leave Us a Review"
+  // button on /feedback/, and it turns on the homepage review section. If it is ever empty, those show a "coming soon" note instead of a button.
+  googleReviewUrl: 'https://www.google.com/search?q=734%29+489-2284#lrd=0x4c4d6088ca81bc29:0x5e6fdc70418cdee2,3,,,,',
   // Private feedback form on /feedback/. Posts to the same Formspree endpoint as the contact form, tagged form_type "Customer feedback"
   // with the star rating. To send it elsewhere later, change this value.
   feedbackEndpoint: 'https://formspree.io/f/xzedqkpn',

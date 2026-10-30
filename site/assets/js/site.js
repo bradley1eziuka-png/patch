@@ -189,6 +189,8 @@
         paint(rCur);
         rNext.disabled = false;
         rLive.textContent = rCur + ' of 5 stars selected: ' + rWords[rCur - 1] + '.';
+        document.getElementById('fb-rating').value = String(rCur);
+        document.getElementById('fb-subject').value = 'Customer feedback (' + rCur + ' star' + (rCur > 1 ? 's' : '') + '): The Original Patch Master';
       });
     });
     rLabels.forEach(function (l, i) {
@@ -197,29 +199,20 @@
     rateCard.querySelector('.rate-stars').addEventListener('mouseleave', function () { paint(rCur); });
     rNext.addEventListener('click', function () {
       if (!rCur) return;
-      // 1-3 stars: separate private-feedback page (no Google link). 4-5 stars: offer the Google review.
-      if (rCur <= 3) { location.href = '/feedback/private/?rating=' + rCur; return; }
-      var link = document.getElementById('rate-private-link');
-      if (link) link.href = '/feedback/private/?rating=' + rCur;
       rOpts.hidden = false;
-      var gs = document.getElementById('gsec'); if (gs) gs.hidden = false;
       rNext.hidden = true;
       var h = document.getElementById('rate-options-h');
       h.focus();
       h.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
     });
-  }
-
-  /* Private feedback page: carry the star rating from the previous step into the submission. */
-  var fbNote = document.getElementById('fb-rating-note');
-  if (fbNote) {
-    var qr = parseInt(new URLSearchParams(location.search).get('rating'), 10);
-    if (qr >= 1 && qr <= 5) {
-      document.getElementById('fb-rating').value = String(qr);
-      document.getElementById('fb-subject').value = 'Customer feedback (' + qr + ' star' + (qr > 1 ? 's' : '') + '): The Original Patch Master';
-      fbNote.textContent = 'Your rating: ' + qr + ' of 5 stars';
-      fbNote.hidden = false;
-    }
+    var fbOpen = document.getElementById('fb-open');
+    var fbPanel = document.getElementById('fb-panel');
+    fbOpen.addEventListener('click', function () {
+      var open = fbPanel.hidden;
+      fbPanel.hidden = !open;
+      fbOpen.setAttribute('aria-expanded', String(open));
+      if (open) { document.getElementById('fb-name').focus(); }
+    });
   }
 
   /* ---------- Forms (estimate request, job application, feedback) ----------
