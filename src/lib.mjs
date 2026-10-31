@@ -130,10 +130,15 @@ export function businessSchema() {
     description: site.tagline + ' serving Dearborn Heights and Metro Detroit.',
     telephone: '+1-734-489-2284',
     email: site.email,
-    image: abs('/assets/img/patch-master-logo.png'),
+    image: abs('/assets/img/og-default.jpg'),
+    logo: abs('/assets/img/logo.png'),
     address: { '@type': 'PostalAddress', streetAddress: site.address.street, addressLocality: site.address.city, addressRegion: site.address.region, addressCountry: 'US' },
     openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '07:00', closes: '17:00' }],
-    areaServed: ['Dearborn Heights', 'Dearborn', 'Monroe', 'Carleton', 'Downriver', 'Metro Detroit'].map((n) => ({ '@type': 'Place', name: n + ', MI' })),
+    areaServed: [
+      ...['Dearborn Heights', 'Dearborn', 'Monroe', 'Carleton'].map((n) => ({ '@type': 'City', name: n, containedInPlace: { '@type': 'AdministrativeArea', name: 'Michigan' } })),
+      { '@type': 'Place', name: 'Downriver, Michigan' },
+      { '@type': 'Place', name: 'Metro Detroit, Michigan' },
+    ],
     sameAs: [site.social.facebook, site.social.instagram],
   };
   if (site.siteUrl) o.url = site.siteUrl + '/';
@@ -172,12 +177,20 @@ ${noindex ? '<meta name="robots" content="noindex">' : ''}
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${url}">
-<meta property="og:image" content="${abs('/assets/img/patch-master-logo.png')}">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="${abs('/assets/img/og-default.jpg')}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Original Patch Master, commercial drywall and plaster in Dearborn Heights, MI">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(desc)}">
+<meta name="twitter:image" content="${abs('/assets/img/og-default.jpg')}">
 <meta name="theme-color" content="#1B2336">
 <link rel="icon" type="image/png" href="/assets/img/favicon.png">
 <link rel="preload" href="/assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css?v=${ASSET_V}">
 ${extraHead}
 ${schema.join('\n')}
@@ -203,7 +216,7 @@ export function header(current) {
     .join('\n');
   return `<header class="site-header">
   <div class="hdr">
-    <a class="brand" href="/" aria-label="The Original Patch Master home"><img src="/assets/img/brand-logo-400.webp" srcset="/assets/img/brand-logo-400.webp 400w, /assets/img/brand-logo-800.webp 800w" sizes="101px" alt="The Original Patch Master" width="400" height="300"></a>
+    <a class="brand" href="/" aria-label="The Original Patch Master home"><img src="/assets/img/brand-logo-400.webp" srcset="/assets/img/brand-logo-200.webp 200w, /assets/img/brand-logo-400.webp 400w" sizes="101px" alt="The Original Patch Master" width="400" height="300" fetchpriority="high"></a>
     <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle__open">${icon('menu')}</span><span class="nav-toggle__close">${icon('close')}</span><span class="sr">Menu</span></button>
     <nav id="primary-nav" class="primary-nav" aria-label="Primary">
       <ul>${items}</ul>

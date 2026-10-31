@@ -20,8 +20,8 @@ export const site = {
   },
 
   // ---- LAUNCH SETTINGS --------------------------------------------------
-  // Production domain, no trailing slash. Drives canonicals, og:url, structured data, sitemap.xml and robots.txt.
-  siteUrl: 'https://originalpatchmaster.com',
+  // Production host (www), no trailing slash. Drives canonicals, og:url, structured data, sitemap.xml and robots.txt.
+  siteUrl: 'https://www.originalpatchmaster.com',   // verified stable host: the apex domain 308-redirects to www on Vercel
 
   // Form endpoint (Formspree, Basin, Netlify Forms URL, etc.).
   // Leave empty and the form tells visitors to call or email instead of faking a send.
@@ -42,7 +42,7 @@ export const services = [
     icon: 'patch',
     tile: 'Holes, cracks, water-damaged sections and failed seams.',
     title: 'Drywall Repair in Metro Detroit | The Original Patch Master',
-    desc: 'Drywall repair for holes, cracks, damaged sections and failed seams. Free estimates from The Original Patch Master, a family-owned contractor in Dearborn Heights.',
+    desc: 'Drywall repair for holes, cracks, water damage and failed seams in commercial and residential properties. Free estimates in Dearborn Heights and Metro Detroit.',
     h1: 'Drywall Repair',
     lead: 'Holes, cracks, damaged sections and failed seams, repaired and finished so the wall is ready for paint.',
     intro: [
@@ -70,6 +70,7 @@ export const services = [
       'The repair is hung, taped and finished in stages, then sanded smooth. Our specialized dustless sanding equipment cuts down on the dust that ends up in your rooms.',
     ],
     faq: [
+      { q: 'Do you work on commercial properties?', a: 'Yes. We take commercial and residential jobs. Describe the property and the work when you call 734-489-2284 or use the contact form, and we will give you a free estimate.' },
       { q: 'Do you take small repair jobs?', a: 'Yes. A single hole is a normal job for us. The Original Patch Master also handles larger repairs and full drywall projects.' },
       { q: 'Is the estimate free?', a: 'Yes. Call 734-489-2284 or describe the damage on the contact form.' },
       { q: 'Will I be able to see the repair?', a: 'The goal is a repair you cannot see once the wall is painted. Tell us about the wall when you call and we will explain what to expect.' },
@@ -82,7 +83,7 @@ export const services = [
     icon: 'layers',
     tile: 'Hanging, taping and finishing for new walls and ceilings.',
     title: 'Commercial Drywall Installation | The Original Patch Master',
-    desc: 'Commercial and residential drywall installation: hanging, taping and finishing for remodels, additions, basements and new construction in Metro Detroit. Free estimates.',
+    desc: 'Commercial and residential drywall installation: hanging, taping and finishing for remodels, additions and new construction in Metro Detroit.',
     h1: 'Drywall Installation',
     lead: 'New drywall hung, taped and finished for commercial spaces, additions, remodels, basements and whole houses.',
     intro: [
@@ -121,8 +122,8 @@ export const services = [
     name: 'Plaster Repair',
     icon: 'trowel',
     tile: 'Cracks and damaged plaster patched to blend with the wall.',
-    title: 'Plaster Repair | The Original Patch Master, Dearborn Heights',
-    desc: 'Plaster wall and ceiling repair for cracks, loose sections and damaged areas. Free estimates from family-owned The Original Patch Master in Dearborn Heights, MI.',
+    title: 'Plaster Repair in Metro Detroit | The Original Patch Master',
+    desc: 'Plaster wall and ceiling repair for cracks, loose sections and damaged areas, commercial and residential. Free estimates in Dearborn Heights and Metro Detroit.',
     h1: 'Plaster Repair',
     lead: 'Cracked, damaged and loose plaster repaired and blended into the surface around it.',
     intro: [
@@ -150,6 +151,7 @@ export const services = [
       'The estimate is free and we explain what we found. Repairs are finished smooth, and sanding is done with specialized dustless equipment.',
     ],
     faq: [
+      { q: 'Do you work on commercial properties?', a: 'Yes. We take commercial and residential jobs. Describe the property and the work when you call 734-489-2284 or use the contact form, and we will give you a free estimate.' },
       { q: 'Can you repair plaster and drywall in the same room?', a: 'Yes. The Original Patch Master does both, so one estimate covers the room.' },
       { q: 'What if the plaster is cracked in several places?', a: 'We look at the whole wall or ceiling during the estimate and tell you what it needs. Several cracks do not automatically mean a bigger job.' },
       { q: 'Is plaster repair messy?', a: 'Sanding makes dust on any plaster or drywall job. We use specialized equipment to cut it down.' },
@@ -162,7 +164,7 @@ export const services = [
     icon: 'ruler',
     tile: 'The smoothest finish, for walls that show every flaw.',
     title: 'Level 5 Drywall Finishing | The Original Patch Master',
-    desc: 'Level 5 drywall finishing for the smoothest walls and ceilings. Free estimates from The Original Patch Master in Dearborn Heights and Metro Detroit.',
+    desc: 'Level 5 drywall finishing for the smoothest walls and ceilings, commercial and residential. Free estimates in Dearborn Heights and Metro Detroit.',
     h1: 'Level 5 Finishing',
     lead: 'The smoothest drywall finish, for walls and ceilings where flaws show.',
     intro: [
@@ -188,6 +190,7 @@ export const services = [
       'Level 5 takes more time than a standard finish, and the estimate reflects that. The estimate is free and we explain the number.',
     ],
     faq: [
+      { q: 'Do you work on commercial properties?', a: 'Yes. We take commercial and residential jobs. Describe the property and the work when you call 734-489-2284 or use the contact form, and we will give you a free estimate.' },
       { q: 'What is the difference between Level 4 and Level 5?', a: 'Level 4 has taped and finished seams. Level 5 adds a skim coat over the entire surface, which evens out the difference between the seams and the rest of the board.' },
       { q: 'Do I need Level 5 in every room?', a: 'No. Rooms with strong light, glossy paint or smooth ceilings benefit most. We will tell you if a standard finish is enough.' },
       { q: 'Does Level 5 make more dust?', a: 'Any sanding makes dust. We use specialized dustless sanding equipment on our work.' },
@@ -200,7 +203,7 @@ export const services = [
     icon: 'wind',
     tile: 'Sanding with specialized equipment that cuts down dust in your home.',
     title: 'Dustless Drywall Sanding | The Original Patch Master',
-    desc: 'Dustless drywall and plaster sanding with specialized equipment to cut down dust in your home. Free estimates in Dearborn Heights and Metro Detroit.',
+    desc: 'Dustless drywall and plaster sanding with specialized equipment that cuts down dust on the job. Free estimates in Dearborn Heights and Metro Detroit.',
     h1: 'Dustless Sanding',
     lead: 'Drywall and plaster sanding with specialized equipment that collects dust as we work.',
     intro: [
@@ -225,6 +228,7 @@ export const services = [
       'Ask about it when you call, and we will walk you through how we handle dust on your project.',
     ],
     faq: [
+      { q: 'Do you work on commercial properties?', a: 'Yes. We take commercial and residential jobs. Describe the property and the work when you call 734-489-2284 or use the contact form, and we will give you a free estimate.' },
       { q: 'Is dustless sanding completely dust-free?', a: 'No. No sanding method removes every particle. Dustless equipment cuts down on the dust that reaches the room, and we plan the job with that in mind.' },
       { q: 'What equipment do you use?', a: 'Specialized dustless sanding equipment. Ask when you call and we will explain how it works on your type of job.' },
       { q: 'Which jobs does it apply to?', a: 'Our drywall, plaster and finishing work.' },
@@ -237,7 +241,7 @@ export const services = [
     icon: 'house',
     tile: 'Full-space drywall and finishing, from the first sheet to the final coat.',
     title: 'Basement & Garage Finishing | The Original Patch Master',
-    desc: 'Basement, garage and whole-house drywall and finishing by The Original Patch Master. 25 years in the trade, fully insured, free estimates in Metro Detroit.',
+    desc: 'Basement, garage and whole-house drywall installation and finishing in Metro Detroit. 25 years in the trade, fully insured. Free estimates.',
     h1: 'Basement, Garage and Whole-House Finishing',
     lead: 'Drywall, insulation and finishing for entire spaces, from open framing to finished walls.',
     intro: [
@@ -282,8 +286,8 @@ export const services = [
     name: 'Insulation',
     icon: 'insulation',
     tile: 'Insulation for walls that are about to be closed up.',
-    title: 'Insulation | The Original Patch Master, Dearborn Heights',
-    desc: 'Insulation from The Original Patch Master, a family-owned drywall contractor in Dearborn Heights. Free estimates for basements, garages and new walls.',
+    title: 'Insulation in Metro Detroit | The Original Patch Master',
+    desc: 'Insulation for walls before drywall goes up, in basements, garages, additions and new construction. Free estimates in Dearborn Heights and Metro Detroit.',
     h1: 'Insulation',
     lead: 'Insulation for walls that are about to be closed up, from the contractor hanging the drywall.',
     intro: [
@@ -319,7 +323,7 @@ export const services = [
     icon: 'window',
     tile: 'Glazing and caulking for windows and the gaps around them.',
     title: 'Window Glazing & Caulking | The Original Patch Master',
-    desc: 'Window glazing and caulking from The Original Patch Master in Dearborn Heights. Free estimates for window sealing and repairs in Metro Detroit homes.',
+    desc: 'Window glazing and caulking in Dearborn Heights and Metro Detroit, plus drywall and plaster repair around the window. Free estimates.',
     h1: 'Window Glazing and Caulking',
     lead: 'Glazing and caulking to seal windows and close the gaps around them.',
     intro: [
@@ -360,16 +364,18 @@ export const locations = [
     slug: 'dearborn-heights',
     name: 'Dearborn Heights',
     short: 'Our home base. Repairs, finishing and full projects.',
-    title: 'Dearborn Heights Drywall | The Original Patch Master',
-    desc: 'The Original Patch Master is a family-owned drywall and plaster contractor based in Dearborn Heights, MI. Repairs, installation, finishing and free estimates.',
+    title: 'Dearborn Heights Drywall & Plaster | The Original Patch Master',
+    desc: 'Commercial and residential drywall, plaster repair and finishing from The Original Patch Master, based in Dearborn Heights, MI. Free estimates.',
     h1: 'Drywall and Plaster Contractor in Dearborn Heights',
     lead: 'The Original Patch Master is based here. Call for repairs, finishing, or a full basement, garage or house.',
     sections: [
+      { h: 'Commercial and residential work', p: ['We work on commercial and residential properties here. Commercial drywall installation, repair and finishing is a priority for The Original Patch Master, alongside residential repairs, basements and garages. Describe the property when you call 734-489-2284 and we will give you a free estimate.'] },
       { h: 'A Dearborn Heights business', p: ['The Original Patch Master runs out of Dearborn Heights. This is our home area. Our business address is 25244 Annapolis St.'] },
       { h: 'Jobs we take', p: ['Homeowners call us about a patched wall, a cracked ceiling, a basement that needs finishing or a garage that is still bare framing. The full list is below.'], services: ['drywall-repair', 'drywall-installation', 'plaster-repair', 'basement-garage-house-finishing', 'level-5-finishing', 'insulation'] },
       { h: 'How to book', p: ['Estimates are free. Call 734-489-2284 Monday to Friday, 7 AM to 5 PM, or use the contact form and tell us what you need.'] },
     ],
     faq: [
+      { q: 'Do you do commercial drywall work in Dearborn Heights?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-489-2284 with the address or town and the work you need.' },
       { q: 'Where is The Original Patch Master located?', a: 'We are based in Dearborn Heights, Michigan. Our business address is 25244 Annapolis St. Call or use the contact form to set up an estimate.' },
       { q: 'What hours can I call?', a: 'Monday to Friday, 7:00 AM to 5:00 PM.' },
     ],
@@ -380,15 +386,17 @@ export const locations = [
     name: 'Dearborn',
     short: 'Next door to our home base. Repairs, plaster and finishing.',
     title: 'Dearborn Drywall & Plaster | The Original Patch Master',
-    desc: 'Drywall repair, plaster work and finishing in Dearborn, Michigan from The Original Patch Master, based next door in Dearborn Heights. Free estimates.',
+    desc: 'Commercial and residential drywall repair, plaster work and finishing in Dearborn, MI from a contractor based next door in Dearborn Heights. Free estimates.',
     h1: 'Drywall and Plaster Work in Dearborn',
     lead: 'Dearborn sits next to our home base in Dearborn Heights. We take repair, plaster and finishing jobs here.',
     sections: [
+      { h: 'For businesses and homeowners', p: ['Business owners and property managers in Dearborn can call us about commercial drywall installation, repair and plaster work. Homeowners can call about repairs, basements, garages and finishing. Either way, tell us what the job is and we will give you a free estimate.'] },
       { h: 'Repairs and finishing', p: ['A repair is a good reason to call: a hole, a crack, a patch left after plumbing or electrical work. The Original Patch Master repairs drywall and plaster and finishes the area so it is ready for paint. We also take new drywall and larger finishing projects.'], services: ['drywall-repair', 'plaster-repair', 'level-5-finishing'] },
       { h: 'Cleaner sanding', p: ['Repairs happen in rooms people live in. We use specialized dustless sanding equipment to cut down on the dust that ends up in your house.'], services: ['dustless-sanding'] },
       { h: 'Get an estimate', p: ['Tell us you are in Dearborn when you call 734-489-2284 or fill out the contact form. Estimates are free.'] },
     ],
     faq: [
+      { q: 'Do you do commercial drywall work in Dearborn?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-489-2284 with the address or town and the work you need.' },
       { q: 'Do you work in Dearborn?', a: 'Yes. Dearborn is one of the areas The Original Patch Master serves, along with Dearborn Heights, Monroe, Carleton and Downriver communities.' },
       { q: 'Do you take small jobs in Dearborn?', a: 'Yes. A single patch is a normal job for us.' },
     ],
@@ -399,15 +407,17 @@ export const locations = [
     name: 'Monroe',
     short: 'Larger finishing projects and repairs.',
     title: 'Drywall Contractor in Monroe, MI | The Original Patch Master',
-    desc: 'The Original Patch Master takes drywall, plaster and finishing jobs in Monroe, MI, from repairs to full basements and houses. Free estimates.',
+    desc: 'Commercial and residential drywall installation, plaster repair and finishing in Monroe, MI, from repairs to full basements. Free estimates.',
     h1: 'Drywall Services in Monroe',
     lead: 'The Original Patch Master takes drywall, plaster and finishing jobs in Monroe, from repairs to full basements and houses.',
     sections: [
+      { h: 'Commercial and larger projects', p: ['For a commercial space or a larger residential project in Monroe, start with a call and a description of the work. We will explain what the job needs and give you a free estimate.'] },
       { h: 'Larger finishing projects', p: ['Monroe homeowners can call us about a basement, a garage or an entire house, as well as smaller repairs. Finishing whole spaces is a priority for The Original Patch Master, and 25 years in the trade goes into it.'], services: ['basement-garage-house-finishing', 'drywall-installation', 'insulation'] },
       { h: 'Setting up an estimate', p: ['The Original Patch Master is based in Dearborn Heights, so give us your address and a rough idea of the work when you call. We will set up a free estimate and talk through the job.'] },
       { h: 'Repairs too', p: ['You do not need a big project to call. Patched holes, cracked seams and plaster repairs are all on the list.'], services: ['drywall-repair', 'plaster-repair'] },
     ],
     faq: [
+      { q: 'Do you do commercial drywall work in Monroe?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-489-2284 with the address or town and the work you need.' },
       { q: 'Does The Original Patch Master work in Monroe?', a: 'Yes. Monroe is one of the areas we serve. Call 734-489-2284 with your address and the work you need.' },
       { q: 'Are estimates free in Monroe?', a: 'Yes. Estimates are free everywhere we work.' },
     ],
@@ -417,16 +427,18 @@ export const locations = [
     slug: 'carleton',
     name: 'Carleton',
     short: 'One patch or a whole space, we take both.',
-    title: 'Carleton Drywall Finishing | The Original Patch Master',
-    desc: 'From one patched wall to a finished garage, The Original Patch Master takes drywall, plaster and finishing jobs in Carleton, MI. Free estimates.',
+    title: 'Carleton, MI Drywall & Finishing | The Original Patch Master',
+    desc: 'Drywall repair, installation, plaster work and finishing for commercial and residential jobs in Carleton, MI. Free estimates.',
     h1: 'Drywall and Finishing in Carleton',
     lead: 'From one patched wall to a finished garage, The Original Patch Master takes jobs of every size in Carleton.',
     sections: [
+      { h: 'Commercial or residential', p: ['Carleton customers can call about commercial drywall and plaster work as well as home repairs, garages and basements. Tell us the town and the kind of property, and we will set up a free estimate.'] },
       { h: 'Start small or start big', p: ['Some jobs are a single patch. Some are a basement. The Original Patch Master does both, and the process is the same: a free estimate, a plain explanation of the work and a finished surface when we are done.'] },
       { h: 'Common starting points', list: ['A hole or crack in a wall or ceiling', 'Plaster that is cracked or loose', 'A garage that needs finished walls', 'A basement with bare framing', 'New drywall for an addition or a build'], services: ['drywall-repair', 'basement-garage-house-finishing', 'plaster-repair', 'drywall-installation'] },
       { h: 'Call from Carleton', p: ['Call 734-489-2284 or send the details through the contact form. Tell us your town and what you are working on.'] },
     ],
     faq: [
+      { q: 'Do you do commercial drywall work in Carleton?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-489-2284 with the address or town and the work you need.' },
       { q: 'Do you serve Carleton?', a: 'Yes. Carleton is one of the areas The Original Patch Master serves.' },
       { q: 'What if my job is a mix of repair and new work?', a: 'We look at the whole job and give you one estimate.' },
     ],
@@ -437,15 +449,17 @@ export const locations = [
     name: 'Downriver',
     short: 'Communities south of Detroit along the river.',
     title: 'Downriver Drywall & Plaster | The Original Patch Master',
-    desc: 'The Original Patch Master takes drywall, plaster and finishing jobs in Downriver Michigan communities. Call with your town for a free estimate.',
+    desc: 'Commercial and residential drywall and plaster jobs in Downriver Michigan communities. Call with your town for a free estimate.',
     h1: 'Drywall and Plaster Services Downriver',
     lead: 'The Original Patch Master takes jobs in Downriver communities. Call and tell us your town.',
     sections: [
+      { h: 'Businesses and homeowners', p: ['Downriver business owners can ask us about commercial drywall installation, repair and finishing, and homeowners can ask about repairs, basements and garages. Give us your town when you call and we will confirm we can take the job.'] },
       { h: 'What Downriver covers', p: ['Downriver is the name people use for the communities south of Detroit along the Detroit River. It covers many towns, so we ask where the job is when you call.'] },
       { h: 'Services available', p: ['Drywall repair and installation, plaster repair, Level 5 finishing, dustless sanding, insulation, window glazing and caulking, plus basement, garage and whole-house finishing.'], services: ['drywall-repair', 'drywall-installation', 'basement-garage-house-finishing'] },
       { h: 'Not sure we reach you?', p: ['Call 734-489-2284 with your town. We will tell you whether we can take the job and set up a free estimate.'] },
     ],
     faq: [
+      { q: 'Do you do commercial drywall work in Downriver?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-489-2284 with the address or town and the work you need.' },
       { q: 'Which Downriver towns do you serve?', a: 'Call with your town and we will let you know. We are based in Dearborn Heights.' },
       { q: 'Do you charge for estimates?', a: 'No. Estimates are free.' },
     ],
@@ -455,16 +469,18 @@ export const locations = [
     slug: 'metro-detroit',
     name: 'Metro Detroit',
     short: 'The wider area we work in from Dearborn Heights.',
-    title: 'Metro Detroit Drywall | The Original Patch Master',
+    title: 'Metro Detroit Commercial Drywall | The Original Patch Master',
     desc: 'Commercial drywall and plaster contractor serving Metro Detroit from Dearborn Heights. 25 years in the trade, fully insured. Free estimates.',
     h1: 'Drywall and Plaster Contractor in Metro Detroit',
     lead: 'Commercial and residential drywall and plaster, with 25 years in the trade. Fully insured. Based in Dearborn Heights.',
     sections: [
+      { h: 'Commercial drywall and plaster', p: ['Commercial drywall installation, repair and finishing is a core service for The Original Patch Master across Metro Detroit, along with plaster repair, Level 5 finishing and dustless sanding. Residential repairs and projects are welcome too.'] },
       { h: 'Where we work', p: ['The Original Patch Master serves Dearborn Heights and the surrounding Metro Detroit area. Pick your area below, or call and ask.'], allAreas: true },
       { h: 'What to expect', p: ['Every job starts with a free estimate. Small repairs and full-house finishing follow the same process: we look at the work, explain what it needs and give you a price.'] },
       { h: 'Priority work', p: ['Finishing basements, garages and houses is a priority for us, and we have the experience and equipment for it. Repairs are welcome too.'], services: ['basement-garage-house-finishing', 'drywall-repair'] },
     ],
     faq: [
+      { q: 'Do you do commercial drywall work in Metro Detroit?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-489-2284 with the address or town and the work you need.' },
       { q: 'What areas does The Original Patch Master serve?', a: 'Dearborn Heights, Dearborn, Monroe, Carleton and Downriver communities, plus the wider Metro Detroit area. Call if you are unsure about your town.' },
       { q: 'Is The Original Patch Master insured?', a: 'Yes. The Original Patch Master is fully insured.' },
     ],

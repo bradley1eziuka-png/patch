@@ -10,7 +10,7 @@ OUT = 'site/assets/img/loc'; os.makedirs(OUT, exist_ok=True)
 manifest = {}
 for slug, f in SRC.items():
     im = Image.open(f).convert('RGB')
-    widths = [w for w in (640, 1024, 1600, 1920) if w < im.width]
+    widths = [w for w in (640, 800, 1024, 1600, 1920) if w < im.width]
     if im.width <= 1920 and im.width not in widths: widths.append(im.width)  # never upscale
     widths = sorted(set(widths))
     for w in widths:

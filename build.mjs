@@ -2,6 +2,7 @@
 //   node build.mjs        writes every page into ./site
 //   cd site && python3 -m http.server 3001
 import fs from 'node:fs';
+import crypto from 'node:crypto';
 import path from 'node:path';
 import { site, services, locations, integrations } from './src/data.mjs';
 import { OUT, write, mediaReport } from './src/lib.mjs';
@@ -23,7 +24,7 @@ add('/contact/', P.contact());
 add('/privacy-policy/', P.privacyPolicy());
 add('/terms-and-conditions/', P.terms());
 // SMS opt-in: noindex and out of the sitemap until its GHL endpoint is configured.
-add('/sms-opt-in/', P.smsOptIn(), !!integrations.smsOptInEndpoint);
+add('/sms-opt-in/', P.smsOptIn(), false);   // indexable (carrier reviewers) but not promoted in the sitemap
 // Utility pages: noindex and kept out of the sitemap until configured (book-estimate joins once the calendar embed exists).
 add('/book-estimate/', P.bookEstimate(), !!integrations.ghlCalendarEmbedUrl);
 add('/feedback/', P.feedback(), false);   // utility page: noindex, not in the sitemap
@@ -34,12 +35,22 @@ fs.writeFileSync(path.join(OUT, '404.html'), P.notFound());
 
 const base = site.siteUrl || 'https://SET-siteUrl-IN-src-data.mjs';
 const today = new Date().toISOString().slice(0, 10);
+// Honest <lastmod>: a page's date only moves when its content actually changes (hash of the HTML without the CSS/JS cache-busting tag).
+const LM_FILE = path.join(path.dirname(new URL(import.meta.url).pathname.replace(/%20/g, ' ')), 'src', 'lastmod.json');
+const lm = fs.existsSync(LM_FILE) ? JSON.parse(fs.readFileSync(LM_FILE, 'utf8')) : {};
+const lastmod = (u) => {
+  const file = path.join(OUT, u === '/' ? '' : u, 'index.html');
+  const h = crypto.createHash('md5').update(fs.readFileSync(file, 'utf8').replace(/\?v=[a-f0-9]{8}/g, '')).digest('hex');
+  if (!lm[u] || lm[u].hash !== h) lm[u] = { hash: h, date: today };
+  return lm[u].date;
+};
 fs.writeFileSync(
   path.join(OUT, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls
-    .map((u) => `  <url><loc>${base}${u}</loc><lastmod>${today}</lastmod></url>`)
+    .map((u) => `  <url><loc>${base}${u}</loc><lastmod>${lastmod(u)}</lastmod></url>`)
     .join('\n')}\n</urlset>\n`,
 );
+fs.writeFileSync(LM_FILE, JSON.stringify(lm, null, 1));
 fs.writeFileSync(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${base}/sitemap.xml\n`);
 
 console.log(`Built ${urls.length} pages + 404, sitemap.xml, robots.txt`);

@@ -176,7 +176,7 @@ ${integrations.googleReviewUrl ? `<section class="review-sec" aria-labelledby="r
     <div>
       ${eyebrow('Service Area')}
       <h2 id="areas-h">Drywall Services Across Metro Detroit.</h2>
-      <p>Based in Dearborn Heights, The Original Patch Master serves homeowners throughout Metro Detroit, Downriver and surrounding communities.</p>
+      <p>Based in Dearborn Heights, The Original Patch Master serves commercial and residential customers throughout Metro Detroit, Downriver and surrounding communities.</p>
     </div>
     <ul class="areas__list">
       ${locations.map((l) => `<li><a href="${locUrl(l.slug)}">${esc(l.name)}${icon('arrow')}</a></li>`).join('')}
@@ -232,7 +232,7 @@ ${ctaBand({ h: 'Not Sure What the Job Needs?', p: 'Describe it and we will tell 
   return page(
     {
       title: 'Drywall & Plaster Services | The Original Patch Master',
-      desc: 'Commercial drywall installation, repair and finishing, plaster repair, Level 5 finishing, dustless sanding, insulation and window glazing from The Original Patch Master.',
+      desc: 'Commercial drywall installation, repair and finishing, plaster repair, Level 5 finishing, dustless sanding, insulation and window glazing.',
       path: '/services/',
       schema: [breadcrumbSchema(crumbs.map((c, i) => ({ ...c })))],
     },
@@ -330,8 +330,10 @@ ${ctaBand({ h: `Need ${s.name === 'Basements, Garages & Houses' ? 'a Space Finis
       '@context': 'https://schema.org',
       '@type': 'Service',
       name: s.name,
+      url: abs(p),
+      serviceType: s.name,
       description: s.desc,
-      provider: { '@type': 'HomeAndConstructionBusiness', '@id': abs('/#business'), name: site.name, telephone: '+1-734-489-2284' },
+      provider: { '@type': 'HomeAndConstructionBusiness', '@id': abs('/#business'), name: site.name, url: abs('/'), telephone: '+1-734-489-2284' },
       areaServed: ['Dearborn Heights', 'Dearborn', 'Monroe', 'Carleton', 'Downriver'].map((n) => ({ '@type': 'Place', name: n + ', MI' })),
     }),
     faqSchema(s.faq),
@@ -518,6 +520,7 @@ export function ourWork() {
 ${pageHero({ crumbs, h1: 'Our Work', lead: 'Real footage from Patch Master jobs: taping and finishing, sanding, ceiling and high-wall work. Tap any clip to watch.', ctas: false })}
 <section class="section">
   <div class="wrap">
+    <p class="work-intro">These clips show taping and finishing, sanding, and ceiling and high-wall work on real jobs. To learn more about the work, see <a href="${svcUrl('drywall-installation')}">drywall installation</a>, <a href="${svcUrl('level-5-finishing')}">Level 5 finishing</a> and <a href="${svcUrl('dustless-sanding')}">dustless sanding</a>, or <a href="/contact/">request a free estimate</a>.</p>
     <div class="filters" role="group" aria-label="Filter projects">
       ${galleryFilters.map(([k, label], i) => `<button type="button" class="filter" data-filter="${k}" aria-pressed="${i === 0}">${label}</button>`).join('')}
     </div>
@@ -721,7 +724,7 @@ ${pageHero({ crumbs, h1: 'Come Work With Patch Master.', lead: 'The Original Pat
   return page(
     {
       title: 'Careers | The Original Patch Master',
-      desc: 'Apply to work with The Original Patch Master, a family-owned drywall and plaster business serving Metro Detroit. Experience in drywall, finishing or plaster welcome.',
+      desc: 'Apply to work with The Original Patch Master, a drywall and plaster company serving Metro Detroit. Experience in drywall, finishing or plaster welcome.',
       path: '/careers/',
       schema: [breadcrumbSchema(crumbs)],
     },
