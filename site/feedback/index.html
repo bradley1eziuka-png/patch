@@ -18,7 +18,7 @@
 <link rel="icon" type="image/png" href="/assets/img/favicon.png">
 <link rel="preload" href="/assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/style.css?v=cb29f4a1">
+<link rel="stylesheet" href="/assets/css/style.css?v=cd431f01">
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://originalpatchmaster.com/"},{"@type":"ListItem","position":2,"name":"Feedback","item":"https://originalpatchmaster.com/feedback/"}]}</script>
 </head>
@@ -55,7 +55,7 @@
 
 <section class="section rate-sec">
   <div class="wrap wrap--narrow">
-    <div class="rate-card" id="rate-card">
+    <div class="rate-card" id="rate-card" data-google="https://www.google.com/search?q=734-489-2284&amp;oq=734-489-2284&amp;gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBBzIzNWowajeoAgCwAgA&amp;sourceid=chrome&amp;source=chrome.ob&amp;ie=UTF-8&amp;sei=ajLlatW4KsLrmLQPyOHfgQk#lrd=0x4c4d6088ca81bc29:0x5e6fdc70418cdee2,3,,,,">
       <img class="rate-card__logo" src="/assets/img/brand-logo-400.webp" alt="The Original Patch Master" width="400" height="300">
       <h1>How would you rate us?</h1>
       <p class="rate-card__sub">Thank you for choosing The Original Patch Master. Tap a star to rate your experience.</p>
@@ -64,26 +64,10 @@
         <input type="radio" id="star-1" name="rating" value="1"><label for="star-1" title="1 star: Poor"><span class="sr">1 star, Poor</span><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.2 6.4 20.2l1.1-6.2L3 9.6l6.2-.9Z"/></svg></label><input type="radio" id="star-2" name="rating" value="2"><label for="star-2" title="2 stars: Fair"><span class="sr">2 stars, Fair</span><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.2 6.4 20.2l1.1-6.2L3 9.6l6.2-.9Z"/></svg></label><input type="radio" id="star-3" name="rating" value="3"><label for="star-3" title="3 stars: Good"><span class="sr">3 stars, Good</span><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.2 6.4 20.2l1.1-6.2L3 9.6l6.2-.9Z"/></svg></label><input type="radio" id="star-4" name="rating" value="4"><label for="star-4" title="4 stars: Very good"><span class="sr">4 stars, Very good</span><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.2 6.4 20.2l1.1-6.2L3 9.6l6.2-.9Z"/></svg></label><input type="radio" id="star-5" name="rating" value="5"><label for="star-5" title="5 stars: Excellent"><span class="sr">5 stars, Excellent</span><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.2 6.4 20.2l1.1-6.2L3 9.6l6.2-.9Z"/></svg></label>
       </fieldset>
       <p class="rate-card__live" id="rate-live" role="status" aria-live="polite">Select a rating to continue.</p>
-      <!-- Next: 1-3 stars go to /feedback/private/ (no Google link). 4-5 stars reveal the Google review option below. -->
+      <!-- Next: 1-3 stars go to /feedback/private/ (no Google link). 4-5 stars are sent straight to the Google review URL (integrations.googleReviewUrl). -->
       <button type="button" class="btn rate-card__next" id="rate-next" disabled>Next</button>
 
-      <div class="rate-options" id="rate-options" hidden>
-        <h2 id="rate-options-h" tabindex="-1">Thank you! Would you share your experience on Google?</h2>
-        <div class="rate-options__grid rate-options__grid--one">
-          <a class="rate-opt rate-opt--google" href="https://www.google.com/search?q=734-489-2284&amp;oq=734-489-2284&amp;gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBBzIzNWowajeoAgCwAgA&amp;sourceid=chrome&amp;source=chrome.ob&amp;ie=UTF-8&amp;sei=ajLlatW4KsLrmLQPyOHfgQk#lrd=0x4c4d6088ca81bc29:0x5e6fdc70418cdee2,3,,,," target="_blank" rel="noopener"><span class="rate-opt__title">Leave a Google Review</span><span class="rate-opt__sub">Share your experience publicly on Google</span></a>
-        </div>
-        <p class="rate-options__alt">Prefer to send private feedback? <a id="rate-private-link" href="/feedback/private/">Send private feedback</a></p>
-      </div>
     </div>
-  </div>
-</section>
-
-<!-- Revealed only for 4-5 star ratings (after Next). Not visible to 1-3 star raters. -->
-<section class="gsec" id="gsec" aria-labelledby="gsec-h" hidden>
-  <div class="wrap wrap--narrow center">
-    <h2 id="gsec-h">Review Us on Google</h2>
-    <div class="gsec__stars" role="img" aria-label="Five stars"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.2 6.4 20.2l1.1-6.2L3 9.6l6.2-.9Z"/></svg><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.2 6.4 20.2l1.1-6.2L3 9.6l6.2-.9Z"/></svg><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.2 6.4 20.2l1.1-6.2L3 9.6l6.2-.9Z"/></svg><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.2 6.4 20.2l1.1-6.2L3 9.6l6.2-.9Z"/></svg><svg class="icon " viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.2 6.4 20.2l1.1-6.2L3 9.6l6.2-.9Z"/></svg></div>
-    <a class="btn gsec__btn" href="https://www.google.com/search?q=734-489-2284&amp;oq=734-489-2284&amp;gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBBzIzNWowajeoAgCwAgA&amp;sourceid=chrome&amp;source=chrome.ob&amp;ie=UTF-8&amp;sei=ajLlatW4KsLrmLQPyOHfgQk#lrd=0x4c4d6088ca81bc29:0x5e6fdc70418cdee2,3,,,," target="_blank" rel="noopener">Leave Us a Review</a>
   </div>
 </section>
 </main>
@@ -120,6 +104,6 @@
   </div>
   <div class="footer__legal"><div class="wrap"><p class="footer__links"><a href="/privacy-policy/">Privacy Policy</a><span aria-hidden="true">|</span><a href="/terms-and-conditions/">Terms &amp; Conditions</a><span aria-hidden="true">|</span><a href="/sms-opt-in/">SMS Opt-In</a><span aria-hidden="true">|</span><a href="/feedback/">Leave Feedback</a></p><p>&copy; 2026 The Original Patch Master. Fully insured. Serving Dearborn Heights and Metro Detroit.</p><p class="footer__credit"><a href="https://getarclo.com" target="_blank" rel="noopener">Website by Arclo</a></p></div></div>
 </footer>
-<script src="/assets/js/site.js?v=cb29f4a1" defer></script>
+<script src="/assets/js/site.js?v=cd431f01" defer></script>
 </body>
 </html>

@@ -179,7 +179,6 @@
     var rLabels = rateCard.querySelectorAll('.rate-stars label');
     var rNext = document.getElementById('rate-next');
     var rLive = document.getElementById('rate-live');
-    var rOpts = document.getElementById('rate-options');
     var rWords = ['Poor', 'Fair', 'Good', 'Very good', 'Excellent'];
     var rCur = 0;
     var paint = function (n) { rLabels.forEach(function (l, i) { l.classList.toggle('is-on', i < n); }); };
@@ -197,16 +196,16 @@
     rateCard.querySelector('.rate-stars').addEventListener('mouseleave', function () { paint(rCur); });
     rNext.addEventListener('click', function () {
       if (!rCur) return;
-      // 1-3 stars: separate private-feedback page (no Google link). 4-5 stars: offer the Google review.
+      // 1-3 stars: private feedback page (no Google link). 4-5 stars: straight to the Google review link.
       if (rCur <= 3) { location.href = '/feedback/private/?rating=' + rCur; return; }
-      var link = document.getElementById('rate-private-link');
-      if (link) link.href = '/feedback/private/?rating=' + rCur;
-      rOpts.hidden = false;
-      var gs = document.getElementById('gsec'); if (gs) gs.hidden = false;
-      rNext.hidden = true;
-      var h = document.getElementById('rate-options-h');
-      h.focus();
-      h.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      var g = rateCard.getAttribute('data-google');
+      if (g) {
+        rNext.disabled = true;
+        rLive.textContent = 'Thank you! Taking you to Google...';
+        location.href = g;
+      } else {
+        rLive.textContent = 'Thank you for the great rating!';
+      }
     });
   }
 

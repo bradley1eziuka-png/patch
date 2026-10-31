@@ -921,7 +921,7 @@ export function feedback() {
   const body = `
 <section class="section rate-sec">
   <div class="wrap wrap--narrow">
-    <div class="rate-card" id="rate-card">
+    <div class="rate-card" id="rate-card"${g ? ` data-google="${esc(g)}"` : ''}>
       <img class="rate-card__logo" src="/assets/img/brand-logo-400.webp" alt="The Original Patch Master" width="400" height="300">
       <h1>How would you rate us?</h1>
       <p class="rate-card__sub">Thank you for choosing ${BIZ}. Tap a star to rate your experience.</p>
@@ -930,30 +930,10 @@ export function feedback() {
         ${[1, 2, 3, 4, 5].map((n) => `<input type="radio" id="star-${n}" name="rating" value="${n}"><label for="star-${n}" title="${n} star${n > 1 ? 's' : ''}: ${labels[n - 1]}"><span class="sr">${n} star${n > 1 ? 's' : ''}, ${labels[n - 1]}</span>${icon('star')}</label>`).join('')}
       </fieldset>
       <p class="rate-card__live" id="rate-live" role="status" aria-live="polite">Select a rating to continue.</p>
-      <!-- Next: 1-3 stars go to /feedback/private/ (no Google link). 4-5 stars reveal the Google review option below. -->
+      <!-- Next: 1-3 stars go to /feedback/private/ (no Google link). 4-5 stars are sent straight to the Google review URL (integrations.googleReviewUrl). -->
       <button type="button" class="btn rate-card__next" id="rate-next" disabled>Next</button>
 
-      <div class="rate-options" id="rate-options" hidden>
-        <h2 id="rate-options-h" tabindex="-1">Thank you! Would you share your experience on Google?</h2>
-        <div class="rate-options__grid rate-options__grid--one">
-          ${g
-            ? `<a class="rate-opt rate-opt--google" href="${esc(g)}" target="_blank" rel="noopener"><span class="rate-opt__title">Leave a Google Review</span><span class="rate-opt__sub">Share your experience publicly on Google</span></a>`
-            : `<div class="rate-opt rate-opt--off" role="note"><span class="rate-opt__title">Leave a Google Review</span><span class="rate-opt__sub">Our Google review link is coming soon. Please check back shortly.</span></div>`}
-        </div>
-        <p class="rate-options__alt">Prefer to send private feedback? <a id="rate-private-link" href="/feedback/private/">Send private feedback</a></p>
-      </div>
     </div>
-  </div>
-</section>
-
-<!-- Revealed only for 4-5 star ratings (after Next). Not visible to 1-3 star raters. -->
-<section class="gsec" id="gsec" aria-labelledby="gsec-h" hidden>
-  <div class="wrap wrap--narrow center">
-    <h2 id="gsec-h">Review Us on Google</h2>
-    <div class="gsec__stars" role="img" aria-label="Five stars">${goldStars}</div>
-    ${g
-      ? `<a class="btn gsec__btn" href="${esc(g)}" target="_blank" rel="noopener">Leave Us a Review</a>`
-      : `<p class="gsec__off">Our Google review link is coming soon. Thank you for your patience.</p>`}
   </div>
 </section>`;
   return page({ title: 'How Would You Rate Us? | The Original Patch Master', desc: 'Rate your experience with The Original Patch Master and share feedback, or leave a Google review.', path: '/feedback/', schema: [breadcrumbSchema(crumbs)], noindex: true }, body);
