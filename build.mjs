@@ -26,7 +26,7 @@ add('/terms-and-conditions/', P.terms());
 // SMS opt-in: noindex and out of the sitemap until its GHL endpoint is configured.
 add('/sms-opt-in/', P.smsOptIn(), false);   // indexable (carrier reviewers) but not promoted in the sitemap
 // Utility pages: noindex and kept out of the sitemap until configured (book-estimate joins once the calendar embed exists).
-add('/book-estimate/', P.bookEstimate(), !!integrations.ghlCalendarEmbedUrl);
+add('/book-estimate/', P.bookEstimate(), false);   // post-submission step: noindex, kept out of the sitemap
 add('/feedback/', P.feedback(), false);   // utility page: noindex, not in the sitemap
 add('/feedback/private/', P.feedbackPrivate(), false);   // never indexed
 services.forEach((s) => add(`/services/${s.slug}/`, P.servicePage(s)));

@@ -674,11 +674,11 @@ export const integrations = {
   ghlLeadProxy: '',
 
   // GHL calendar embed URL (the iframe "src" from GHL > Calendars > Embed). Empty => /book-estimate/ shows a phone fallback, no iframe.
-  ghlCalendarEmbedUrl: '',
+  ghlCalendarEmbedUrl: 'https://api.getarclo.com/widget/booking/8OQvLR9ybNPvI6L6GRwg',
   // GHL permanent booking link (shareable calendar URL). Optional; shown as an "open in a new tab" link.
   ghlBookingLink: '',
   // After the calendar works, set true to send customers to /book-estimate/ after a successful estimate request.
-  bookAfterEstimate: false,
+  bookAfterEstimate: true,
 
   // ==== GOOGLE REVIEW LINK: the ONE place to set it. ====
   // Paste the Google Business Profile "write a review" URL (from the profile's "Ask for reviews" / share-review-link option)

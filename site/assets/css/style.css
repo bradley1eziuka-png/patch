@@ -609,7 +609,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px
 
 /* ---------- Book estimate ---------- */
 .cal { background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--orange); border-radius: 4px; box-shadow: var(--shadow-2); overflow: hidden; }
-.cal iframe { display: block; width: 100%; height: 1000px; border: 0; }
+.cal iframe { display: block; width: 100%; min-height: 700px; height: 1000px; border: 0; }
 @media (max-width: 639px) { .cal iframe { height: 1150px; } }
 .cal-fallback { padding: 40px 28px; text-align: center; }
 .cal-fallback p { margin-inline: auto; }

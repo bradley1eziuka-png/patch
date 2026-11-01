@@ -868,27 +868,23 @@ export function bookEstimate() {
   const crumbs = [homeCrumb, { name: 'Schedule Your Free Estimate', href: '/book-estimate/' }];
   const embed = integrations.ghlCalendarEmbedUrl;
   const ready = /^https:\/\//.test(embed || '');
+  const embedId = (embed || '').split('/').pop() + '_1793572876787';
   const body = `
-${pageHero({ crumbs, h1: 'Schedule Your Free Estimate', lead: 'Pick a time that works for you and tell us about the job.', ctas: false })}
+${pageHero({ crumbs, h1: 'Schedule Your Free Estimate', lead: '', ctas: false })}
 <section class="section">
   <div class="wrap wrap--narrow">
-    <div class="prose">
-      <h2>What to expect</h2>
-      <ul>
-        <li>Choose a day and time that works for you.</li>
-        <li>We look at the job and give you a free estimate.</li>
-        <li>We explain what the work involves.</li>
-      </ul>
-    </div>
-    <!-- GHL CALENDAR: set \`integrations.ghlCalendarEmbedUrl\` in src/data.mjs to the iframe src from GHL and rebuild. See INTEGRATIONS.md. -->
+    <p class="center lead-msg" id="book-msg" data-after="Thank you! We've received your estimate request. Choose an available date and time below to schedule your free estimate.">Schedule your free estimate with The Original Patch Master. Choose an available date and time below.</p>
+    <!-- GHL CALENDAR: integrations.ghlCalendarEmbedUrl in src/data.mjs. The resize script loads only on this page, once. See INTEGRATIONS.md. -->
     <div class="cal">${ready
-      ? `<iframe src="${esc(embed)}" title="Schedule your free estimate" loading="lazy" scrolling="yes"></iframe>`
+      ? `<iframe src="${esc(embed)}" id="${esc(embedId)}" title="Schedule your free estimate" allow="payment" scrolling="no"></iframe>`
       : `<div class="cal-fallback"><h3>Online scheduling is coming soon</h3><p>To set up your free estimate now, call us or send the details through our contact form.</p><div class="btn-row btn-row--center"><a class="btn" href="${site.phoneHref}">Call ${PH}</a><a class="btn btn--outline" href="/contact/">Request an Estimate</a></div></div>`}</div>
-    ${ready && integrations.ghlBookingLink ? `<p class="center" style="margin-top:18px">Calendar not loading? <a href="${esc(integrations.ghlBookingLink)}" target="_blank" rel="noopener">Open the booking calendar in a new tab</a>.</p>` : ''}
+    ${ready ? `<script>(function(){var s='https://api.getarclo.com/js/form_embed.js';if(!document.querySelector('script[src="'+s+'"]')){var e=document.createElement('script');e.src=s;e.async=true;document.body.appendChild(e);}})();</script>` : ''}
+    <noscript><p class="center">Scheduling needs JavaScript. Please call <a href="${site.phoneHref}">${PH}</a> to set up your estimate.</p></noscript>
     <p class="center" style="margin-top:24px">Prefer to talk? Call <a href="${site.phoneHref}">${PH}</a>, ${site.hours.days}, 7 AM to 5 PM.</p>
   </div>
 </section>`;
-  return page({ title: 'Schedule Your Free Estimate | The Original Patch Master', desc: 'Schedule a free drywall or plaster estimate with The Original Patch Master in Dearborn Heights and Metro Detroit.', path: '/book-estimate/', schema: [breadcrumbSchema(crumbs)], noindex: !ready }, body);
+  // Post-submission step: noindex and out of the sitemap.
+  return page({ title: 'Schedule Your Free Estimate | The Original Patch Master', desc: 'Schedule a free drywall or plaster estimate with The Original Patch Master in Dearborn Heights and Metro Detroit.', path: '/book-estimate/', schema: [breadcrumbSchema(crumbs)], noindex: true }, body);
 }
 
 // ===========================================================================

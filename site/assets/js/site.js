@@ -316,7 +316,8 @@
           leadId = newId();
           say(form.getAttribute('data-ok') || 'Thank you. Your request was sent. We will get back to you during business hours.', 'ok');
           if (payload) forwardToGhl(proxy, payload);
-          if (bookUrl) setTimeout(function () { location.href = bookUrl; }, 1800);
+          if (bookUrl) { try { sessionStorage.setItem('pm_estimate_sent', '1'); } catch (e) { /* message falls back to the direct-visit wording */ } }
+          if (bookUrl) setTimeout(function () { location.href = bookUrl; }, 1200);
         })
         .catch(function () {
           done();
@@ -324,6 +325,14 @@
         });
     });
   });
+
+  // /book-estimate/: show the "request received" wording only right after a successful estimate submission (one-time flag, no customer data).
+  var bookMsg = document.getElementById('book-msg');
+  if (bookMsg) {
+    try {
+      if (sessionStorage.getItem('pm_estimate_sent') === '1') { bookMsg.textContent = bookMsg.getAttribute('data-after'); sessionStorage.removeItem('pm_estimate_sent'); }
+    } catch (e) { /* keep the default wording */ }
+  }
 
   // Forward an already-accepted lead to the server-side GHL proxy. Fire-and-forget with one retry; never shown to the customer.
   function forwardToGhl(url, payload) {
