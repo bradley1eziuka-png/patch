@@ -132,7 +132,7 @@ export function businessSchema() {
     email: site.email,
     image: abs('/assets/img/og-default.jpg'),
     logo: abs('/assets/img/logo.png'),
-    address: { '@type': 'PostalAddress', streetAddress: site.address.street, addressLocality: site.address.city, addressRegion: site.address.region, addressCountry: 'US' },
+    address: { '@type': 'PostalAddress', addressLocality: site.address.city, addressRegion: site.address.region, addressCountry: 'US' },
     openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '07:00', closes: '17:00' }],
     areaServed: [
       ...['Dearborn Heights', 'Dearborn', 'Monroe', 'Carleton'].map((n) => ({ '@type': 'City', name: n, containedInPlace: { '@type': 'AdministrativeArea', name: 'Michigan' } })),
@@ -233,7 +233,7 @@ export function footer() {
   const a = site.address;
   return `<div class="infostrip">
   <div class="wrap infostrip__grid">
-    <p>${icon('pin')}<span><strong>Business Address</strong>${a.street}, ${a.city}, ${a.region}</span></p>
+    <p>${icon('pin')}<span><strong>Service Area</strong>Dearborn Heights, Detroit &amp; Surrounding Metro Detroit Communities</span></p>
     <p>${icon('phone')}<span><strong>Call</strong><a href="${site.phoneHref}">${site.phone}</a></span></p>
     <p>${icon('mail')}<span><strong>Email</strong><a href="mailto:${site.email}">${site.email}</a></span></p>
     <p>${icon('clock')}<span><strong>Hours</strong>${site.hours.days}, 7 AM to 5 PM</span></p>
@@ -243,7 +243,7 @@ export function footer() {
   <div class="wrap footer__grid">
     <div class="footer__brand">
       <a class="footer__logo" href="/" aria-label="The Original Patch Master home"><img src="/assets/img/patch-master-logo.png" alt="The Original Patch Master" width="661" height="362" loading="lazy"></a>
-      <p>Commercial drywall, plaster and finishing contractor in Dearborn Heights. Fully insured. Free estimates.</p>
+      <p>Residential and commercial drywall, plaster and finishing contractor in Dearborn Heights. Fully insured. Free estimates.</p>
       <ul class="social">
         <li><a href="${site.social.facebook}" target="_blank" rel="noopener" aria-label="The Original Patch Master on Facebook">${icon('facebook')}</a></li>
         <li><a href="${site.social.instagram}" target="_blank" rel="noopener" aria-label="The Original Patch Master on Instagram">${icon('instagram')}</a></li>

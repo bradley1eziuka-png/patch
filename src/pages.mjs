@@ -24,10 +24,10 @@ const slotMedia = (slot, o = {}) => (slotVideo[slot] ? vidFigure(slotVideo[slot]
 // 'framed' is the earlier portrait-panel design (set hero.layout in src/data.mjs).
 function heroSection() {
   const copy = `    <div class="hero__copy">
-      <p class="hero__eyebrow">Commercial Drywall &amp; Plaster &bull; Serving Metro Detroit</p>
+      <p class="hero__eyebrow">Residential &amp; Commercial Drywall &bull; Serving Metro Detroit</p>
       <h1>Drywall Repair, Installation &amp; Finishing.</h1>
       <p class="hero__proof">25 Years in the Trade.</p>
-      <p class="hero__body">Commercial drywall installation, plaster repair and professional finishing, plus residential repairs and finishing for basements, garages and homes, across Metro Detroit.</p>
+      <p class="hero__body">Residential and commercial drywall installation, repair, plaster repair and professional finishing, including basements, garages and whole homes, across Metro Detroit.</p>
       <div class="btn-row">${estimateBtn()}${callBtn()}</div>
       <ul class="hero__checks"><li>${icon('check')}Fully insured</li><li>${icon('check')}Free estimates</li><li>${icon('check')}Dearborn Heights</li></ul>
     </div>`;
@@ -106,7 +106,7 @@ ${heroSection()}
       ${eyebrow('About The Original Patch Master')}
       <h2>Craftsmanship That Speaks for Itself.</h2>
       <p>The Original Patch Master delivers professional drywall, plaster repair, and finishing services throughout Metro Detroit. Our team of highly qualified craftsmen brings experience, attention to detail, and pride in workmanship to every project.</p>
-      <p>From commercial drywall installations to detailed repairs and smooth finishing work, we focus on delivering dependable service and results our customers can trust.</p>
+      <p>From residential repairs to commercial drywall installations and smooth finishing work, we focus on delivering dependable service and results our customers can trust.</p>
       <a class="btn btn--navy" href="/our-work/">Explore Our Work</a>
     </div>
   </div>
@@ -189,8 +189,8 @@ ${ctaBand({ h: 'Have a Drywall Project in Mind?', p: "Tell us what needs to be r
 
   return page(
     {
-      title: 'The Original Patch Master | Commercial Drywall & Plaster',
-      desc: 'Commercial drywall installation, plaster repair and finishing across Metro Detroit, plus residential work. 25 years in the trade. Fully insured. Free estimates.',
+      title: 'Residential & Commercial Drywall | The Original Patch Master',
+      desc: 'The Original Patch Master provides residential and commercial drywall installation, repair, plaster repair, and finishing throughout Metro Detroit. 25 years in the trade.',
       path: '/',
       schema: [businessSchema()],
       extraHead: hero.layout === 'framed' ? `<link rel="preload" as="image" href="${hero.poster}" fetchpriority="high">` : `<link rel="preload" as="image" href="${hero.poster}" media="(max-width: 899px)" fetchpriority="high">
@@ -575,7 +575,7 @@ ${pageHero({ crumbs, h1: 'Get a Free Estimate', lead: 'Call, email or send the d
       <ul class="contact__list">
         <li>${icon('mail')}<span><strong>Email</strong><a href="mailto:${site.email}">${site.email}</a></span></li>
         <li>${icon('clock')}<span><strong>Hours</strong>${site.hours.days}<br>7:00 AM to 5:00 PM</span></li>
-        <li>${icon('pin')}<span><strong>Business Address</strong>${a.street}<br>${a.city}, ${a.region}</span></li>
+        <li>${icon('pin')}<span><strong>Service Area</strong>Dearborn Heights, Detroit &amp; Surrounding Metro Detroit Communities</span></li>
         <li>${icon('check')}<span><strong>Estimates</strong>Free</span></li>
       </ul>
       <ul class="social social--dark">
@@ -628,7 +628,7 @@ ${pageHero({ crumbs, h1: 'Get a Free Estimate', lead: 'Call, email or send the d
             <input type="checkbox" id="sms-marketing" data-consent="marketing">
             <label for="sms-marketing" data-consent-text="marketing">${esc(smsConsent.marketing)}</label>
           </div>` : ''}
-          <p class="consent__fine">${esc(smsConsent.note)} Messages are sent by The Original Patch Master, 25244 Annapolis St, Dearborn Heights, MI. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms-and-conditions/">Terms &amp; Conditions</a>.</p>
+          <p class="consent__fine">${esc(smsConsent.note)} Messages are sent by The Original Patch Master, Dearborn Heights, MI. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms-and-conditions/">Terms &amp; Conditions</a>.</p>
         </div>
         <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
         <button class="btn btn--block-sm" type="submit">Send Estimate Request</button>
@@ -748,7 +748,7 @@ ${body}
   );
 };
 const BIZ = 'The Original Patch Master';
-const ADDR = `${site.address.street}, ${site.address.city}, ${site.address.region}`;
+const ADDR = `${site.address.city}, ${site.address.region}`;
 const contactLine = `<a href="${site.phoneHref}">${PH}</a> or <a href="mailto:${site.email}">${site.email}</a>`;
 
 export function privacyPolicy() {
@@ -764,7 +764,7 @@ export function privacyPolicy() {
     //  - Have the owner (or counsel) read it. It is plain-language, not legal advice.
     body: `
 <h2>Who we are</h2>
-<p>${BIZ} is a drywall and plaster company based at ${ADDR}. This policy covers this website, originalpatchmaster.com.</p>
+<p>${BIZ} is a drywall and plaster company based in ${ADDR}. This policy covers this website, originalpatchmaster.com.</p>
 
 <h2>Information we collect</h2>
 <p>We collect only what you choose to send us through our forms:</p>

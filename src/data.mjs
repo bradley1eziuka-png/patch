@@ -6,14 +6,14 @@
 
 export const site = {
   name: 'The Original Patch Master',
-  tagline: 'Commercial drywall, plaster and finishing contractor',
+  tagline: 'Residential and commercial drywall, plaster and finishing contractor',
   phone: '734-489-2284',
   phoneHref: 'tel:+17344892284',
   email: 'raegirlg@icloud.com',
   owner: 'Jeremy Girard',
   family: ['Lillian Girard (works in the family business; exact relationship to Jeremy not confirmed)', 'Jonas (Jeremy\'s son)'],
   hours: { days: 'Monday to Friday', time: '7:00 AM to 5:00 PM', short: 'Mon to Fri, 7 AM to 5 PM' },
-  address: { street: '25244 Annapolis St', city: 'Dearborn Heights', region: 'MI', regionLong: 'Michigan' },
+  address: { city: 'Dearborn Heights', region: 'MI', regionLong: 'Michigan' },
   social: {
     facebook: 'https://www.facebook.com/share/18a466j8Mp/?mibextid=wwXIfr',
     instagram: 'https://www.instagram.com/patch_master_?stkn=end3MThldmtsZnhl&utm_source=qr',
@@ -370,13 +370,13 @@ export const locations = [
     lead: 'The Original Patch Master is based here. Call for repairs, finishing, or a full basement, garage or house.',
     sections: [
       { h: 'Commercial and residential work', p: ['We work on commercial and residential properties here. Commercial drywall installation, repair and finishing is a priority for The Original Patch Master, alongside residential repairs, basements and garages. Describe the property when you call 734-489-2284 and we will give you a free estimate.'] },
-      { h: 'A Dearborn Heights business', p: ['The Original Patch Master runs out of Dearborn Heights. This is our home area. Our business address is 25244 Annapolis St.'] },
+      { h: 'A Dearborn Heights business', p: ['The Original Patch Master runs out of Dearborn Heights. This is our home area, and we travel to jobs across Metro Detroit.'] },
       { h: 'Jobs we take', p: ['Homeowners call us about a patched wall, a cracked ceiling, a basement that needs finishing or a garage that is still bare framing. The full list is below.'], services: ['drywall-repair', 'drywall-installation', 'plaster-repair', 'basement-garage-house-finishing', 'level-5-finishing', 'insulation'] },
       { h: 'How to book', p: ['Estimates are free. Call 734-489-2284 Monday to Friday, 7 AM to 5 PM, or use the contact form and tell us what you need.'] },
     ],
     faq: [
       { q: 'Do you do commercial drywall work in Dearborn Heights?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-489-2284 with the address or town and the work you need.' },
-      { q: 'Where is The Original Patch Master located?', a: 'We are based in Dearborn Heights, Michigan. Our business address is 25244 Annapolis St. Call or use the contact form to set up an estimate.' },
+      { q: 'Where is The Original Patch Master located?', a: 'We are based in Dearborn Heights, Michigan, and we serve Metro Detroit. Call or use the contact form to set up an estimate.' },
       { q: 'What hours can I call?', a: 'Monday to Friday, 7:00 AM to 5:00 PM.' },
     ],
     near: ['dearborn', 'downriver', 'metro-detroit'],
