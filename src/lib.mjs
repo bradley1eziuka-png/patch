@@ -128,7 +128,7 @@ export function businessSchema() {
     '@id': abs('/#business'),
     name: site.name,
     description: site.tagline + ' serving Dearborn Heights and Metro Detroit.',
-    telephone: '+1-734-489-2284',
+    telephone: '+1-734-472-4266',
     email: site.email,
     image: abs('/assets/img/og-default.jpg'),
     logo: abs('/assets/img/logo.png'),

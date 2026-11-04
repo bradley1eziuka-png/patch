@@ -1,95 +1,95 @@
 {
  "/": {
-  "hash": "62d27613d6e2cb2a811212b54a468226",
-  "date": "2026-11-02"
+  "hash": "acf64c480eabde97fdca20217165c039",
+  "date": "2026-11-03"
  },
  "/services/": {
-  "hash": "f6ab43dfaf17312e4cba4d6269a89a86",
-  "date": "2026-11-02"
+  "hash": "3af5014b602a0d1d0dd02d4198f55249",
+  "date": "2026-11-03"
  },
  "/about/": {
-  "hash": "e0699a2969f64e6096e900801b4ff698",
-  "date": "2026-11-02"
+  "hash": "edc17b2f4726c05b86a41f9554d626b7",
+  "date": "2026-11-03"
  },
  "/our-work/": {
-  "hash": "a7ca8eae88b533811d9c5b8a3a87d1ee",
-  "date": "2026-11-02"
+  "hash": "611fd8cec1944c6be7eafcbffbcdf954",
+  "date": "2026-11-03"
  },
  "/service-areas/": {
-  "hash": "24bbd7c0b2c25321e9cb272261b263c9",
-  "date": "2026-11-02"
+  "hash": "096b203972d16ee11315337ac8bf38f3",
+  "date": "2026-11-03"
  },
  "/careers/": {
-  "hash": "8a9e1827e015676363c9038150764adc",
-  "date": "2026-11-02"
+  "hash": "93f3ad0b0bfaa1497666d892f2c7415f",
+  "date": "2026-11-03"
  },
  "/contact/": {
-  "hash": "4b849655dd4845ca1797368ed13f2b31",
-  "date": "2026-11-02"
+  "hash": "e2bd9d84becef80852f9bb3a5c46e095",
+  "date": "2026-11-03"
  },
  "/privacy-policy/": {
-  "hash": "f18e25d39b1bcce7874c453d0f1becc5",
-  "date": "2026-11-02"
+  "hash": "78db6126c77996ecc0f71533ad773dec",
+  "date": "2026-11-03"
  },
  "/terms-and-conditions/": {
-  "hash": "5881cdaa63d20c6349ca042be5d9fcf9",
-  "date": "2026-11-02"
+  "hash": "14ebfa21bf871024f0546d97c544e8bf",
+  "date": "2026-11-03"
  },
  "/services/drywall-repair/": {
-  "hash": "fc3dadae01b4334dec6a21b6fcd5034b",
-  "date": "2026-11-02"
+  "hash": "f0f5fe0d2b2fef1f0f4d9487778be4fc",
+  "date": "2026-11-03"
  },
  "/services/drywall-installation/": {
-  "hash": "8d14e3a0915b22f0050a85bd969d9eb2",
-  "date": "2026-11-02"
+  "hash": "b6a275b5ced3bcafe6fc1d1009ae1a35",
+  "date": "2026-11-03"
  },
  "/services/plaster-repair/": {
-  "hash": "a353dc403e0dd1e5d964f82c3e49711d",
-  "date": "2026-11-02"
+  "hash": "2b27195b891c68528f5348eb7252319e",
+  "date": "2026-11-03"
  },
  "/services/level-5-finishing/": {
-  "hash": "2dcdddbaa97521a5e885e05fa36a01cf",
-  "date": "2026-11-02"
+  "hash": "0b4fd5e33b54e30818ee25e8c3d1dc39",
+  "date": "2026-11-03"
  },
  "/services/dustless-sanding/": {
-  "hash": "cedbe039e5601d9febdeb9ca04b633d3",
-  "date": "2026-11-02"
+  "hash": "405ed6a6b4be9ce3ad9340379e39d405",
+  "date": "2026-11-03"
  },
  "/services/basement-garage-house-finishing/": {
-  "hash": "2c598b989722cf78e2a44b95ea0aeda9",
-  "date": "2026-11-02"
+  "hash": "4f4fc7edf18b4de508a3bcde33457a96",
+  "date": "2026-11-03"
  },
  "/services/insulation/": {
-  "hash": "015cef4415c4287baca418e6cd3c0a13",
-  "date": "2026-11-02"
+  "hash": "83041811e31ebdfe33d6603c77b3100d",
+  "date": "2026-11-03"
  },
  "/services/window-glazing-caulking/": {
-  "hash": "7852dd7524563531a28dd9984dea521d",
-  "date": "2026-11-02"
+  "hash": "af3ff34556370759502f039764a8c6da",
+  "date": "2026-11-03"
  },
  "/service-areas/dearborn-heights/": {
-  "hash": "08e0cbf5e6cbd57a17dfe32f0b07e5e0",
-  "date": "2026-11-02"
+  "hash": "1e2113ecf1e849d18713cc90c66b29b8",
+  "date": "2026-11-03"
  },
  "/service-areas/dearborn/": {
-  "hash": "3ce7fc8fd452d084eb5e9c4f97a1d80b",
-  "date": "2026-11-02"
+  "hash": "d53aee657ee42bb841cd2fc700f99f7e",
+  "date": "2026-11-03"
  },
  "/service-areas/monroe/": {
-  "hash": "6600b5c9010ca96c66a3addb9f533b49",
-  "date": "2026-11-02"
+  "hash": "c28ce90aac46bd4543d5563432f1850c",
+  "date": "2026-11-03"
  },
  "/service-areas/carleton/": {
-  "hash": "1b373739206df4a7a62d35f7c0fe5e6b",
-  "date": "2026-11-02"
+  "hash": "90db5e4a52503bdeca1dad4cb8a9b2f0",
+  "date": "2026-11-03"
  },
  "/service-areas/downriver/": {
-  "hash": "474901583a462b143f2c039a7fd9a8e8",
-  "date": "2026-11-02"
+  "hash": "1ad44ec05cfb842988bf10550415074f",
+  "date": "2026-11-03"
  },
  "/service-areas/metro-detroit/": {
-  "hash": "c16bbfa4e00ab3be200211c504e173be",
-  "date": "2026-11-02"
+  "hash": "774a556ce883f8c72794993e99502f95",
+  "date": "2026-11-03"
  },
  "/feedback/": {
   "hash": "b1091c94db93c3d2747f54eb9781f161",

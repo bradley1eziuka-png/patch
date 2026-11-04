@@ -7,8 +7,8 @@
 export const site = {
   name: 'The Original Patch Master',
   tagline: 'Residential and commercial drywall, plaster and finishing contractor',
-  phone: '734-489-2284',
-  phoneHref: 'tel:+17344892284',
+  phone: '734-472-4266',
+  phoneHref: 'tel:+17344724266',
   email: 'raegirlg@icloud.com',
   owner: 'Jeremy Girard',
   family: ['Lillian Girard (works in the family business; exact relationship to Jeremy not confirmed)', 'Jonas (Jeremy\'s son)'],
@@ -70,9 +70,9 @@ export const services = [
       'The repair is hung, taped and finished in stages, then sanded smooth. Our specialized dustless sanding equipment cuts down on the dust that ends up in your rooms.',
     ],
     faq: [
-      { q: 'Do you work on commercial properties?', a: 'Yes. We take commercial and residential jobs. Describe the property and the work when you call 734-489-2284 or use the contact form, and we will give you a free estimate.' },
+      { q: 'Do you work on commercial properties?', a: 'Yes. We take commercial and residential jobs. Describe the property and the work when you call 734-472-4266 or use the contact form, and we will give you a free estimate.' },
       { q: 'Do you take small repair jobs?', a: 'Yes. A single hole is a normal job for us. The Original Patch Master also handles larger repairs and full drywall projects.' },
-      { q: 'Is the estimate free?', a: 'Yes. Call 734-489-2284 or describe the damage on the contact form.' },
+      { q: 'Is the estimate free?', a: 'Yes. Call 734-472-4266 or describe the damage on the contact form.' },
       { q: 'Will I be able to see the repair?', a: 'The goal is a repair you cannot see once the wall is painted. Tell us about the wall when you call and we will explain what to expect.' },
     ],
     related: ['plaster-repair', 'dustless-sanding', 'level-5-finishing'],
@@ -151,7 +151,7 @@ export const services = [
       'The estimate is free and we explain what we found. Repairs are finished smooth, and sanding is done with specialized dustless equipment.',
     ],
     faq: [
-      { q: 'Do you work on commercial properties?', a: 'Yes. We take commercial and residential jobs. Describe the property and the work when you call 734-489-2284 or use the contact form, and we will give you a free estimate.' },
+      { q: 'Do you work on commercial properties?', a: 'Yes. We take commercial and residential jobs. Describe the property and the work when you call 734-472-4266 or use the contact form, and we will give you a free estimate.' },
       { q: 'Can you repair plaster and drywall in the same room?', a: 'Yes. The Original Patch Master does both, so one estimate covers the room.' },
       { q: 'What if the plaster is cracked in several places?', a: 'We look at the whole wall or ceiling during the estimate and tell you what it needs. Several cracks do not automatically mean a bigger job.' },
       { q: 'Is plaster repair messy?', a: 'Sanding makes dust on any plaster or drywall job. We use specialized equipment to cut it down.' },
@@ -190,7 +190,7 @@ export const services = [
       'Level 5 takes more time than a standard finish, and the estimate reflects that. The estimate is free and we explain the number.',
     ],
     faq: [
-      { q: 'Do you work on commercial properties?', a: 'Yes. We take commercial and residential jobs. Describe the property and the work when you call 734-489-2284 or use the contact form, and we will give you a free estimate.' },
+      { q: 'Do you work on commercial properties?', a: 'Yes. We take commercial and residential jobs. Describe the property and the work when you call 734-472-4266 or use the contact form, and we will give you a free estimate.' },
       { q: 'What is the difference between Level 4 and Level 5?', a: 'Level 4 has taped and finished seams. Level 5 adds a skim coat over the entire surface, which evens out the difference between the seams and the rest of the board.' },
       { q: 'Do I need Level 5 in every room?', a: 'No. Rooms with strong light, glossy paint or smooth ceilings benefit most. We will tell you if a standard finish is enough.' },
       { q: 'Does Level 5 make more dust?', a: 'Any sanding makes dust. We use specialized dustless sanding equipment on our work.' },
@@ -228,7 +228,7 @@ export const services = [
       'Ask about it when you call, and we will walk you through how we handle dust on your project.',
     ],
     faq: [
-      { q: 'Do you work on commercial properties?', a: 'Yes. We take commercial and residential jobs. Describe the property and the work when you call 734-489-2284 or use the contact form, and we will give you a free estimate.' },
+      { q: 'Do you work on commercial properties?', a: 'Yes. We take commercial and residential jobs. Describe the property and the work when you call 734-472-4266 or use the contact form, and we will give you a free estimate.' },
       { q: 'Is dustless sanding completely dust-free?', a: 'No. No sanding method removes every particle. Dustless equipment cuts down on the dust that reaches the room, and we plan the job with that in mind.' },
       { q: 'What equipment do you use?', a: 'Specialized dustless sanding equipment. Ask when you call and we will explain how it works on your type of job.' },
       { q: 'Which jobs does it apply to?', a: 'Our drywall, plaster and finishing work.' },
@@ -313,7 +313,7 @@ export const services = [
     ],
     faq: [
       { q: 'Can you insulate and hang drywall in the same project?', a: 'Yes. Tell us you want both when you ask for an estimate.' },
-      { q: 'How do I get an estimate?', a: 'Call 734-489-2284 or use the contact form. Estimates are free.' },
+      { q: 'How do I get an estimate?', a: 'Call 734-472-4266 or use the contact form. Estimates are free.' },
     ],
     related: ['basement-garage-house-finishing', 'drywall-installation', 'window-glazing-caulking'],
   },
@@ -369,13 +369,13 @@ export const locations = [
     h1: 'Drywall and Plaster Contractor in Dearborn Heights',
     lead: 'The Original Patch Master is based here. Call for repairs, finishing, or a full basement, garage or house.',
     sections: [
-      { h: 'Commercial and residential work', p: ['We work on commercial and residential properties here. Commercial drywall installation, repair and finishing is a priority for The Original Patch Master, alongside residential repairs, basements and garages. Describe the property when you call 734-489-2284 and we will give you a free estimate.'] },
+      { h: 'Commercial and residential work', p: ['We work on commercial and residential properties here. Commercial drywall installation, repair and finishing is a priority for The Original Patch Master, alongside residential repairs, basements and garages. Describe the property when you call 734-472-4266 and we will give you a free estimate.'] },
       { h: 'A Dearborn Heights business', p: ['The Original Patch Master runs out of Dearborn Heights. This is our home area, and we travel to jobs across Metro Detroit.'] },
       { h: 'Jobs we take', p: ['Homeowners call us about a patched wall, a cracked ceiling, a basement that needs finishing or a garage that is still bare framing. The full list is below.'], services: ['drywall-repair', 'drywall-installation', 'plaster-repair', 'basement-garage-house-finishing', 'level-5-finishing', 'insulation'] },
-      { h: 'How to book', p: ['Estimates are free. Call 734-489-2284 Monday to Friday, 7 AM to 5 PM, or use the contact form and tell us what you need.'] },
+      { h: 'How to book', p: ['Estimates are free. Call 734-472-4266 Monday to Friday, 7 AM to 5 PM, or use the contact form and tell us what you need.'] },
     ],
     faq: [
-      { q: 'Do you do commercial drywall work in Dearborn Heights?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-489-2284 with the address or town and the work you need.' },
+      { q: 'Do you do commercial drywall work in Dearborn Heights?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-472-4266 with the address or town and the work you need.' },
       { q: 'Where is The Original Patch Master located?', a: 'We are based in Dearborn Heights, Michigan, and we serve Metro Detroit. Call or use the contact form to set up an estimate.' },
       { q: 'What hours can I call?', a: 'Monday to Friday, 7:00 AM to 5:00 PM.' },
     ],
@@ -393,10 +393,10 @@ export const locations = [
       { h: 'For businesses and homeowners', p: ['Business owners and property managers in Dearborn can call us about commercial drywall installation, repair and plaster work. Homeowners can call about repairs, basements, garages and finishing. Either way, tell us what the job is and we will give you a free estimate.'] },
       { h: 'Repairs and finishing', p: ['A repair is a good reason to call: a hole, a crack, a patch left after plumbing or electrical work. The Original Patch Master repairs drywall and plaster and finishes the area so it is ready for paint. We also take new drywall and larger finishing projects.'], services: ['drywall-repair', 'plaster-repair', 'level-5-finishing'] },
       { h: 'Cleaner sanding', p: ['Repairs happen in rooms people live in. We use specialized dustless sanding equipment to cut down on the dust that ends up in your house.'], services: ['dustless-sanding'] },
-      { h: 'Get an estimate', p: ['Tell us you are in Dearborn when you call 734-489-2284 or fill out the contact form. Estimates are free.'] },
+      { h: 'Get an estimate', p: ['Tell us you are in Dearborn when you call 734-472-4266 or fill out the contact form. Estimates are free.'] },
     ],
     faq: [
-      { q: 'Do you do commercial drywall work in Dearborn?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-489-2284 with the address or town and the work you need.' },
+      { q: 'Do you do commercial drywall work in Dearborn?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-472-4266 with the address or town and the work you need.' },
       { q: 'Do you work in Dearborn?', a: 'Yes. Dearborn is one of the areas The Original Patch Master serves, along with Dearborn Heights, Monroe, Carleton and Downriver communities.' },
       { q: 'Do you take small jobs in Dearborn?', a: 'Yes. A single patch is a normal job for us.' },
     ],
@@ -417,8 +417,8 @@ export const locations = [
       { h: 'Repairs too', p: ['You do not need a big project to call. Patched holes, cracked seams and plaster repairs are all on the list.'], services: ['drywall-repair', 'plaster-repair'] },
     ],
     faq: [
-      { q: 'Do you do commercial drywall work in Monroe?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-489-2284 with the address or town and the work you need.' },
-      { q: 'Does The Original Patch Master work in Monroe?', a: 'Yes. Monroe is one of the areas we serve. Call 734-489-2284 with your address and the work you need.' },
+      { q: 'Do you do commercial drywall work in Monroe?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-472-4266 with the address or town and the work you need.' },
+      { q: 'Does The Original Patch Master work in Monroe?', a: 'Yes. Monroe is one of the areas we serve. Call 734-472-4266 with your address and the work you need.' },
       { q: 'Are estimates free in Monroe?', a: 'Yes. Estimates are free everywhere we work.' },
     ],
     near: ['carleton', 'downriver', 'metro-detroit'],
@@ -435,10 +435,10 @@ export const locations = [
       { h: 'Commercial or residential', p: ['Carleton customers can call about commercial drywall and plaster work as well as home repairs, garages and basements. Tell us the town and the kind of property, and we will set up a free estimate.'] },
       { h: 'Start small or start big', p: ['Some jobs are a single patch. Some are a basement. The Original Patch Master does both, and the process is the same: a free estimate, a plain explanation of the work and a finished surface when we are done.'] },
       { h: 'Common starting points', list: ['A hole or crack in a wall or ceiling', 'Plaster that is cracked or loose', 'A garage that needs finished walls', 'A basement with bare framing', 'New drywall for an addition or a build'], services: ['drywall-repair', 'basement-garage-house-finishing', 'plaster-repair', 'drywall-installation'] },
-      { h: 'Call from Carleton', p: ['Call 734-489-2284 or send the details through the contact form. Tell us your town and what you are working on.'] },
+      { h: 'Call from Carleton', p: ['Call 734-472-4266 or send the details through the contact form. Tell us your town and what you are working on.'] },
     ],
     faq: [
-      { q: 'Do you do commercial drywall work in Carleton?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-489-2284 with the address or town and the work you need.' },
+      { q: 'Do you do commercial drywall work in Carleton?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-472-4266 with the address or town and the work you need.' },
       { q: 'Do you serve Carleton?', a: 'Yes. Carleton is one of the areas The Original Patch Master serves.' },
       { q: 'What if my job is a mix of repair and new work?', a: 'We look at the whole job and give you one estimate.' },
     ],
@@ -456,10 +456,10 @@ export const locations = [
       { h: 'Businesses and homeowners', p: ['Downriver business owners can ask us about commercial drywall installation, repair and finishing, and homeowners can ask about repairs, basements and garages. Give us your town when you call and we will confirm we can take the job.'] },
       { h: 'What Downriver covers', p: ['Downriver is the name people use for the communities south of Detroit along the Detroit River. It covers many towns, so we ask where the job is when you call.'] },
       { h: 'Services available', p: ['Drywall repair and installation, plaster repair, Level 5 finishing, dustless sanding, insulation, window glazing and caulking, plus basement, garage and whole-house finishing.'], services: ['drywall-repair', 'drywall-installation', 'basement-garage-house-finishing'] },
-      { h: 'Not sure we reach you?', p: ['Call 734-489-2284 with your town. We will tell you whether we can take the job and set up a free estimate.'] },
+      { h: 'Not sure we reach you?', p: ['Call 734-472-4266 with your town. We will tell you whether we can take the job and set up a free estimate.'] },
     ],
     faq: [
-      { q: 'Do you do commercial drywall work in Downriver?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-489-2284 with the address or town and the work you need.' },
+      { q: 'Do you do commercial drywall work in Downriver?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-472-4266 with the address or town and the work you need.' },
       { q: 'Which Downriver towns do you serve?', a: 'Call with your town and we will let you know. We are based in Dearborn Heights.' },
       { q: 'Do you charge for estimates?', a: 'No. Estimates are free.' },
     ],
@@ -480,7 +480,7 @@ export const locations = [
       { h: 'Priority work', p: ['Finishing basements, garages and houses is a priority for us, and we have the experience and equipment for it. Repairs are welcome too.'], services: ['basement-garage-house-finishing', 'drywall-repair'] },
     ],
     faq: [
-      { q: 'Do you do commercial drywall work in Metro Detroit?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-489-2284 with the address or town and the work you need.' },
+      { q: 'Do you do commercial drywall work in Metro Detroit?', a: 'Yes. Commercial drywall installation, repair and finishing is a priority for us, along with residential work. Call 734-472-4266 with the address or town and the work you need.' },
       { q: 'What areas does The Original Patch Master serve?', a: 'Dearborn Heights, Dearborn, Monroe, Carleton and Downriver communities, plus the wider Metro Detroit area. Call if you are unsure about your town.' },
       { q: 'Is The Original Patch Master insured?', a: 'Yes. The Original Patch Master is fully insured.' },
     ],
@@ -525,7 +525,7 @@ export const stills = {
   'commercial-interior': { alt: 'Drywall finished along a tall wall inside a large commercial building', focus: '50% 40%' },
   'jeremy': { alt: 'Jeremy Girard, owner of The Original Patch Master, standing in a room of hung drywall', focus: '50% 35%' },
   'jonas': { alt: 'Jonas, Jeremy\'s son, working in a room with a laser level and a pole sander', focus: '50% 30%' },
-  'truck': { alt: 'Patch Master work truck with the phone number 734-489-2284 on the door sign', focus: '50% 55%' },
+  'truck': { alt: 'Patch Master work truck', focus: '50% 55%' },
   'plaster-arch': { alt: 'Worker patching a cracked plaster archway', focus: '35% 50%' },
   'finish-reach': { alt: 'Worker finishing a drywall wall with a handheld taping tool', focus: '50% 40%' },
   'finish-wide': { alt: 'Worker using a handheld taping tool along a long drywall wall', focus: '50% 55%' },
@@ -684,7 +684,7 @@ export const integrations = {
   // Paste the Google Business Profile "write a review" URL (from the profile's "Ask for reviews" / share-review-link option)
   // between the quotes, rebuild (`node build.mjs`), commit and push. Used by the "Leave a Google Review" option and the "Leave Us a Review"
   // button on /feedback/, and it turns on the homepage review section. If it is ever empty, those show a "coming soon" note instead of a button.
-  googleReviewUrl: 'https://www.google.com/search?q=734-489-2284&oq=734-489-2284&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBBzIzNWowajeoAgCwAgA&sourceid=chrome&source=chrome.ob&ie=UTF-8&sei=ajLlatW4KsLrmLQPyOHfgQk#lrd=0x4c4d6088ca81bc29:0x5e6fdc70418cdee2,3,,,,',
+  googleReviewUrl: 'https://g.page/r/CeLejEFw3G9eEAI/review',
   // Private feedback form on /feedback/. Posts to the same Formspree endpoint as the contact form, tagged form_type "Customer feedback"
   // with the star rating. To send it elsewhere later, change this value.
   feedbackEndpoint: 'https://formspree.io/f/xzedqkpn',

@@ -269,7 +269,7 @@
 
       var endpoint = form.getAttribute('data-endpoint');
       if (!endpoint) {
-        say(form.getAttribute('data-noendpoint') || 'Online requests are not switched on yet, so nothing was sent. Please call 734-489-2284 or email raegirlg@icloud.com.', 'error');
+        say(form.getAttribute('data-noendpoint') || 'Online requests are not switched on yet, so nothing was sent. Please call 734-472-4266 or email raegirlg@icloud.com.', 'error');
         return;
       }
 
@@ -321,7 +321,7 @@
         })
         .catch(function () {
           done();
-          say('Your submission did not go through. Your information is still here, so you can try again. Or call 734-489-2284 or email raegirlg@icloud.com.', 'error');
+          say('Your submission did not go through. Your information is still here, so you can try again. Or call 734-472-4266 or email raegirlg@icloud.com.', 'error');
         });
     });
   });
@@ -360,7 +360,7 @@
     optin.addEventListener('submit', function (e) {
       e.preventDefault();
       var endpoint = optin.getAttribute('data-optin-endpoint');
-      if (!endpoint) { oSay('Sign-up could not be sent right now. Please call 734-489-2284.', 'error'); return; }
+      if (!endpoint) { oSay('Sign-up could not be sent right now. Please call 734-472-4266.', 'error'); return; }
       if (optin.elements._gotcha && optin.elements._gotcha.value) return;
 
       var name = optin.elements.name, phoneEl = optin.elements.phone, email = optin.elements.email;
@@ -416,7 +416,7 @@
         })
         .catch(function () {
           finish();
-          oSay('We could not record your sign-up, so you are not signed up yet. Your information is still here, so you can try again. Or call 734-489-2284.', 'error');
+          oSay('We could not record your sign-up, so you are not signed up yet. Your information is still here, so you can try again. Or call 734-472-4266.', 'error');
         });
     });
   }

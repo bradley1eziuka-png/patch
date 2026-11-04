@@ -333,7 +333,7 @@ ${ctaBand({ h: `Need ${s.name === 'Basements, Garages & Houses' ? 'a Space Finis
       url: abs(p),
       serviceType: s.name,
       description: s.desc,
-      provider: { '@type': 'HomeAndConstructionBusiness', '@id': abs('/#business'), name: site.name, url: abs('/'), telephone: '+1-734-489-2284' },
+      provider: { '@type': 'HomeAndConstructionBusiness', '@id': abs('/#business'), name: site.name, url: abs('/'), telephone: '+1-734-472-4266' },
       areaServed: ['Dearborn Heights', 'Dearborn', 'Monroe', 'Carleton', 'Downriver'].map((n) => ({ '@type': 'Place', name: n + ', MI' })),
     }),
     faqSchema(s.faq),
@@ -640,7 +640,7 @@ ${pageHero({ crumbs, h1: 'Get a Free Estimate', lead: 'Call, email or send the d
   return page(
     {
       title: 'Free Drywall Estimate | Contact The Original Patch Master',
-      desc: 'Call 734-489-2284 or send the details for a free commercial or residential drywall, plaster or finishing estimate from The Original Patch Master.',
+      desc: 'Call 734-472-4266 or send the details for a free commercial or residential drywall, plaster or finishing estimate from The Original Patch Master.',
       path: '/contact/',
       schema: [businessSchema(), breadcrumbSchema(crumbs)],
     },
